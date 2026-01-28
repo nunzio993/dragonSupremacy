@@ -1,0 +1,119 @@
+/**
+ * Arena 1v1 Styles
+ */
+
+.arena-1v1 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.arena-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.enemy-arena {
+    align-self: flex-end;
+    transform: translateX(-70%) translateY(10%);
+}
+
+.player-arena {
+    align-self: flex-start;
+    transform: translateX(70%) translateY(-10%);
+}
+
+.arena-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    z-index: 10;
+    position: relative;
+}
+
+.no-active {
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+/* Battle Log - Bottom Right */
+.attack-overlay {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 50;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    max-width: 280px;
+    animation: slide-in-right 0.3s ease-out;
+}
+
+.attack-overlay.your-turn {
+    background: rgba(74, 167, 255, 0.9);
+    border: 2px solid #4aa7ff;
+    box-shadow: 0 4px 20px rgba(74, 167, 255, 0.4);
+}
+
+.attack-overlay.enemy-turn {
+    background: rgba(255, 107, 107, 0.9);
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+}
+
+.attack-message {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: left;
+}
+
+/* Phase Indicators */
+.phase-you {
+    background: linear-gradient(135deg, #4aa7ff, #667eea);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.phase-enemy {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.phase-idle {
+    color: #888;
+    font-weight: 600;
+}
+
+.phase-swap {
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,62 @@
+/**
+ * HP Bar Styles
+ */
+
+.hp-bar-wrapper {
+    width: 100%;
+}
+
+.hp-bar-md .hp-bar-track {
+    height: 14px;
+}
+
+.hp-bar-sm .hp-bar-track {
+    height: 8px;
+}
+
+.hp-bar-track {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hp-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease-out;
+}
+
+.hp-green {
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+.hp-yellow {
+    background: linear-gradient(90deg, #f39c12, #f1c40f);
+}
+
+.hp-red {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+    animation: hp-pulse 1s ease-in-out infinite;
+}
+
+@keyframes hp-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.hp-bar-text {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 0.25rem;
+}

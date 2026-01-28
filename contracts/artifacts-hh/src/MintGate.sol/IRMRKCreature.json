@@ -1,0 +1,130 @@
+{
+  "_format": "hh3-artifact-1",
+  "contractName": "IRMRKCreature",
+  "sourceName": "src/MintGate.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "genSeed",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint8",
+          "name": "talent",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "personality",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "elementType",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "temperament",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint72",
+          "name": "baseStats",
+          "type": "uint72"
+        },
+        {
+          "internalType": "uint144",
+          "name": "growthRates",
+          "type": "uint144"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "moveId",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "moveType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "category",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "power",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "accuracy",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "cooldownMax",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "statusEffect",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "statusChance",
+              "type": "uint8"
+            }
+          ],
+          "internalType": "struct IRMRKCreature.Move[4]",
+          "name": "moves",
+          "type": "tuple[4]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "moveCount",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8[4]",
+          "name": "mastery",
+          "type": "uint8[4]"
+        },
+        {
+          "internalType": "uint64",
+          "name": "aptitudes",
+          "type": "uint64"
+        }
+      ],
+      "name": "mintCreature",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "immutableReferences": {},
+  "inputSourceName": "project/src/MintGate.sol",
+  "buildInfoId": "solc-0_8_24-51e682cd951db4ab161c5dde04dbd3ae1866b31c"
+}

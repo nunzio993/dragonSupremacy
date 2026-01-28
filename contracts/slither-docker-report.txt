@@ -1,0 +1,1740 @@
+﻿docker : 'forge clean' running (wd: /share)
+In riga:1 car:1
++ docker run --rm -v "${PWD}:/share" 
+trailofbits/eth-security-toolbox s ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ('forge clean' 
+    running (wd: /share):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+'forge config --json' running
+'forge build --build-info --skip */test/** */script/** 
+--force' running (wd: /share)
+INFO:Detectors:
+Base64._encode(bytes,bool) (lib/openzeppelin-contracts/cont
+racts/utils/Base64.sol#46-135) has bitwise-xor operator ^ 
+instead of the exponentiation operator **: 
+	 - mstore(uint256,uint256)(0x3f,ghijklmnopqrstuvwxyz012345
+6789+/ ^ urlAndFilenameSafe * 0x670) (lib/openzeppelin-cont
+racts/contracts/utils/Base64.sol#81-83)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) has 
+bitwise-xor operator ^ instead of the exponentiation 
+operator **: 
+	 - inverse = (3 * denominator) ^ 2 (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#254)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#incorrect-exponentiation
+INFO:Detectors:
+Base64._decode(bytes) (lib/openzeppelin-contracts/contracts
+/utils/Base64.sol#136-226) contains an incorrect shift 
+operation: ! 1 << a__decode_asm_0 & 0xffffffd0ffffffc47ff5 
+(lib/openzeppelin-contracts/contracts/utils/Base64.sol#185-
+188)
+Base64._decode(bytes) (lib/openzeppelin-contracts/contracts
+/utils/Base64.sol#136-226) contains an incorrect shift 
+operation: ! 1 << b__decode_asm_0 & 0xffffffd0ffffffc47ff5 
+(lib/openzeppelin-contracts/contracts/utils/Base64.sol#190-
+195)
+Base64._decode(bytes) (lib/openzeppelin-contracts/contracts
+/utils/Base64.sol#136-226) contains an incorrect shift 
+operation: ! 1 << c__decode_asm_0 & 0xffffffd0ffffffc47ff5 
+(lib/openzeppelin-contracts/contracts/utils/Base64.sol#197-
+202)
+Base64._decode(bytes) (lib/openzeppelin-contracts/contracts
+/utils/Base64.sol#136-226) contains an incorrect shift 
+operation: ! 1 << d__decode_asm_0 & 0xffffffd0ffffffc47ff5 
+(lib/openzeppelin-contracts/contracts/utils/Base64.sol#204-
+209)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#incorrect-shift-in-assembly
+INFO:Detectors:
+BattleGate.refundEntryFee(address,uint256,bytes32) 
+(src/BattleGate.sol#82-91) ignores return value by 
+dragonToken.transfer(player,dgneCost) 
+(src/BattleGate.sol#87-88)
+BattleGate.refundEntryFee(address,uint256,bytes32) 
+(src/BattleGate.sol#82-91) ignores return value by 
+rmrkToken.transfer(player,rmrkCost) 
+(src/BattleGate.sol#89-90)
+BattleGate.withdrawTokens(address,address,uint256) 
+(src/BattleGate.sol#154-159) ignores return value by 
+IERC20(token).transfer(to,amount) (src/BattleGate.sol#159)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#unchecked-transfer
+INFO:Detectors:
+Base64._encode(bytes,bool) (lib/openzeppelin-contracts/cont
+racts/utils/Base64.sol#46-135) performs a multiplication 
+on the result of a division:
+	- resultLength = 4 * ((data.length + 2) / 3) (lib/openzepp
+elin-contracts/contracts/utils/Base64.sol#69-70)
+Base64._decode(bytes) (lib/openzeppelin-contracts/contracts
+/utils/Base64.sol#136-226) performs a multiplication on 
+the result of a division:
+	- resultLength = (dataLength / 4) * 3 
+(lib/openzeppelin-contracts/contracts/utils/Base64.sol#145)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- denominator = denominator / twos (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#237)
+	- inverse = (3 * denominator) ^ 2 (lib/openzeppelin-contra
+cts/contracts/utils/math/Math.sol#254)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- denominator = denominator / twos (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#237)
+	- inverse *= 2 - denominator * inverse (lib/openzeppelin-c
+ontracts/contracts/utils/math/Math.sol#257)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- denominator = denominator / twos (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#237)
+	- inverse *= 2 - denominator * inverse (lib/openzeppelin-c
+ontracts/contracts/utils/math/Math.sol#259)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- denominator = denominator / twos (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#237)
+	- inverse *= 2 - denominator * inverse (lib/openzeppelin-c
+ontracts/contracts/utils/math/Math.sol#259-260)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- denominator = denominator / twos (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#237)
+	- inverse *= 2 - denominator * inverse (lib/openzeppelin-c
+ontracts/contracts/utils/math/Math.sol#260-261)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- denominator = denominator / twos (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#237)
+	- inverse *= 2 - denominator * inverse (lib/openzeppelin-c
+ontracts/contracts/utils/math/Math.sol#261-262)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- denominator = denominator / twos (lib/openzeppelin-contr
+acts/contracts/utils/math/Math.sol#237)
+	- inverse *= 2 - denominator * inverse (lib/openzeppelin-c
+ontracts/contracts/utils/math/Math.sol#262-263)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) performs a 
+multiplication on the result of a division:
+	- low = low / twos (lib/openzeppelin-contracts/contracts/u
+tils/math/Math.sol#239)
+	- result = low * inverse (lib/openzeppelin-contracts/contr
+acts/utils/math/Math.sol#269)
+Math.invMod(uint256,uint256) (lib/openzeppelin-contracts/co
+ntracts/utils/math/Math.sol#308-352) performs a 
+multiplication on the result of a division:
+	- quotient = gcd / remainder (lib/openzeppelin-contracts/c
+ontracts/utils/math/Math.sol#326-327)
+	- (gcd,remainder) = (remainder,gcd - remainder * 
+quotient) (lib/openzeppelin-contracts/contracts/utils/math/
+Math.sol#327-340)
+HPManager.getHP(uint256) (src/HPManager.sol#58-73) 
+performs a multiplication on the result of a division:
+	- hoursSinceBattle = (block.timestamp - 
+lastBattleTime[tokenId]) / 3600 (src/HPManager.sol#67-70)
+	- recoveredHP = hoursSinceBattle * hpRecoveryRatePerHour 
+(src/HPManager.sol#70-71)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#divide-before-multiply
+INFO:Detectors:
+BattleArena.isMatchOpen(uint256) 
+(src/BattleArena.sol#343-348) uses a dangerous strict 
+equality:
+	- matches[matchId].state == MatchState.OPEN 
+(src/BattleArena.sol#344-348)
+DragonStaking.claimTokens(uint256) 
+(src/DragonStaking.sol#115-128) uses a dangerous strict 
+equality:
+	- pending == 0 (src/DragonStaking.sol#120)
+HPManager.getHP(uint256) (src/HPManager.sol#58-73) uses a 
+dangerous strict equality:
+	- lastBattleTime[tokenId] == 0 (src/HPManager.sol#60-61)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#dangerous-strict-equalities
+INFO:Detectors:
+Reentrancy in RMRKNestable._burn(uint256,uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#558-625):
+	External calls:
+	- totalChildBurns += IERC7401(children[i].contractAddress)
+.burn(children[i].tokenId,pendingRecursiveBurns - 1) + 1 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#609-614)
+	State variables written after the call(s):
+	- delete _RMRKOwners[tokenId] 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#617-618)
+	RMRKNestable._RMRKOwners 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#40-41) 
+can be used in cross function reentrancies:
+	- RMRKNestable._burn(uint256,uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#558-625)
+	- RMRKNestable._exists(uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#809-811)
+	- RMRKNestable._updateOwnerAndClearApprovals(uint256,uint2
+56,address) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#725-735)
+	- RMRKNestable.directOwnerOf(uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#496-509)
+	- delete _childIsInActive[children[i].contractAddress][chi
+ldren[i].tokenId] 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#593-597)
+	RMRKNestable._childIsInActive 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#51-52) 
+can be used in cross function reentrancies:
+	- 
+RMRKNestable._acceptChild(uint256,uint256,address,uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#921-934)
+	- RMRKNestable._burn(uint256,uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#558-625)
+	- RMRKNestable._transferChild(uint256,address,uint256,uint
+256,address,uint256,bool,bytes) (lib/evm/contracts/RMRK/nes
+table/RMRKNestable.sol#1025-1072)
+Reentrancy in BattleGateV2.createBattle(uint256,uint256) 
+(src/BattleGateV2.sol#150-186):
+	External calls:
+	- ! stakeToken.transferFrom(msg.sender,address(this),stake
+Amount) (src/BattleGateV2.sol#166-167)
+	State variables written after the call(s):
+	- creatureInBattle[creatureId] = battleId 
+(src/BattleGateV2.sol#182-183)
+	BattleGateV2.creatureInBattle 
+(src/BattleGateV2.sol#90-91) can be used in cross function 
+reentrancies:
+	- BattleGateV2.creatureInBattle 
+(src/BattleGateV2.sol#90-91)
+	- walletInBattle[msg.sender] = battleId 
+(src/BattleGateV2.sol#180-181)
+	BattleGateV2.walletInBattle (src/BattleGateV2.sol#87-90) 
+can be used in cross function reentrancies:
+	- BattleGateV2.getPlayerBattle(address) 
+(src/BattleGateV2.sol#416-423)
+	- BattleGateV2.isInBattle(address) 
+(src/BattleGateV2.sol#410-415)
+	- BattleGateV2.walletInBattle (src/BattleGateV2.sol#87-90)
+Reentrancy in HPManager.instantHeal(uint256) 
+(src/HPManager.sol#106-126):
+	External calls:
+	- require(bool,string)(dgneToken.transferFrom(msg.sender,t
+reasury,cost),DGNE transfer failed) 
+(src/HPManager.sol#119-121)
+	State variables written after the call(s):
+	- lastBattleTime[tokenId] = block.timestamp 
+(src/HPManager.sol#122)
+	HPManager.lastBattleTime (src/HPManager.sol#19-20) can be 
+used in cross function reentrancies:
+	- HPManager.getHP(uint256) (src/HPManager.sol#58-73)
+	- HPManager.instantHeal(uint256) 
+(src/HPManager.sol#106-126)
+	- HPManager.lastBattleTime (src/HPManager.sol#19-20)
+	- HPManager.setHP(uint256,uint256) 
+(src/HPManager.sol#93-100)
+	- lastHP[tokenId] = 100 (src/HPManager.sol#122)
+	HPManager.lastHP (src/HPManager.sol#16-17) can be used in 
+cross function reentrancies:
+	- HPManager.getHP(uint256) (src/HPManager.sol#58-73)
+	- HPManager.instantHeal(uint256) 
+(src/HPManager.sol#106-126)
+	- HPManager.lastHP (src/HPManager.sol#16-17)
+	- HPManager.setHP(uint256,uint256) 
+(src/HPManager.sol#93-100)
+Reentrancy in BattleGateV2.joinBattle(bytes32,uint256) 
+(src/BattleGateV2.sol#193-222):
+	External calls:
+	- ! stakeToken.transferFrom(msg.sender,address(this),battl
+e.stakeAmount) (src/BattleGateV2.sol#210-213)
+	State variables written after the call(s):
+	- battle.guest = msg.sender (src/BattleGateV2.sol#213-215)
+	BattleGateV2.battles (src/BattleGateV2.sol#87) can be 
+used in cross function reentrancies:
+	- BattleGateV2.battles (src/BattleGateV2.sol#87)
+	- BattleGateV2.getBattle(bytes32) 
+(src/BattleGateV2.sol#406-410)
+	- battle.guestCreatureId = creatureId 
+(src/BattleGateV2.sol#215-216)
+	BattleGateV2.battles (src/BattleGateV2.sol#87) can be 
+used in cross function reentrancies:
+	- BattleGateV2.battles (src/BattleGateV2.sol#87)
+	- BattleGateV2.getBattle(bytes32) 
+(src/BattleGateV2.sol#406-410)
+	- battle.matchedAt = block.timestamp 
+(src/BattleGateV2.sol#216)
+	BattleGateV2.battles (src/BattleGateV2.sol#87) can be 
+used in cross function reentrancies:
+	- BattleGateV2.battles (src/BattleGateV2.sol#87)
+	- BattleGateV2.getBattle(bytes32) 
+(src/BattleGateV2.sol#406-410)
+	- battle.state = BattleState.MATCHED 
+(src/BattleGateV2.sol#216)
+	BattleGateV2.battles (src/BattleGateV2.sol#87) can be 
+used in cross function reentrancies:
+	- BattleGateV2.battles (src/BattleGateV2.sol#87)
+	- BattleGateV2.getBattle(bytes32) 
+(src/BattleGateV2.sol#406-410)
+	- creatureInBattle[creatureId] = battleId 
+(src/BattleGateV2.sol#220-221)
+	BattleGateV2.creatureInBattle 
+(src/BattleGateV2.sol#90-91) can be used in cross function 
+reentrancies:
+	- BattleGateV2.creatureInBattle 
+(src/BattleGateV2.sol#90-91)
+	- walletInBattle[msg.sender] = battleId 
+(src/BattleGateV2.sol#219-220)
+	BattleGateV2.walletInBattle (src/BattleGateV2.sol#87-90) 
+can be used in cross function reentrancies:
+	- BattleGateV2.getPlayerBattle(address) 
+(src/BattleGateV2.sol#416-423)
+	- BattleGateV2.isInBattle(address) 
+(src/BattleGateV2.sol#410-415)
+	- BattleGateV2.walletInBattle (src/BattleGateV2.sol#87-90)
+Reentrancy in BattleGate.payEntryFee(uint256,bytes32) 
+(src/BattleGate.sol#55-76):
+	External calls:
+	- require(bool,string)(dragonToken.transferFrom(msg.sender
+,address(this),dgneCost),DGNE transfer failed) 
+(src/BattleGate.sol#65-68)
+	- require(bool,string)(rmrkToken.transferFrom(msg.sender,a
+ddress(this),rmrkCost),RMRK transfer failed) 
+(src/BattleGate.sol#68-71)
+	State variables written after the call(s):
+	- usedNonces[nonce] = true (src/BattleGate.sol#71-72)
+	BattleGate.usedNonces (src/BattleGate.sol#23-24) can be 
+used in cross function reentrancies:
+	- BattleGate.rewardWinner(address,bytes32) 
+(src/BattleGate.sol#120-130)
+	- BattleGate.usedNonces (src/BattleGate.sol#23-24)
+Reentrancy in DragonStaking.stake(uint256) 
+(src/DragonStaking.sol#61-83):
+	External calls:
+	- creatureContract.transferFrom(msg.sender,address(this),t
+okenId) (src/DragonStaking.sol#70-73)
+	State variables written after the call(s):
+	- stakes[tokenId] = StakeInfo({owner:msg.sender,stakedAt:u
+int64(block.timestamp),lastClaimAt:uint64(block.timestamp),
+talent:talent}) (src/DragonStaking.sol#73-79)
+	DragonStaking.stakes (src/DragonStaking.sol#37-39) can be 
+used in cross function reentrancies:
+	- DragonStaking.pendingRewards(uint256) 
+(src/DragonStaking.sol#162-172)
+	- DragonStaking.stakes (src/DragonStaking.sol#37-39)
+Reentrancy in DragonStaking.unstake(uint256) 
+(src/DragonStaking.sol#89-108):
+	External calls:
+	- dragonToken.mint(msg.sender,pending) 
+(src/DragonStaking.sol#96-97)
+	- creatureContract.transferFrom(address(this),msg.sender,t
+okenId) (src/DragonStaking.sol#99-102)
+	State variables written after the call(s):
+	- delete stakes[tokenId] (src/DragonStaking.sol#105-106)
+	DragonStaking.stakes (src/DragonStaking.sol#37-39) can be 
+used in cross function reentrancies:
+	- DragonStaking.pendingRewards(uint256) 
+(src/DragonStaking.sol#162-172)
+	- DragonStaking.stakes (src/DragonStaking.sol#37-39)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#reentrancy-vulnerabilities-1
+INFO:Detectors:
+AbstractMultiAsset._acceptAsset(uint256,uint256,uint64).rep
+lacefound (lib/evm/contracts/RMRK/multiasset/AbstractMultiA
+sset.sol#128) is a local variable never initialized
+RMRKNestable._burn(uint256,uint256).totalChildBurns 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#581) is 
+a local variable never initialized
+AbstractMultiAsset._acceptAsset(uint256,uint256,uint64).rep
+laceIndex (lib/evm/contracts/RMRK/multiasset/AbstractMultiA
+sset.sol#128) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#uninitialized-local-variables
+INFO:Detectors:
+DragonStaking._getCreatureTalent(uint256) 
+(src/DragonStaking.sol#220-230) ignores return value by 
+(None,None,None,None,None,talent) = 
+IRMRKCreature(address(creatureContract)).coreData(tokenId) 
+(src/DragonStaking.sol#228-230)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#unused-return
+INFO:Detectors:
+RMRKNestableMultiAssetPreMint.constructor(string,string,str
+ing,uint256,address,uint16).name (lib/evm/contracts/impleme
+ntations/premint/RMRKNestableMultiAssetPreMint.sol#28-29) 
+shadows:
+	- RMRKImplementationBase.name() (lib/evm/contracts/impleme
+ntations/utils/RMRKImplementationBase.sol#85-88) (function)
+RMRKNestableMultiAssetPreMint.constructor(string,string,str
+ing,uint256,address,uint16).symbol (lib/evm/contracts/imple
+mentations/premint/RMRKNestableMultiAssetPreMint.sol#30) 
+shadows:
+	- RMRKImplementationBase.symbol() (lib/evm/contracts/imple
+mentations/utils/RMRKImplementationBase.sol#93-96) 
+(function)
+RMRKNestableMultiAssetPreMint.constructor(string,string,str
+ing,uint256,address,uint16).maxSupply (lib/evm/contracts/im
+plementations/premint/RMRKNestableMultiAssetPreMint.sol#32)
+ shadows:
+	- RMRKImplementationBase.maxSupply() (lib/evm/contracts/im
+plementations/utils/RMRKImplementationBase.sol#57-59) 
+(function)
+RMRKNestableMultiAssetPreMint.mint(address,uint256,string).
+tokenURI (lib/evm/contracts/implementations/premint/RMRKNes
+tableMultiAssetPreMint.sol#56-58) shadows:
+	- RMRKTokenURIPerToken.tokenURI(uint256) (lib/evm/contract
+s/implementations/utils/RMRKTokenURIPerToken.sol#16-21) 
+(function)
+RMRKNestableMultiAssetPreMint.nestMint(address,uint256,uint
+256,string).tokenURI (lib/evm/contracts/implementations/pre
+mint/RMRKNestableMultiAssetPreMint.sol#87-88) shadows:
+	- RMRKTokenURIPerToken.tokenURI(uint256) (lib/evm/contract
+s/implementations/utils/RMRKTokenURIPerToken.sol#16-21) 
+(function)
+CreatureNFT.ownsCreature(address,uint256).owner 
+(src/CreatureNFT.sol#133) shadows:
+	- Ownable.owner() (lib/openzeppelin-contracts/contracts/ac
+cess/Ownable.sol#54-56) (function)
+DragonStaking.getStakedTokens(address).owner 
+(src/DragonStaking.sol#174) shadows:
+	- Ownable.owner() (lib/openzeppelin-contracts/contracts/ac
+cess/Ownable.sol#54-56) (function)
+DragonStaking.totalPendingRewards(address).owner 
+(src/DragonStaking.sol#181) shadows:
+	- Ownable.owner() (lib/openzeppelin-contracts/contracts/ac
+cess/Ownable.sol#54-56) (function)
+DragonStaking._removeFromStakedArray(address,uint256).owner
+ (src/DragonStaking.sol#205) shadows:
+	- Ownable.owner() (lib/openzeppelin-contracts/contracts/ac
+cess/Ownable.sol#54-56) (function)
+RMRKCreature.mint(address,uint256,string).tokenURI 
+(src/RMRKCreature.sol#115) shadows:
+	- RMRKCreature.tokenURI(uint256) 
+(src/RMRKCreature.sol#291-309) (function)
+	- RMRKTokenURIPerToken.tokenURI(uint256) (lib/evm/contract
+s/implementations/utils/RMRKTokenURIPerToken.sol#16-21) 
+(function)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#local-variable-shadowing
+INFO:Detectors:
+RMRKCreature.setRoyaltyBps(uint256) 
+(src/RMRKCreature.sol#373-375) should emit an event for: 
+	- royaltyBps = _bps (src/RMRKCreature.sol#375) 
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#missing-events-arithmetic
+INFO:Detectors:
+BattleArena.setBattleServer(address)._server 
+(src/BattleArena.sol#301) lacks a zero-check on :
+		- battleServer = _server (src/BattleArena.sol#302-303)
+BattleGateV2.constructor(address,address,address,address)._
+trustedBackend (src/BattleGateV2.sol#129-131) lacks a 
+zero-check on :
+		- trustedBackend = _trustedBackend 
+(src/BattleGateV2.sol#137-138)
+BattleGateV2.constructor(address,address,address,address)._
+treasury (src/BattleGateV2.sol#132) lacks a zero-check on :
+		- treasury = _treasury (src/BattleGateV2.sol#138-139)
+BattleGateV2.constructor(address,address,address,address)._
+creatureContract (src/BattleGateV2.sol#132-134) lacks a 
+zero-check on :
+		- creatureContract = _creatureContract 
+(src/BattleGateV2.sol#139-140)
+BattleGateV2.setTrustedBackend(address)._backend 
+(src/BattleGateV2.sol#388) lacks a zero-check on :
+		- trustedBackend = _backend (src/BattleGateV2.sol#389)
+BattleGateV2.setTreasury(address)._treasury 
+(src/BattleGateV2.sol#390) lacks a zero-check on :
+		- treasury = _treasury (src/BattleGateV2.sol#390-391)
+BattleGateV2.setCreatureContract(address)._creature 
+(src/BattleGateV2.sol#391) lacks a zero-check on :
+		- creatureContract = _creature 
+(src/BattleGateV2.sol#392-394)
+GameConfig.setDragonToken(address)._addr 
+(src/GameConfig.sol#82) lacks a zero-check on :
+		- dragonToken = _addr (src/GameConfig.sol#83-85)
+GameConfig.setRmrkToken(address)._addr 
+(src/GameConfig.sol#87) lacks a zero-check on :
+		- rmrkToken = _addr (src/GameConfig.sol#87-89)
+GameConfig.setCreatureContract(address)._addr 
+(src/GameConfig.sol#92) lacks a zero-check on :
+		- creatureContract = _addr (src/GameConfig.sol#92-95)
+GameConfig.setStakingContract(address)._addr 
+(src/GameConfig.sol#97) lacks a zero-check on :
+		- stakingContract = _addr (src/GameConfig.sol#97-100)
+GameConfig.setBattleGate(address)._addr 
+(src/GameConfig.sol#102) lacks a zero-check on :
+		- battleGate = _addr (src/GameConfig.sol#102)
+HPManager.constructor(address,address)._treasury 
+(src/HPManager.sol#40-41) lacks a zero-check on :
+		- treasury = _treasury (src/HPManager.sol#42)
+HPManager.setTreasury(address)._treasury 
+(src/HPManager.sol#137-138) lacks a zero-check on :
+		- treasury = _treasury (src/HPManager.sol#138-139)
+MintGateV2.setCreatureContract(address)._creatureContract 
+(src/MintGateV2.sol#157) lacks a zero-check on :
+		- creatureContract = _creatureContract 
+(src/MintGateV2.sol#157-158)
+RMRKCreature.setTreasury(address)._treasury 
+(src/RMRKCreature.sol#368-370) lacks a zero-check on :
+		- treasury = _treasury (src/RMRKCreature.sol#371-372)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#missing-zero-address-validation
+INFO:Detectors:
+DragonStaking.pendingRewards(uint256) 
+(src/DragonStaking.sol#162-172) has external calls inside 
+a loop: dailyRate = gameConfig.getStakingRate(info.talent) 
+(src/DragonStaking.sol#168-169)
+	Calls stack containing the loop:
+		DragonStaking.claimAll(uint256)
+DragonStaking.pendingRewards(uint256) 
+(src/DragonStaking.sol#162-172) has external calls inside 
+a loop: dailyRate = gameConfig.getStakingRate(info.talent) 
+(src/DragonStaking.sol#168-169)
+	Calls stack containing the loop:
+		DragonStaking.totalPendingRewards(address)
+RMRKNestable._checkDestination(address) (lib/evm/contracts/
+RMRK/nestable/RMRKNestable.sol#1147-1166) has external 
+calls inside a loop: ! IERC165(to).supportsInterface(type()
+(IERC7401).interfaceId) (lib/evm/contracts/RMRK/nestable/RM
+RKNestable.sol#1157-1162)
+	Calls stack containing the loop:
+		RMRKNestableMultiAssetPreMint.nestMint(address,uint256,ui
+nt256,string)
+		RMRKNestable._nestMint(address,uint256,uint256,bytes)
+RMRKCreature._exists(uint256) 
+(src/RMRKCreature.sol#339-346) has external calls inside a 
+loop: o = this.ownerOf(tokenId) 
+(src/RMRKCreature.sol#344-346)
+	Calls stack containing the loop:
+		RMRKNestableMultiAssetPreMint.nestMint(address,uint256,ui
+nt256,string)
+		RMRKNestable._nestMint(address,uint256,uint256,bytes)
+		RMRKNestable._innerMint(address,uint256,uint256,bytes)
+RMRKNestable._sendToNFT(address,address,uint256,uint256,uin
+t256,bytes) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#321-336) 
+has external calls inside a loop: 
+destContract.addChild(destinationId,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#325)
+	Calls stack containing the loop:
+		RMRKNestableMultiAssetPreMint.nestMint(address,uint256,ui
+nt256,string)
+		RMRKNestable._nestMint(address,uint256,uint256,bytes)
+RMRKNestable._checkForInheritanceLoop(uint256,address,uint2
+56) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#355-377) 
+has external calls inside a loop: 
+(nextOwner,nextOwnerTokenId,isNft) = 
+IERC7401(targetContract).directOwnerOf(targetId) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#357-362)
+	Calls stack containing the loop:
+		RMRKNestable.nestTransferFrom(address,address,uint256,uin
+t256,bytes)
+		RMRKNestable._nestTransfer(address,address,uint256,uint25
+6,bytes)
+RMRKNestable._burn(uint256,uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#558-625) 
+has external calls inside a loop: totalChildBurns += IERC74
+01(children[i].contractAddress).burn(children[i].tokenId,pe
+ndingRecursiveBurns - 1) + 1 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#609-614)
+	Calls stack containing the loop:
+		RMRKNestable.burn(uint256)
+		RMRKNestable.burn(uint256,uint256)
+RMRKNestable._burn(uint256,uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#558-625) 
+has external calls inside a loop: totalChildBurns += IERC74
+01(children[i].contractAddress).burn(children[i].tokenId,pe
+ndingRecursiveBurns - 1) + 1 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#609-614)
+	Calls stack containing the loop:
+		RMRKNestable.burn(uint256,uint256)
+RMRKCreature._exists(uint256) 
+(src/RMRKCreature.sol#339-346) has external calls inside a 
+loop: o = this.ownerOf(tokenId) 
+(src/RMRKCreature.sol#344-346)
+	Calls stack containing the loop:
+		RMRKCreature.mint(address,uint256,string)
+		RMRKNestable._safeMint(address,uint256,bytes)
+		RMRKNestable._mint(address,uint256,bytes)
+		RMRKNestable._innerMint(address,uint256,uint256,bytes)
+RMRKNestable._checkOnERC721Received(address,address,uint256
+,bytes) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#822-844) 
+has external calls inside a loop: retval = IERC721Receiver(
+to).onERC721Received(_msgSender(),from,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#828-842)
+	Calls stack containing the loop:
+		RMRKCreature.mint(address,uint256,string)
+		RMRKNestable._safeMint(address,uint256,bytes)
+RMRKCreature._exists(uint256) 
+(src/RMRKCreature.sol#339-346) has external calls inside a 
+loop: o = this.ownerOf(tokenId) 
+(src/RMRKCreature.sol#344-346)
+	Calls stack containing the loop:
+		RMRKCreature.mintCreature(address,bytes32,uint8,bytes32,b
+ytes32,bytes32,uint72,uint144,RMRKCreature.Move[4],uint8,ui
+nt8[4],uint64)
+		RMRKCreature.mint(address,uint256,string)
+		RMRKNestable._safeMint(address,uint256,bytes)
+		RMRKNestable._mint(address,uint256,bytes)
+		RMRKNestable._innerMint(address,uint256,uint256,bytes)
+RMRKNestable._checkOnERC721Received(address,address,uint256
+,bytes) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#822-844) 
+has external calls inside a loop: retval = IERC721Receiver(
+to).onERC721Received(_msgSender(),from,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#828-842)
+	Calls stack containing the loop:
+		RMRKCreature.mintCreature(address,bytes32,uint8,bytes32,b
+ytes32,bytes32,uint72,uint144,RMRKCreature.Move[4],uint8,ui
+nt8[4],uint64)
+		RMRKCreature.mint(address,uint256,string)
+		RMRKNestable._safeMint(address,uint256,bytes)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation/#calls-inside-a-loop
+INFO:Detectors:
+Reentrancy in BattleGateV2.createBattle(uint256,uint256) 
+(src/BattleGateV2.sol#150-186):
+	External calls:
+	- ! stakeToken.transferFrom(msg.sender,address(this),stake
+Amount) (src/BattleGateV2.sol#166-167)
+	State variables written after the call(s):
+	- battles[battleId] = Battle({host:msg.sender,guest:addres
+s(0),hostCreatureId:creatureId,guestCreatureId:0,stakeAmoun
+t:stakeAmount,createdAt:block.timestamp,matchedAt:0,resolve
+dAt:0,state:BattleState.CREATED,winner:address(0)}) 
+(src/BattleGateV2.sol#169-178)
+Reentrancy in BattleGateV2.emergencyRefund(bytes32) 
+(src/BattleGateV2.sol#363-386):
+	External calls:
+	- ! stakeToken.transfer(battle.host,battle.stakeAmount) 
+(src/BattleGateV2.sol#376-378)
+	State variables written after the call(s):
+	- creatureInBattle[battle.guestCreatureId] = bytes32(0) 
+(src/BattleGateV2.sol#382-383)
+	- walletInBattle[battle.guest] = bytes32(0) 
+(src/BattleGateV2.sol#380-381)
+Reentrancy in 
+RMRKNestableMultiAssetPreMint.mint(address,uint256,string) 
+(lib/evm/contracts/implementations/premint/RMRKNestableMult
+iAssetPreMint.sol#54-69):
+	External calls:
+	- _safeMint(to,i,) (lib/evm/contracts/implementations/prem
+int/RMRKNestableMultiAssetPreMint.sol#65-66)
+		- retval = IERC721Receiver(to).onERC721Received(_msgSende
+r(),from,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#828-842)
+	State variables written after the call(s):
+	- _setTokenURI(i,tokenURI) (lib/evm/contracts/implementati
+ons/premint/RMRKNestableMultiAssetPreMint.sol#65)
+		- _tokenURIs[tokenId] = tokenURI_ (lib/evm/contracts/impl
+ementations/utils/RMRKTokenURIPerToken.sol#32-33)
+Reentrancy in CreatureNFT.mint(address,string,uint8,string,
+bytes32,string) (src/CreatureNFT.sol#70-101):
+	External calls:
+	- _safeMint(to,tokenId) (src/CreatureNFT.sol#85)
+		- retval = IERC721Receiver(to).onERC721Received(operator,
+from,tokenId,data) (lib/openzeppelin-contracts/contracts/to
+ken/ERC721/utils/ERC721Utils.sol#32-45)
+		- ERC721Utils.checkOnERC721Received(_msgSender(),address(
+0),to,tokenId,data) (lib/openzeppelin-contracts/contracts/t
+oken/ERC721/ERC721.sol#284-285)
+	State variables written after the call(s):
+	- _setTokenURI(tokenId,uri) (src/CreatureNFT.sol#85-87)
+		- _tokenURIs[tokenId] = _tokenURI (lib/openzeppelin-contr
+acts/contracts/token/ERC721/extensions/ERC721URIStorage.sol
+#54)
+	- creatures[tokenId] = CreatureData({definitionId:definiti
+onId,talent:talent,temperament:temperament,statsHash:statsH
+ash,bornAt:block.timestamp,xp:0}) 
+(src/CreatureNFT.sol#87-96)
+Reentrancy in RMRKCreature.mint(address,uint256,string) 
+(src/RMRKCreature.sol#111-125):
+	External calls:
+	- _safeMint(to,i,) (src/RMRKCreature.sol#121-123)
+		- retval = IERC721Receiver(to).onERC721Received(_msgSende
+r(),from,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#828-842)
+	State variables written after the call(s):
+	- _setTokenURI(i,tokenURI) (src/RMRKCreature.sol#121)
+		- _tokenURIs[tokenId] = tokenURI_ (lib/evm/contracts/impl
+ementations/utils/RMRKTokenURIPerToken.sol#32-33)
+Reentrancy in RMRKCreature.mintCreature(address,bytes32,uin
+t8,bytes32,bytes32,bytes32,uint72,uint144,RMRKCreature.Move
+[4],uint8,uint8[4],uint64) (src/RMRKCreature.sol#127-176):
+	External calls:
+	- tokenId = mint(to,1,) (src/RMRKCreature.sol#151)
+		- retval = IERC721Receiver(to).onERC721Received(_msgSende
+r(),from,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#828-842)
+	State variables written after the call(s):
+	- coreData[tokenId] = CoreData({genSeed:genSeed,personalit
+y:personality,elementType:elementType,temperament:temperame
+nt,bornAt:uint48(block.timestamp),talent:talent}) 
+(src/RMRKCreature.sol#151-159)
+	- movesData[tokenId] = MovesData({move1:moves[0],move2:mov
+es[1],move3:moves[2],move4:moves[3],moveCount:moveCount,mas
+tery:mastery,aptitudes:aptitudes}) 
+(src/RMRKCreature.sol#164-173)
+	- packedStats[tokenId] = 
+PackedStats({baseStats:baseStats,growthRates:growthRates}) 
+(src/RMRKCreature.sol#160-163)
+Reentrancy in RMRKNestableMultiAssetPreMint.nestMint(addres
+s,uint256,uint256,string) (lib/evm/contracts/implementation
+s/premint/RMRKNestableMultiAssetPreMint.sol#84-99):
+	External calls:
+	- _nestMint(to,i,destinationId,) (lib/evm/contracts/implem
+entations/premint/RMRKNestableMultiAssetPreMint.sol#96)
+		- destContract.addChild(destinationId,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#325)
+	State variables written after the call(s):
+	- _setTokenURI(i,tokenURI) (lib/evm/contracts/implementati
+ons/premint/RMRKNestableMultiAssetPreMint.sol#93-96)
+		- _tokenURIs[tokenId] = tokenURI_ (lib/evm/contracts/impl
+ementations/utils/RMRKTokenURIPerToken.sol#32-33)
+Reentrancy in 
+BattleGateV2.resolveBattle(bytes32,address,uint256,bytes) 
+(src/BattleGateV2.sol#234-277):
+	External calls:
+	- _addXP(battle.hostCreatureId,100) 
+(src/BattleGateV2.sol#268-270)
+		- (success,None) = creatureContract.call(abi.encodeWithSi
+gnature(addXP(uint256,uint256),creatureId,amount)) 
+(src/BattleGateV2.sol#452-455)
+	- _addXP(battle.guestCreatureId,100) 
+(src/BattleGateV2.sol#268-270)
+		- (success,None) = creatureContract.call(abi.encodeWithSi
+gnature(addXP(uint256,uint256),creatureId,amount)) 
+(src/BattleGateV2.sol#452-455)
+	- _addXP(battle.hostCreatureId,30) 
+(src/BattleGateV2.sol#270-273)
+		- (success,None) = creatureContract.call(abi.encodeWithSi
+gnature(addXP(uint256,uint256),creatureId,amount)) 
+(src/BattleGateV2.sol#452-455)
+	- _addXP(battle.guestCreatureId,30) 
+(src/BattleGateV2.sol#270-273)
+		- (success,None) = creatureContract.call(abi.encodeWithSi
+gnature(addXP(uint256,uint256),creatureId,amount)) 
+(src/BattleGateV2.sol#452-455)
+	State variables written after the call(s):
+	- _unlockLoser(battle) (src/BattleGateV2.sol#276)
+		- creatureInBattle[loserCreatureId] = bytes32(0) 
+(src/BattleGateV2.sol#442)
+	- _unlockLoser(battle) (src/BattleGateV2.sol#276)
+		- walletInBattle[loser] = bytes32(0) 
+(src/BattleGateV2.sol#441-442)
+Reentrancy in DragonStaking.stake(uint256) 
+(src/DragonStaking.sol#61-83):
+	External calls:
+	- creatureContract.transferFrom(msg.sender,address(this),t
+okenId) (src/DragonStaking.sol#70-73)
+	State variables written after the call(s):
+	- stakedByOwner[msg.sender].push(tokenId) 
+(src/DragonStaking.sol#79-80)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#reentrancy-vulnerabilities-2
+INFO:Detectors:
+Reentrancy in RMRKNestable._burn(uint256,uint256) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#558-625):
+	External calls:
+	- totalChildBurns += IERC7401(children[i].contractAddress)
+.burn(children[i].tokenId,pendingRecursiveBurns - 1) + 1 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#609-614)
+	Event emitted after the call(s):
+	- 
+NestTransfer(immediateOwner,address(0),parentId,0,tokenId) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#618-619)
+	- Transfer(immediateOwner,address(0),tokenId) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#618)
+Reentrancy in RMRKNestable._sendToNFT(address,address,uint2
+56,uint256,uint256,bytes) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#321-336):
+	External calls:
+	- destContract.addChild(destinationId,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#325)
+	Event emitted after the call(s):
+	- NestTransfer(from,to,parentId,destinationId,tokenId) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#327-330)
+	- Transfer(from,to,tokenId) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#325-327)
+Reentrancy in RMRKNestable._transferChild(uint256,address,u
+int256,uint256,address,uint256,bool,bytes) (lib/evm/contrac
+ts/RMRK/nestable/RMRKNestable.sol#1025-1072):
+	External calls:
+	- IERC721(childAddress).safeTransferFrom(address(this),to,
+childId,data) (lib/evm/contracts/RMRK/nestable/RMRKNestable
+.sol#1042-1047)
+	- IERC7401(child.contractAddress).nestTransferFrom(address
+(this),to,child.tokenId,destinationId,data) (lib/evm/contra
+cts/RMRK/nestable/RMRKNestable.sol#1050-1057)
+	Event emitted after the call(s):
+	- ChildTransferred(tokenId,childIndex,childAddress,childId
+,isPending,to == address(0)) (lib/evm/contracts/RMRK/nestab
+le/RMRKNestable.sol#1058-1065)
+Reentrancy in HPManager.instantHeal(uint256) 
+(src/HPManager.sol#106-126):
+	External calls:
+	- require(bool,string)(dgneToken.transferFrom(msg.sender,t
+reasury,cost),DGNE transfer failed) 
+(src/HPManager.sol#119-121)
+	Event emitted after the call(s):
+	- CreatureHealed(tokenId,currentHP,100,cost) 
+(src/HPManager.sol#124-125)
+Reentrancy in CreatureNFT.mint(address,string,uint8,string,
+bytes32,string) (src/CreatureNFT.sol#70-101):
+	External calls:
+	- _safeMint(to,tokenId) (src/CreatureNFT.sol#85)
+		- retval = IERC721Receiver(to).onERC721Received(operator,
+from,tokenId,data) (lib/openzeppelin-contracts/contracts/to
+ken/ERC721/utils/ERC721Utils.sol#32-45)
+		- ERC721Utils.checkOnERC721Received(_msgSender(),address(
+0),to,tokenId,data) (lib/openzeppelin-contracts/contracts/t
+oken/ERC721/ERC721.sol#284-285)
+	Event emitted after the call(s):
+	- 
+CreatureMinted(tokenId,to,definitionId,talent,temperament) 
+(src/CreatureNFT.sol#96-98)
+	- MetadataUpdate(tokenId) (lib/openzeppelin-contracts/cont
+racts/token/ERC721/extensions/ERC721URIStorage.sol#54-55)
+		- _setTokenURI(tokenId,uri) (src/CreatureNFT.sol#85-87)
+Reentrancy in RMRKCreature.mintCreature(address,bytes32,uin
+t8,bytes32,bytes32,bytes32,uint72,uint144,RMRKCreature.Move
+[4],uint8,uint8[4],uint64) (src/RMRKCreature.sol#127-176):
+	External calls:
+	- tokenId = mint(to,1,) (src/RMRKCreature.sol#151)
+		- retval = IERC721Receiver(to).onERC721Received(_msgSende
+r(),from,tokenId,data) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#828-842)
+	Event emitted after the call(s):
+	- CreatureMinted(tokenId,to,genSeed,talent,elementType) 
+(src/RMRKCreature.sol#174-176)
+Reentrancy in 
+BattleGate.refundEntryFee(address,uint256,bytes32) 
+(src/BattleGate.sol#82-91):
+	External calls:
+	- dragonToken.transfer(player,dgneCost) 
+(src/BattleGate.sol#87-88)
+	- rmrkToken.transfer(player,rmrkCost) 
+(src/BattleGate.sol#89-90)
+	Event emitted after the call(s):
+	- BattleRefunded(player,creatureId,nonce) 
+(src/BattleGate.sol#90-91)
+Reentrancy in BattleGate.rewardWinner(address,bytes32) 
+(src/BattleGate.sol#120-130):
+	External calls:
+	- IDragonToken(address(dragonToken)).mint(winner,reward) 
+(src/BattleGate.sol#127-129)
+	Event emitted after the call(s):
+	- WinnerRewarded(winner,reward,battleNonce) 
+(src/BattleGate.sol#129-130)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#reentrancy-vulnerabilities-3
+INFO:Detectors:
+BattleArena.joinMatch(uint256,uint256) 
+(src/BattleArena.sol#141-156) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- require(bool,string)(m.state == MatchState.OPEN,Match 
+not open) (src/BattleArena.sol#145)
+	- require(bool,string)(m.playerA != msg.sender,Cannot 
+join own match) (src/BattleArena.sol#145-146)
+	- require(bool,string)(msg.value == m.stake,Stake must 
+match) (src/BattleArena.sol#147-148)
+BattleArena.startMatch(uint256) 
+(src/BattleArena.sol#160-167) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- require(bool,string)(m.state == MatchState.READY,Match 
+not ready) (src/BattleArena.sol#164-166)
+BattleArena.declareWinner(uint256,address,bytes32) 
+(src/BattleArena.sol#176-195) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- require(bool,string)(m.state == 
+MatchState.IN_PROGRESS,Match not in progress) 
+(src/BattleArena.sol#181-184)
+	- require(bool,string)(winner == m.playerA || winner == 
+m.playerB,Winner must be a player) 
+(src/BattleArena.sol#184-188)
+BattleArena.claimPrize(uint256) 
+(src/BattleArena.sol#197-228) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- require(bool,string)(m.state == 
+MatchState.COMPLETED,Match not completed) 
+(src/BattleArena.sol#202-203)
+	- require(bool,string)(m.winner == msg.sender,Not the 
+winner) (src/BattleArena.sol#204-205)
+BattleArena.cancelMatch(uint256) 
+(src/BattleArena.sol#229-245) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- require(bool,string)(m.playerA == msg.sender,Not match 
+creator) (src/BattleArena.sol#232-236)
+	- require(bool,string)(m.state == MatchState.OPEN,Cannot 
+cancel after opponent joined) (src/BattleArena.sol#236-238)
+BattleArena.disputeMatch(uint256) 
+(src/BattleArena.sol#248-266) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- require(bool,string)(m.playerA == msg.sender || 
+m.playerB == msg.sender,Not a match participant) 
+(src/BattleArena.sol#250-255)
+	- require(bool,string)(m.state == 
+MatchState.IN_PROGRESS,Can only dispute in-progress 
+matches) (src/BattleArena.sol#255-259)
+	- require(bool,string)(block.timestamp > m.createdAt + 
+matchTimeout,Timeout not reached) 
+(src/BattleArena.sol#260-262)
+BattleArena.resolveDispute(uint256,address) 
+(src/BattleArena.sol#269-297) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- require(bool,string)(m.state == MatchState.DISPUTED,Not 
+a disputed match) (src/BattleArena.sol#275-279)
+	- require(bool,string)(winner == m.playerA || winner == 
+m.playerB,Winner must be a participant) 
+(src/BattleArena.sol#293-296)
+BattleArena.isMatchOpen(uint256) 
+(src/BattleArena.sol#343-348) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- matches[matchId].state == MatchState.OPEN 
+(src/BattleArena.sol#344-348)
+BattleGateV2.joinBattle(bytes32,uint256) 
+(src/BattleGateV2.sol#193-222) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- block.timestamp >= battle.createdAt + HOST_TIMEOUT 
+(src/BattleGateV2.sol#207-208)
+BattleGateV2.resolveBattle(bytes32,address,uint256,bytes) 
+(src/BattleGateV2.sol#234-277) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- timestamp <= block.timestamp - 300 
+(src/BattleGateV2.sol#245-246)
+	- winner == battle.host (src/BattleGateV2.sol#264-266)
+	- winner == battle.host (src/BattleGateV2.sol#268-270)
+	- loser == battle.host (src/BattleGateV2.sol#270-273)
+BattleGateV2.claimHostTimeout(bytes32) 
+(src/BattleGateV2.sol#337-357) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- block.timestamp <= battle.createdAt + HOST_TIMEOUT 
+(src/BattleGateV2.sol#346-347)
+BattleGateV2.isInBattle(address) 
+(src/BattleGateV2.sol#410-415) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- walletInBattle[wallet] != bytes32(0) 
+(src/BattleGateV2.sol#413-415)
+DragonStaking.stake(uint256) (src/DragonStaking.sol#61-83) 
+uses timestamp for comparisons
+	Dangerous comparisons:
+	- stakes[tokenId].owner != address(0) 
+(src/DragonStaking.sol#65)
+DragonStaking.unstake(uint256) 
+(src/DragonStaking.sol#89-108) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- pending > 0 (src/DragonStaking.sol#96)
+DragonStaking.claimTokens(uint256) 
+(src/DragonStaking.sol#115-128) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- pending == 0 (src/DragonStaking.sol#120)
+DragonStaking.claimAll(uint256) 
+(src/DragonStaking.sol#135-152) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- pending > 0 (src/DragonStaking.sol#145)
+	- totalClaimed == 0 (src/DragonStaking.sol#150-151)
+HPManager.getHP(uint256) (src/HPManager.sol#58-73) uses 
+timestamp for comparisons
+	Dangerous comparisons:
+	- lastBattleTime[tokenId] == 0 (src/HPManager.sol#60-61)
+	- currentHP > 100 (src/HPManager.sol#71-73)
+HPManager.instantHeal(uint256) (src/HPManager.sol#106-126) 
+uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool,string)(currentHP < 100,Already at full 
+HP) (src/HPManager.sol#112)
+	- require(bool,string)(dgneToken.transferFrom(msg.sender,t
+reasury,cost),DGNE transfer failed) 
+(src/HPManager.sol#119-121)
+MintGateV2.mintCreature(address,bytes32,uint8,bytes32,bytes
+32,bytes32,uint72,uint144,IRMRKCreature.Move[4],uint8,uint8
+[4],uint64,uint256,bytes) (src/MintGateV2.sol#65-118) uses 
+timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool,string)(block.timestamp <= 
+deadline,Signature expired) (src/MintGateV2.sol#81-82)
+RMRKCreature._calcStat(uint8,uint16,uint256,uint256,bool) 
+(src/RMRKCreature.sol#225-254) uses timestamp for 
+comparisons
+	Dangerous comparisons:
+	- ageDays <= PEAK_AGE_DAYS (src/RMRKCreature.sol#243-244)
+	- ageDays <= DECAY_START_DAYS 
+(src/RMRKCreature.sol#244-245)
+	- result > 255 (src/RMRKCreature.sol#233)
+	- decay_scope_0 >= 500 (src/RMRKCreature.sol#249-250)
+	- result_scope_1 > 255 (src/RMRKCreature.sol#252-254)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#block-timestamp
+INFO:Detectors:
+RMRKNestable._checkOnERC721Received(address,address,uint256
+,bytes) 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#822-844) 
+uses assembly
+	- INLINE ASM 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#838-841)
+SafeERC20._safeTransfer(IERC20,address,uint256,bool) (lib/o
+penzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20
+.sol#173-195) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/token/E
+RC20/utils/SafeERC20.sol#176-195)
+SafeERC20._safeTransferFrom(IERC20,address,address,uint256,
+bool) (lib/openzeppelin-contracts/contracts/token/ERC20/uti
+ls/SafeERC20.sol#208-237) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/token/E
+RC20/utils/SafeERC20.sol#212-237)
+SafeERC20._safeApprove(IERC20,address,uint256,bool) (lib/op
+enzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.
+sol#250-272) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/token/E
+RC20/utils/SafeERC20.sol#253-272)
+ERC721Utils.checkOnERC721Received(address,address,address,u
+int256,bytes) (lib/openzeppelin-contracts/contracts/token/E
+RC721/utils/ERC721Utils.sol#23-46) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/token/E
+RC721/utils/ERC721Utils.sol#42-44)
+Base64._encode(bytes,bool) (lib/openzeppelin-contracts/cont
+racts/utils/Base64.sol#46-135) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/B
+ase64.sol#70-135)
+Base64._decode(bytes) (lib/openzeppelin-contracts/contracts
+/utils/Base64.sol#136-226) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/B
+ase64.sol#152-226)
+Bytes.slice(bytes,uint256,uint256) (lib/openzeppelin-contra
+cts/contracts/utils/Bytes.sol#84-94) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/B
+ytes.sol#91-94)
+Bytes.splice(bytes,uint256,uint256) (lib/openzeppelin-contr
+acts/contracts/utils/Bytes.sol#115-124) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/B
+ytes.sol#119-124)
+Bytes.concat(bytes[]) (lib/openzeppelin-contracts/contracts
+/utils/Bytes.sol#137-152) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/B
+ytes.sol#146-150)
+Bytes._unsafeReadBytesOffset(bytes,uint256) (lib/openzeppel
+in-contracts/contracts/utils/Bytes.sol#236-241) uses 
+assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/B
+ytes.sol#240-241)
+Panic.panic(uint256) (lib/openzeppelin-contracts/contracts/
+utils/Panic.sol#49-53) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/P
+anic.sol#50-53)
+StorageSlot.getAddressSlot(bytes32) (lib/openzeppelin-contr
+acts/contracts/utils/StorageSlot.sol#64-67) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#66-67)
+StorageSlot.getBooleanSlot(bytes32) (lib/openzeppelin-contr
+acts/contracts/utils/StorageSlot.sol#73-76) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#75)
+StorageSlot.getBytes32Slot(bytes32) (lib/openzeppelin-contr
+acts/contracts/utils/StorageSlot.sol#82-84) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#84)
+StorageSlot.getUint256Slot(bytes32) (lib/openzeppelin-contr
+acts/contracts/utils/StorageSlot.sol#90-93) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#93)
+StorageSlot.getInt256Slot(bytes32) (lib/openzeppelin-contra
+cts/contracts/utils/StorageSlot.sol#97-102) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#101-102)
+StorageSlot.getStringSlot(bytes32) (lib/openzeppelin-contra
+cts/contracts/utils/StorageSlot.sol#105-111) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#109-111)
+StorageSlot.getStringSlot(string) (lib/openzeppelin-contrac
+ts/contracts/utils/StorageSlot.sol#115-120) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#118-120)
+StorageSlot.getBytesSlot(bytes32) (lib/openzeppelin-contrac
+ts/contracts/utils/StorageSlot.sol#122-129) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#127-129)
+StorageSlot.getBytesSlot(bytes) (lib/openzeppelin-contracts
+/contracts/utils/StorageSlot.sol#131-138) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+torageSlot.sol#136-138)
+Strings.toString(uint256) (lib/openzeppelin-contracts/contr
+acts/utils/Strings.sol#44-60) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+trings.sol#49-52)
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+trings.sol#54-57)
+Strings.toChecksumHexString(address) (lib/openzeppelin-cont
+racts/contracts/utils/Strings.sol#109-125) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+trings.sol#113-116)
+Strings.escapeJSON(string) (lib/openzeppelin-contracts/cont
+racts/utils/Strings.sol#457-480) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+trings.sol#476-479)
+Strings._unsafeReadBytesOffset(bytes,uint256) (lib/openzepp
+elin-contracts/contracts/utils/Strings.sol#487-499) uses 
+assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/S
+trings.sol#497-499)
+ECDSA.tryRecover(bytes32,bytes) (lib/openzeppelin-contracts
+/contracts/utils/cryptography/ECDSA.sol#59-78) uses 
+assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/c
+ryptography/ECDSA.sol#69-73)
+ECDSA.tryRecoverCalldata(bytes32,bytes) (lib/openzeppelin-c
+ontracts/contracts/utils/cryptography/ECDSA.sol#83-102) 
+uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/c
+ryptography/ECDSA.sol#94-97)
+ECDSA.parse(bytes) (lib/openzeppelin-contracts/contracts/ut
+ils/cryptography/ECDSA.sol#213-230) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/c
+ryptography/ECDSA.sol#215-230)
+ECDSA.parseCalldata(bytes) (lib/openzeppelin-contracts/cont
+racts/utils/cryptography/ECDSA.sol#232-258) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/c
+ryptography/ECDSA.sol#237-258)
+MessageHashUtils.toEthSignedMessageHash(bytes32) (lib/openz
+eppelin-contracts/contracts/utils/cryptography/MessageHashU
+tils.sol#28-34) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/c
+ryptography/MessageHashUtils.sol#30-34)
+MessageHashUtils.toDataWithIntendedValidatorHash(address,by
+tes32) (lib/openzeppelin-contracts/contracts/utils/cryptogr
+aphy/MessageHashUtils.sol#67-76) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/c
+ryptography/MessageHashUtils.sol#71-76)
+MessageHashUtils.toTypedDataHash(bytes32,bytes32) (lib/open
+zeppelin-contracts/contracts/utils/cryptography/MessageHash
+Utils.sol#86-95) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/c
+ryptography/MessageHashUtils.sol#90-95)
+Math.add512(uint256,uint256) (lib/openzeppelin-contracts/co
+ntracts/utils/math/Math.sol#23-28) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#25-28)
+Math.mul512(uint256,uint256) (lib/openzeppelin-contracts/co
+ntracts/utils/math/Math.sol#35-44) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#40-44)
+Math.tryMul(uint256,uint256) (lib/openzeppelin-contracts/co
+ntracts/utils/math/Math.sol#71-81) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#73-78)
+Math.tryDiv(uint256,uint256) (lib/openzeppelin-contracts/co
+ntracts/utils/math/Math.sol#87-93) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#89-93)
+Math.tryMod(uint256,uint256) (lib/openzeppelin-contracts/co
+ntracts/utils/math/Math.sol#100-106) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#102-106)
+Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-cont
+racts/contracts/utils/math/Math.sol#199-269) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#222-229)
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#236-244)
+Math.tryModExp(uint256,uint256,uint256) (lib/openzeppelin-c
+ontracts/contracts/utils/math/Math.sol#404-423) uses 
+assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#405-422)
+Math.tryModExp(bytes,bytes,bytes) (lib/openzeppelin-contrac
+ts/contracts/utils/math/Math.sol#436-462) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#447-462)
+Math.log2(uint256) (lib/openzeppelin-contracts/contracts/ut
+ils/math/Math.sol#592-640) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/Math.sol#638-640)
+SafeCast.toUint(bool) (lib/openzeppelin-contracts/contracts
+/utils/math/SafeCast.sol#1120-1124) uses assembly
+	- INLINE ASM (lib/openzeppelin-contracts/contracts/utils/m
+ath/SafeCast.sol#1122-1123)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#assembly-usage
+INFO:Detectors:
+7 different versions of Solidity are used:
+	- Version constraint ^0.8.21 is used by:
+		-^0.8.21 (lib/evm/contracts/RMRK/access/Ownable.sol#2-3)
+		-^0.8.21 (lib/evm/contracts/RMRK/core/RMRKCore.sol#2-3)
+		-^0.8.21 
+(lib/evm/contracts/RMRK/extension/RMRKRoyalties.sol#2-3)
+		-^0.8.21 
+(lib/evm/contracts/RMRK/library/RMRKErrors.sol#2-3)
+		-^0.8.21 (lib/evm/contracts/RMRK/library/RMRKLib.sol#2-3)
+		-^0.8.21 (lib/evm/contracts/RMRK/multiasset/AbstractMulti
+Asset.sol#2-3)
+		-^0.8.21 
+(lib/evm/contracts/RMRK/multiasset/IERC5773.sol#2-3)
+		-^0.8.21 
+(lib/evm/contracts/RMRK/nestable/IERC7401.sol#2-3)
+		-^0.8.21 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#3-5)
+		-^0.8.21 (lib/evm/contracts/RMRK/nestable/RMRKNestableMul
+tiAsset.sol#3-5)
+		-^0.8.21 (lib/evm/contracts/implementations/abstract/RMRK
+AbstractNestableMultiAsset.sol#2-3)
+		-^0.8.21 (lib/evm/contracts/implementations/premint/RMRKN
+estableMultiAssetPreMint.sol#2-3)
+		-^0.8.21 (lib/evm/contracts/implementations/utils/RMRKImp
+lementationBase.sol#1-2)
+		-^0.8.21 (lib/evm/contracts/implementations/utils/RMRKTok
+enURIPerToken.sol#2-3)
+		-^0.8.21 (src/BattleGate.sol#1-2)
+		-^0.8.21 (src/BattleGateV2.sol#1-2)
+		-^0.8.21 (src/DragonStaking.sol#1-2)
+		-^0.8.21 (src/DragonToken.sol#1-2)
+		-^0.8.21 (src/GameConfig.sol#1-2)
+		-^0.8.21 (src/HPManager.sol#1-2)
+		-^0.8.21 (src/MintGate.sol#1-2)
+		-^0.8.21 (src/MintGateV2.sol#1-2)
+		-^0.8.21 (src/RMRKCreature.sol#1-2)
+	- Version constraint ^0.8.20 is used by:
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/access/Own
+able.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/ERC20.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/extensions/ERC20Burnable.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/utils/SafeERC20.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/utils/ERC721Utils.sol#2-4)
+		-^0.8.20 
+(lib/openzeppelin-contracts/contracts/utils/Base64.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Cont
+ext.sol#2-4)
+		-^0.8.20 
+(lib/openzeppelin-contracts/contracts/utils/Panic.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Paus
+able.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Reen
+trancyGuard.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Stor
+ageSlot.sol#3-5)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/cryp
+tography/ECDSA.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/intr
+ospection/ERC165.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math
+/Math.sol#2-4)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math
+/SafeCast.sol#3-5)
+		-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math
+/SignedMath.sol#2-4)
+		-^0.8.20 (src/mocks/MockRMRK.sol#1-2)
+	- Version constraint >=0.6.2 is used by:
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC1363.sol#2-4)
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC2981.sol#2-4)
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC4906.sol#2-4)
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC721.sol#2-4)
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/extensions/IERC20Metadata.sol#2-4)
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/IERC721.sol#2-4)
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/extensions/IERC721Enumerable.sol#2-4)
+		->=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/extensions/IERC721Metadata.sol#2-4)
+	- Version constraint >=0.4.16 is used by:
+		->=0.4.16 (lib/openzeppelin-contracts/contracts/interface
+s/IERC165.sol#2-4)
+		->=0.4.16 (lib/openzeppelin-contracts/contracts/interface
+s/IERC20.sol#2-4)
+		->=0.4.16 (lib/openzeppelin-contracts/contracts/token/ERC
+20/IERC20.sol#2-4)
+		->=0.4.16 (lib/openzeppelin-contracts/contracts/utils/int
+rospection/IERC165.sol#2-4)
+	- Version constraint >=0.8.4 is used by:
+		->=0.8.4 (lib/openzeppelin-contracts/contracts/interfaces
+/draft-IERC6093.sol#2-4)
+	- Version constraint ^0.8.24 is used by:
+		-^0.8.24 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/ERC721.sol#2-4)
+		-^0.8.24 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/extensions/ERC721Enumerable.sol#2-4)
+		-^0.8.24 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/extensions/ERC721URIStorage.sol#2-4)
+		-^0.8.24 
+(lib/openzeppelin-contracts/contracts/utils/Bytes.sol#2-4)
+		-^0.8.24 (lib/openzeppelin-contracts/contracts/utils/Stri
+ngs.sol#2-4)
+		-^0.8.24 (lib/openzeppelin-contracts/contracts/utils/cryp
+tography/MessageHashUtils.sol#2-4)
+		-^0.8.24 (src/BattleArena.sol#1-2)
+		-^0.8.24 (src/CreatureNFT.sol#1-2)
+	- Version constraint >=0.5.0 is used by:
+		->=0.5.0 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/IERC721Receiver.sol#2-4)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#different-pragma-directives-are-used
+INFO:Detectors:
+RMRKAbstractNestableMultiAsset._beforeTokenTransfer(address
+,address,uint256) (lib/evm/contracts/implementations/abstra
+ct/RMRKAbstractNestableMultiAsset.sol#67-78) has costly 
+operations inside a loop:
+	- _totalSupply -= 1 (lib/evm/contracts/implementations/abs
+tract/RMRKAbstractNestableMultiAsset.sol#76-77)
+	Calls stack containing the loop:
+		RMRKNestableMultiAssetPreMint.nestMint(address,uint256,ui
+nt256,string)
+		RMRKNestable._nestMint(address,uint256,uint256,bytes)
+		RMRKNestable._innerMint(address,uint256,uint256,bytes)
+RMRKAbstractNestableMultiAsset._beforeTokenTransfer(address
+,address,uint256) (lib/evm/contracts/implementations/abstra
+ct/RMRKAbstractNestableMultiAsset.sol#67-78) has costly 
+operations inside a loop:
+	- _totalSupply -= 1 (lib/evm/contracts/implementations/abs
+tract/RMRKAbstractNestableMultiAsset.sol#76-77)
+	Calls stack containing the loop:
+		RMRKCreature.mint(address,uint256,string)
+		RMRKNestable._safeMint(address,uint256,bytes)
+		RMRKNestable._mint(address,uint256,bytes)
+		RMRKNestable._innerMint(address,uint256,uint256,bytes)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#costly-operations-inside-a-loop
+INFO:Detectors:
+BattleGateV2._unlockParticipants(BattleGateV2.Battle) 
+(src/BattleGateV2.sol#425-433) is never used and should be 
+removed
+CreatureNFT._increaseBalance(address,uint128) 
+(src/CreatureNFT.sol#145-152) is never used and should be 
+removed
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#dead-code
+INFO:Detectors:
+Version constraint ^0.8.21 contains known severe issues 
+(https://solidity.readthedocs.io/en/latest/bugs.html)
+	- VerbatimInvalidDeduplication.
+It is used by:
+	- ^0.8.21 (lib/evm/contracts/RMRK/access/Ownable.sol#2-3)
+	- ^0.8.21 (lib/evm/contracts/RMRK/core/RMRKCore.sol#2-3)
+	- ^0.8.21 
+(lib/evm/contracts/RMRK/extension/RMRKRoyalties.sol#2-3)
+	- ^0.8.21 
+(lib/evm/contracts/RMRK/library/RMRKErrors.sol#2-3)
+	- ^0.8.21 (lib/evm/contracts/RMRK/library/RMRKLib.sol#2-3)
+	- ^0.8.21 (lib/evm/contracts/RMRK/multiasset/AbstractMulti
+Asset.sol#2-3)
+	- ^0.8.21 
+(lib/evm/contracts/RMRK/multiasset/IERC5773.sol#2-3)
+	- ^0.8.21 
+(lib/evm/contracts/RMRK/nestable/IERC7401.sol#2-3)
+	- ^0.8.21 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#3-5)
+	- ^0.8.21 (lib/evm/contracts/RMRK/nestable/RMRKNestableMul
+tiAsset.sol#3-5)
+	- ^0.8.21 (lib/evm/contracts/implementations/abstract/RMRK
+AbstractNestableMultiAsset.sol#2-3)
+	- ^0.8.21 (lib/evm/contracts/implementations/premint/RMRKN
+estableMultiAssetPreMint.sol#2-3)
+	- ^0.8.21 (lib/evm/contracts/implementations/utils/RMRKImp
+lementationBase.sol#1-2)
+	- ^0.8.21 (lib/evm/contracts/implementations/utils/RMRKTok
+enURIPerToken.sol#2-3)
+	- ^0.8.21 (src/BattleGate.sol#1-2)
+	- ^0.8.21 (src/BattleGateV2.sol#1-2)
+	- ^0.8.21 (src/DragonStaking.sol#1-2)
+	- ^0.8.21 (src/DragonToken.sol#1-2)
+	- ^0.8.21 (src/GameConfig.sol#1-2)
+	- ^0.8.21 (src/HPManager.sol#1-2)
+	- ^0.8.21 (src/MintGate.sol#1-2)
+	- ^0.8.21 (src/MintGateV2.sol#1-2)
+	- ^0.8.21 (src/RMRKCreature.sol#1-2)
+Version constraint ^0.8.20 contains known severe issues 
+(https://solidity.readthedocs.io/en/latest/bugs.html)
+	- VerbatimInvalidDeduplication
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess.
+It is used by:
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/access/Own
+able.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/ERC20.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/extensions/ERC20Burnable.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/utils/SafeERC20.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/utils/ERC721Utils.sol#2-4)
+	- ^0.8.20 
+(lib/openzeppelin-contracts/contracts/utils/Base64.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Cont
+ext.sol#2-4)
+	- ^0.8.20 
+(lib/openzeppelin-contracts/contracts/utils/Panic.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Paus
+able.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Reen
+trancyGuard.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Stor
+ageSlot.sol#3-5)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/cryp
+tography/ECDSA.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/intr
+ospection/ERC165.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math
+/Math.sol#2-4)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math
+/SafeCast.sol#3-5)
+	- ^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math
+/SignedMath.sol#2-4)
+	- ^0.8.20 (src/mocks/MockRMRK.sol#1-2)
+Version constraint >=0.6.2 contains known severe issues 
+(https://solidity.readthedocs.io/en/latest/bugs.html)
+	- MissingSideEffectsOnSelectorAccess
+	- AbiReencodingHeadOverflowWithStaticArrayCleanup
+	- DirtyBytesArrayToStorage
+	- NestedCalldataArrayAbiReencodingSizeValidation
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching
+	- EmptyByteArrayCopy
+	- DynamicArrayCleanup
+	- MissingEscapingInFormatting
+	- ArraySliceDynamicallyEncodedBaseType
+	- ImplicitConstructorCallvalueCheck
+	- TupleAssignmentMultiStackSlotComponents
+	- MemoryArrayCreationOverflow.
+It is used by:
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC1363.sol#2-4)
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC2981.sol#2-4)
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC4906.sol#2-4)
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces
+/IERC721.sol#2-4)
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC2
+0/extensions/IERC20Metadata.sol#2-4)
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/IERC721.sol#2-4)
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/extensions/IERC721Enumerable.sol#2-4)
+	- >=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/extensions/IERC721Metadata.sol#2-4)
+Version constraint >=0.4.16 contains known severe issues 
+(https://solidity.readthedocs.io/en/latest/bugs.html)
+	- DirtyBytesArrayToStorage
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching
+	- EmptyByteArrayCopy
+	- DynamicArrayCleanup
+	- ImplicitConstructorCallvalueCheck
+	- TupleAssignmentMultiStackSlotComponents
+	- MemoryArrayCreationOverflow
+	- privateCanBeOverridden
+	- SignedArrayStorageCopy
+	- ABIEncoderV2StorageArrayWithMultiSlotElement
+	- DynamicConstructorArgumentsClippedABIV2
+	- UninitializedFunctionPointerInConstructor_0.4.x
+	- IncorrectEventSignatureInLibraries_0.4.x
+	- ExpExponentCleanup
+	- NestedArrayFunctionCallDecoder
+	- ZeroFunctionSelector.
+It is used by:
+	- >=0.4.16 (lib/openzeppelin-contracts/contracts/interface
+s/IERC165.sol#2-4)
+	- >=0.4.16 (lib/openzeppelin-contracts/contracts/interface
+s/IERC20.sol#2-4)
+	- >=0.4.16 (lib/openzeppelin-contracts/contracts/token/ERC
+20/IERC20.sol#2-4)
+	- >=0.4.16 (lib/openzeppelin-contracts/contracts/utils/int
+rospection/IERC165.sol#2-4)
+Version constraint >=0.8.4 contains known severe issues 
+(https://solidity.readthedocs.io/en/latest/bugs.html)
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess
+	- AbiReencodingHeadOverflowWithStaticArrayCleanup
+	- DirtyBytesArrayToStorage
+	- DataLocationChangeInInternalOverride
+	- NestedCalldataArrayAbiReencodingSizeValidation
+	- SignedImmutables.
+It is used by:
+	- >=0.8.4 (lib/openzeppelin-contracts/contracts/interfaces
+/draft-IERC6093.sol#2-4)
+Version constraint >=0.5.0 contains known severe issues 
+(https://solidity.readthedocs.io/en/latest/bugs.html)
+	- DirtyBytesArrayToStorage
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching
+	- EmptyByteArrayCopy
+	- DynamicArrayCleanup
+	- ImplicitConstructorCallvalueCheck
+	- TupleAssignmentMultiStackSlotComponents
+	- MemoryArrayCreationOverflow
+	- privateCanBeOverridden
+	- SignedArrayStorageCopy
+	- ABIEncoderV2StorageArrayWithMultiSlotElement
+	- DynamicConstructorArgumentsClippedABIV2
+	- UninitializedFunctionPointerInConstructor
+	- IncorrectEventSignatureInLibraries
+	- ABIEncoderV2PackedStorage.
+It is used by:
+	- >=0.5.0 (lib/openzeppelin-contracts/contracts/token/ERC7
+21/IERC721Receiver.sol#2-4)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#incorrect-versions-of-solidity
+INFO:Detectors:
+Low level call in BattleArena.claimPrize(uint256) 
+(src/BattleArena.sol#197-228):
+	- (success,None) = address(msg.sender).call{value: 
+prize}() (src/BattleArena.sol#218-219)
+Low level call in BattleArena.cancelMatch(uint256) 
+(src/BattleArena.sol#229-245):
+	- (success,None) = address(msg.sender).call{value: 
+m.stake}() (src/BattleArena.sol#241-242)
+Low level call in 
+BattleArena.resolveDispute(uint256,address) 
+(src/BattleArena.sol#269-297):
+	- (successA,None) = address(m.playerA).call{value: 
+m.stake}() (src/BattleArena.sol#287-289)
+	- (successB,None) = address(m.playerB).call{value: 
+m.stake}() (src/BattleArena.sol#289-291)
+Low level call in BattleArena.withdrawFees() 
+(src/BattleArena.sol#320-327):
+	- (success,None) = address(owner()).call{value: amount}() 
+(src/BattleArena.sol#323-325)
+Low level call in BattleGateV2._addXP(uint256,uint256) 
+(src/BattleGateV2.sol#448-458):
+	- (success,None) = creatureContract.call(abi.encodeWithSig
+nature(addXP(uint256,uint256),creatureId,amount)) 
+(src/BattleGateV2.sol#452-455)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#low-level-calls
+INFO:Detectors:
+DragonToken (src/DragonToken.sol#13-77) should inherit 
+from IDragonToken (src/BattleGate.sol#161-162)
+MintGate (src/MintGate.sol#21-150) should inherit from 
+IRMRKCreature (src/MintGate.sol#151-178)
+MockRMRK (src/mocks/MockRMRK.sol#25-44) should inherit 
+from IDragonToken (src/BattleGate.sol#161-162)
+MockRMRK (src/mocks/MockRMRK.sol#25-44) should inherit 
+from IHasBurn (src/MintGate.sol#178-180)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#missing-inheritance
+INFO:Detectors:
+Function RMRKCore.VERSION() 
+(lib/evm/contracts/RMRK/core/RMRKCore.sol#17-20) is not in 
+mixedCase
+Function RMRKCore.RMRK_INTERFACE() 
+(lib/evm/contracts/RMRK/core/RMRKCore.sol#25-28) is not in 
+mixedCase
+Parameter RMRKLib.indexOf(uint64[],uint64).A 
+(lib/evm/contracts/RMRK/library/RMRKLib.sol#34-35) is not 
+in mixedCase
+Variable RMRKNestable._RMRKOwners 
+(lib/evm/contracts/RMRK/nestable/RMRKNestable.sol#40-41) 
+is not in mixedCase
+Parameter BattleArena.setBattleServer(address)._server 
+(src/BattleArena.sol#301) is not in mixedCase
+Parameter BattleArena.setStakeLimits(uint256,uint256)._min 
+(src/BattleArena.sol#309) is not in mixedCase
+Parameter BattleArena.setStakeLimits(uint256,uint256)._max 
+(src/BattleArena.sol#309-310) is not in mixedCase
+Parameter BattleGate.setGameConfig(address)._gameConfig 
+(src/BattleGate.sol#141) is not in mixedCase
+Parameter BattleGateV2.setTrustedBackend(address)._backend 
+(src/BattleGateV2.sol#388) is not in mixedCase
+Parameter BattleGateV2.setTreasury(address)._treasury 
+(src/BattleGateV2.sol#390) is not in mixedCase
+Parameter 
+BattleGateV2.setCreatureContract(address)._creature 
+(src/BattleGateV2.sol#391) is not in mixedCase
+Parameter 
+BattleGateV2.setStakeLimits(uint256,uint256)._min 
+(src/BattleGateV2.sol#394-395) is not in mixedCase
+Parameter 
+BattleGateV2.setStakeLimits(uint256,uint256)._max 
+(src/BattleGateV2.sol#395-397) is not in mixedCase
+Parameter DragonStaking.setGameConfig(address)._gameConfig 
+(src/DragonStaking.sol#192-193) is not in mixedCase
+Parameter 
+GameConfig.setBattleCosts(uint256,uint256,uint256)._dgne 
+(src/GameConfig.sol#49) is not in mixedCase
+Parameter 
+GameConfig.setBattleCosts(uint256,uint256,uint256)._rmrk 
+(src/GameConfig.sol#49-51) is not in mixedCase
+Parameter 
+GameConfig.setBattleCosts(uint256,uint256,uint256)._reward 
+(src/GameConfig.sol#51) is not in mixedCase
+Parameter 
+GameConfig.setMintCosts(uint256,uint256,uint256)._mintCost 
+(src/GameConfig.sol#55) is not in mixedCase
+Parameter 
+GameConfig.setMintCosts(uint256,uint256,uint256)._skipCost 
+(src/GameConfig.sol#56-58) is not in mixedCase
+Parameter 
+GameConfig.setMintCosts(uint256,uint256,uint256)._rmrk 
+(src/GameConfig.sol#58) is not in mixedCase
+Parameter GameConfig.setMintTreasury(address)._treasury 
+(src/GameConfig.sol#62) is not in mixedCase
+Parameter 
+GameConfig.setStakingParams(uint256,uint256)._baseRate 
+(src/GameConfig.sol#68) is not in mixedCase
+Parameter 
+GameConfig.setStakingParams(uint256,uint256)._multiplier 
+(src/GameConfig.sol#68-70) is not in mixedCase
+Parameter 
+GameConfig.setHealingParams(uint256,uint256)._costPerHP 
+(src/GameConfig.sol#75) is not in mixedCase
+Parameter 
+GameConfig.setHealingParams(uint256,uint256)._regenPercent 
+(src/GameConfig.sol#75-77) is not in mixedCase
+Parameter GameConfig.setDragonToken(address)._addr 
+(src/GameConfig.sol#82) is not in mixedCase
+Parameter GameConfig.setRmrkToken(address)._addr 
+(src/GameConfig.sol#87) is not in mixedCase
+Parameter GameConfig.setCreatureContract(address)._addr 
+(src/GameConfig.sol#92) is not in mixedCase
+Parameter GameConfig.setStakingContract(address)._addr 
+(src/GameConfig.sol#97) is not in mixedCase
+Parameter GameConfig.setBattleGate(address)._addr 
+(src/GameConfig.sol#102) is not in mixedCase
+Parameter HPManager.setDgneToken(address)._token 
+(src/HPManager.sol#133-134) is not in mixedCase
+Parameter HPManager.setTreasury(address)._treasury 
+(src/HPManager.sol#137-138) is not in mixedCase
+Parameter 
+HPManager.setHpRecoveryRate(uint256)._ratePerHour 
+(src/HPManager.sol#141-142) is not in mixedCase
+Parameter HPManager.setHealCost(uint256)._costPer10Percent 
+(src/HPManager.sol#148) is not in mixedCase
+Parameter MintGate.setGameConfig(address)._gameConfig 
+(src/MintGate.sol#125) is not in mixedCase
+Parameter MintGate.setRMRKCreature(address)._rmrkCreature 
+(src/MintGate.sol#132) is not in mixedCase
+Parameter MintGateV2.setSigner(address)._signer 
+(src/MintGateV2.sol#145-146) is not in mixedCase
+Parameter MintGateV2.setGameConfig(address)._gameConfig 
+(src/MintGateV2.sol#151-152) is not in mixedCase
+Parameter 
+MintGateV2.setCreatureContract(address)._creatureContract 
+(src/MintGateV2.sol#157) is not in mixedCase
+Variable MintGateV2.DOMAIN_SEPARATOR 
+(src/MintGateV2.sol#33-36) is not in mixedCase
+Parameter RMRKCreature.setTreasury(address)._treasury 
+(src/RMRKCreature.sol#368-370) is not in mixedCase
+Parameter RMRKCreature.setRoyaltyBps(uint256)._bps 
+(src/RMRKCreature.sol#373) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#conformance-to-solidity-naming-conventions
+INFO:Detectors:
+Bytes.reverseBytes32(bytes32) (lib/openzeppelin-contracts/c
+ontracts/utils/Bytes.sol#170-184) uses literals with too 
+many digits:
+	- value = ((value >> 32) & 0x00000000FFFFFFFF00000000FFFFF
+FFF00000000FFFFFFFF00000000FFFFFFFF) | ((value & 0x00000000
+FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF) 
+<< 32) (lib/openzeppelin-contracts/contracts/utils/Bytes.so
+l#178-181)
+Bytes.reverseBytes32(bytes32) (lib/openzeppelin-contracts/c
+ontracts/utils/Bytes.sol#170-184) uses literals with too 
+many digits:
+	- value = ((value >> 64) & 0x0000000000000000FFFFFFFFFFFFF
+FFF0000000000000000FFFFFFFFFFFFFFFF) | ((value & 0x00000000
+00000000FFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF) 
+<< 64) (lib/openzeppelin-contracts/contracts/utils/Bytes.so
+l#181-184)
+Bytes.reverseBytes16(bytes16) (lib/openzeppelin-contracts/c
+ontracts/utils/Bytes.sol#185-198) uses literals with too 
+many digits:
+	- value = ((value & 0xFFFFFFFF00000000FFFFFFFF00000000) 
+>> 32) | ((value & 0x00000000FFFFFFFF00000000FFFFFFFF) << 
+32) (lib/openzeppelin-contracts/contracts/utils/Bytes.sol#1
+93-196)
+Math.log2(uint256) (lib/openzeppelin-contracts/contracts/ut
+ils/math/Math.sol#592-640) uses literals with too many 
+digits:
+	- r = r | byte(uint256,uint256)(x >> r,0x00000101020202020
+30303030303030300000000000000000000000000000000) (lib/openz
+eppelin-contracts/contracts/utils/math/Math.sol#638-640)
+RMRKCreature._calcStat(uint8,uint16,uint256,uint256,bool) 
+(src/RMRKCreature.sol#225-254) uses literals with too many 
+digits:
+	- result_scope_1 = (uint256(baseStat) * levelMult * 
+ageMult) / 1000000 (src/RMRKCreature.sol#251-252)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#too-many-digits
+INFO:Detectors:
+RMRKCreature.STR (src/RMRKCreature.sol#24-25) is never 
+used in RMRKCreature (src/RMRKCreature.sol#11-375)
+RMRKCreature.AGI (src/RMRKCreature.sol#25-26) is never 
+used in RMRKCreature (src/RMRKCreature.sol#11-375)
+RMRKCreature.SPD (src/RMRKCreature.sol#26-27) is never 
+used in RMRKCreature (src/RMRKCreature.sol#11-375)
+RMRKCreature.REF (src/RMRKCreature.sol#27) is never used 
+in RMRKCreature (src/RMRKCreature.sol#11-375)
+RMRKCreature.END (src/RMRKCreature.sol#28) is never used 
+in RMRKCreature (src/RMRKCreature.sol#11-375)
+RMRKCreature.VIT (src/RMRKCreature.sol#29) is never used 
+in RMRKCreature (src/RMRKCreature.sol#11-375)
+RMRKCreature.PRC (src/RMRKCreature.sol#31) is never used 
+in RMRKCreature (src/RMRKCreature.sol#11-375)
+RMRKCreature.RGN (src/RMRKCreature.sol#32) is never used 
+in RMRKCreature (src/RMRKCreature.sol#11-375)
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#unused-state-variable
+INFO:Detectors:
+BattleArena.matchTimeout (src/BattleArena.sol#23-24) 
+should be constant 
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#state-variables-that-could-be-declared-consta
+nt
+INFO:Detectors:
+BattleArena.creatureNFT (src/BattleArena.sol#26-27) should 
+be immutable 
+BattleGate.dragonToken (src/BattleGate.sol#19-20) should 
+be immutable 
+BattleGate.rmrkToken (src/BattleGate.sol#20-21) should be 
+immutable 
+BattleGateV2.stakeToken (src/BattleGateV2.sol#74-76) 
+should be immutable 
+DragonStaking.creatureContract 
+(src/DragonStaking.sol#28-29) should be immutable 
+DragonStaking.dragonToken (src/DragonStaking.sol#27-28) 
+should be immutable 
+MintGateV2.DOMAIN_SEPARATOR (src/MintGateV2.sol#33-36) 
+should be immutable 
+RMRKImplementationBase._maxSupply (lib/evm/contracts/implem
+entations/utils/RMRKImplementationBase.sol#20-21) should 
+be immutable 
+RMRKRoyalties._royaltyPercentageBps 
+(lib/evm/contracts/RMRK/extension/RMRKRoyalties.sol#15-16) 
+should be immutable 
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#state-variables-that-could-be-declared-immuta
+ble
+INFO:Detectors:
+The function RMRKCreature._exists(uint256) 
+(src/RMRKCreature.sol#339-346) reads o = 
+this.ownerOf(tokenId) (src/RMRKCreature.sol#344-346) with 
+`this` which adds an extra STATICCALL.
+Reference: https://github.com/crytic/slither/wiki/Detector-
+Documentation#public-variable-read-in-external-context
+INFO:Slither:/share analyzed (65 contracts with 100 
+detectors), 239 result(s) found

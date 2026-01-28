@@ -1,0 +1,199 @@
+.admin-screen {
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.admin-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.admin-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #fff;
+}
+
+.connect-message {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+/* Coming Soon / Access Denied */
+.coming-soon,
+.access-denied {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.coming-soon h2 {
+    color: #f39c12;
+    margin-bottom: 1rem;
+}
+
+.access-denied h2 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.owner-info {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+/* Success Toast */
+.success-toast {
+    background: #27ae60;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Config Sections */
+.config-section {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.config-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.config-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.config-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+.config-input label {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.config-input input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    width: 100%;
+}
+
+.config-input input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.config-input input:disabled {
+    opacity: 0.5;
+}
+
+.config-row button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.config-row button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.config-row button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-screen {
+        padding: 1rem;
+    }
+
+    .config-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .config-row button {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Current Values */
+.current-values {
+    background: rgba(52, 152, 219, 0.1);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #74b9ff;
+}
+
+/* Formula Info */
+.formula-info {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+/* Contract Info */
+.contract-info {
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+.contract-info p {
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contract-info strong {
+    color: #ffd700;
+}

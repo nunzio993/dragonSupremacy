@@ -1,0 +1,126 @@
+/**
+ * Layout & Core Battle Styles
+ */
+
+/* Layout */
+.battle-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    background: url('/arena-bg.jpg') center center / cover no-repeat;
+    color: #fff;
+    position: relative;
+}
+
+.battle-layout::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.battle-layout>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.battle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.turn-badge {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.turn-indicator {
+    flex: 1;
+    text-align: center;
+}
+
+/* Bottom Panel */
+.bottom-panel {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Bench */
+.bench-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 200px;
+}
+
+.bench-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+}
+
+.bench-creatures {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.bench-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.bench-slot.fainted {
+    opacity: 0.5;
+    filter: grayscale(70%);
+}
+
+.bench-slot.selectable {
+    border-color: #4aa7ff;
+    cursor: pointer;
+}
+
+.bench-slot.selectable:hover {
+    background: rgba(74, 167, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.bench-sprite {
+    width: 50px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.bench-hp {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #aaa;
+}
+
+.action-panel-wrapper {
+    flex: 1;
+}

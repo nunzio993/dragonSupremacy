@@ -1,0 +1,130 @@
+.roster-screen {
+    background: var(--color-bg-primary);
+}
+
+.roster-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.roster-section {
+    background: var(--color-bg-secondary);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.roster-section h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
+.unit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-md);
+}
+
+.unit-card-wrapper {
+    position: relative;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    border: 2px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.unit-card-wrapper:hover {
+    border-color: var(--color-accent-primary);
+}
+
+.unit-card-wrapper.selected {
+    border-color: var(--color-accent-secondary);
+    box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+.equipped-badges {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    display: flex;
+    gap: 4px;
+}
+
+.equip-badge {
+    background: var(--color-bg-primary);
+    padding: 4px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.equip-badge:hover {
+    transform: scale(1.2);
+}
+
+/* Equipment panel */
+.equip-panel {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-accent-primary);
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--space-md);
+}
+
+.equipment-card {
+    background: var(--color-bg-secondary);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.equipment-card:hover {
+    border-color: var(--color-accent-primary);
+    background: var(--color-bg-hover);
+}
+
+.equip-type-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.equip-name {
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.equip-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.equip-stats span {
+    background: var(--color-bg-primary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+}
+
+@media (max-width: 600px) {
+    .unit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

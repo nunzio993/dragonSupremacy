@@ -1,0 +1,28 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for the NFT Autobattler game deployed on Base (Ethereum L2).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "node": "npx hardhat node",
+    "deploy:local": "npx hardhat run scripts/deploy-local.ts --network localhost",
+    "test": "npx hardhat test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "hardhat": "^3.1.5"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-ethers": "^4.0.4",
+    "@openzeppelin/contracts": "^5.4.0",
+    "ethers": "^6.16.0"
+  }
+}

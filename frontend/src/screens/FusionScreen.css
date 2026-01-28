@@ -1,0 +1,415 @@
+/* Fusion Screen Styles */
+
+.fusion-screen {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.fusion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.fusion-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.btn-back {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #aaa;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.fusion-info {
+    font-size: 0.85rem;
+    color: #888;
+    padding: 0.5rem 1rem;
+    background: rgba(186, 104, 200, 0.15);
+    border: 1px solid rgba(186, 104, 200, 0.3);
+    border-radius: 20px;
+}
+
+/* Tabs */
+.fusion-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.fusion-tabs .tab {
+    flex: 1;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fusion-tabs .tab:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.fusion-tabs .tab.active {
+    background: rgba(186, 104, 200, 0.2);
+    border-color: rgba(186, 104, 200, 0.5);
+    color: #ba68c8;
+}
+
+.fusion-tabs .tab:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Selection Status */
+.selection-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.selection-count {
+    font-weight: 600;
+    color: #fff;
+}
+
+.selection-info {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* Error Banner */
+.fusion-screen .error-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.5);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    color: #e74c3c;
+}
+
+.fusion-screen .error-banner button {
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+/* Content */
+.fusion-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 80px;
+}
+
+.empty-state {
+    text-align: center;
+    color: #888;
+    padding: 3rem;
+}
+
+.empty-state p {
+    margin: 0.5rem 0;
+}
+
+/* Fusion Group */
+.fusion-group {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.rarity-badge,
+.element-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.group-count {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: auto;
+}
+
+.group-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+}
+
+/* Fusion Item */
+.fusion-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fusion-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.fusion-item.selected {
+    background: rgba(186, 104, 200, 0.2);
+    border-color: #ba68c8;
+    box-shadow: 0 0 15px rgba(186, 104, 200, 0.3);
+}
+
+.item-icon {
+    font-size: 1.5rem;
+}
+
+.item-name {
+    font-size: 0.75rem;
+    color: #ccc;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Footer */
+.fusion-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(26, 26, 46, 0.95) 30%);
+}
+
+.btn-fuse {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-fuse.valid {
+    background: linear-gradient(135deg, #ba68c8, #9c27b0);
+    color: #fff;
+}
+
+.btn-fuse.valid:hover:not(:disabled) {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(186, 104, 200, 0.4);
+}
+
+.btn-fuse.invalid {
+    background: rgba(255, 255, 255, 0.1);
+    color: #666;
+    cursor: not-allowed;
+}
+
+.btn-fuse:disabled {
+    opacity: 0.7;
+}
+
+/* Result Modal */
+.fusion-result-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    animation: fadeIn 0.3s;
+    padding: 1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fusion-result-modal {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 2px solid rgba(186, 104, 200, 0.5);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.fusion-result-modal .result-header h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    color: #ba68c8;
+}
+
+.result-content {
+    margin-bottom: 1.5rem;
+}
+
+.result-icon {
+    font-size: 4rem;
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+.result-name {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.result-badges {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.result-badges .badge {
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.result-stats {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.result-stats .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    min-width: 55px;
+}
+
+.result-stats .stat-label {
+    font-size: 0.65rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.result-stats .stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .fusion-header {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+
+    .fusion-header h1 {
+        order: -1;
+        width: 100%;
+        text-align: center;
+    }
+
+    .group-items {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .fusion-result-modal {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}

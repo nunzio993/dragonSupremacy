@@ -1,0 +1,680 @@
+﻿Compiling 1 files with Solc 0.8.24
+Solc 0.8.24 finished in 131.17s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/RMRKCreature.sol:119:9:
+    |
+119 |         string memory tokenURI
+    |         ^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/RMRKCreature.sol:302:5:
+    |
+302 |     function tokenURI(uint256 tokenId) public view override returns (string memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/RMRKCreature.sol:235:13:
+    |
+235 |             uint256 result = (uint256(baseStat) * (1000 + (ageDays * 300) / 1825)) / 1000;
+    |             ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/RMRKCreature.sol:258:9:
+    |
+258 |         uint256 result = (uint256(baseStat) * levelMult * ageMult) / 1000000;
+    |         ^^^^^^^^^^^^^^
+
+
+Ran 6 tests for test/InvariantTests.t.sol:InvariantTests
+[PASS] invariant_creatureLockConsistency() (runs: 256, calls: 128000, reverts: 18383)
+
+Ôò¡---------------+---------------+-------+---------+----------Ôò«
+| Contract      | Selector      | Calls | Reverts | Discards |
++============================================================+
+| BattleHandler | cancelBattle  | 18428 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | claimWinnings | 18327 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | createBattle  | 18153 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | initialize    | 18383 | 18383   | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | joinBattle    | 18036 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | resolveBattle | 18333 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | warpTime      | 18340 | 0       | 0        |
+Ôò░---------------+---------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 2089
+  Bound result 990194535571244151856
+  Bound result 28639
+  Bound result 25167
+  Bound result 561103805558302346391
+  Bound result 23343
+  Bound result 13387
+  Bound result 173495698286722983272
+  Bound result 86399
+  Bound result 990000000000000021049
+  Bound result 13284
+  Bound result 3492
+  Bound result 86397
+  Bound result 534
+  Bound result 19285
+  Bound result 73834
+  Bound result 990024815859219590022
+  Bound result 5455
+  Bound result 6226
+  Bound result 990000000000000000098
+  Bound result 79179
+  Bound result 990000000000929819726
+  Bound result 13
+  Bound result 4676
+  Bound result 3341
+  Bound result 2282
+  Bound result 1
+  Bound result 3005
+  Bound result 8254
+  Bound result 6173
+  Bound result 26775
+  Bound result 26810
+  Bound result 14089
+  Bound result 3522
+  Bound result 51094237634258976448
+  Bound result 82713
+  Bound result 6281
+  Bound result 5948
+  Bound result 8577
+  Bound result 41777
+  Bound result 1068
+  Bound result 10517
+  Bound result 670
+  Bound result 10152
+  Bound result 2912
+  Bound result 660488650483256131559
+  Bound result 745375996283926570503
+  Bound result 990000000446027795771
+  Bound result 48389
+  Bound result 58120
+  Bound result 46085
+  Bound result 11562
+  Bound result 990000114521013624471
+  Bound result 86400
+  Bound result 10788
+  Bound result 980
+  Bound result 8872
+  Bound result 30212
+  Bound result 57606
+  Bound result 990000000000000002817
+  Bound result 3208
+  Bound result 60754
+  Bound result 72128
+  Bound result 17435
+  Bound result 64299
+  Bound result 38578
+  Bound result 14644
+  Bound result 9713
+  Bound result 2635
+  Bound result 681
+  Bound result 990000639601998657088
+  Bound result 990000000000000006913
+  Bound result 661
+  Bound result 5066
+  Bound result 13651
+  Bound result 457672478926956858060
+  Bound result 18396
+  Bound result 78374
+  Bound result 569
+  Bound result 5323
+  Bound result 909988463169946229597
+  Bound result 1169
+  Bound result 500766558039125474643
+  Bound result 82548
+  Bound result 81788
+  Bound result 36534
+  Bound result 990000000000000010597
+  Bound result 10755
+  Bound result 26249
+  Bound result 74322
+  Bound result 25412
+  Bound result 40014
+  Bound result 86397
+  Bound result 42861
+  Bound result 3
+
+[PASS] invariant_fundConservation() (runs: 256, calls: 128000, reverts: 18311)
+
+Ôò¡---------------+---------------+-------+---------+----------Ôò«
+| Contract      | Selector      | Calls | Reverts | Discards |
++============================================================+
+| BattleHandler | cancelBattle  | 18330 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | claimWinnings | 18407 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | createBattle  | 18241 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | initialize    | 18311 | 18311   | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | joinBattle    | 18344 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | resolveBattle | 18155 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | warpTime      | 18212 | 0       | 0        |
+Ôò░---------------+---------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 990000000000000009864
+  Bound result 11458
+  Bound result 22925
+  Bound result 39087
+  Bound result 990000000000000012507
+  Bound result 86399
+  Bound result 2
+  Bound result 10179
+  Bound result 82398
+  Bound result 5221
+  Bound result 193626330298211890855
+  Bound result 909665264046844501346
+  Bound result 990000000001156354885
+  Bound result 367643251452605268846
+  Bound result 26303
+  Bound result 19223
+  Bound result 16789
+  Bound result 11154
+  Bound result 12941
+  Bound result 16660
+  Bound result 18704
+  Bound result 9618
+  Bound result 509
+  Bound result 10565
+  Bound result 86398
+  Bound result 75785
+  Bound result 81666
+  Bound result 429142509808993384328
+  Bound result 3482
+  Bound result 36672
+  Bound result 12457
+  Bound result 675692460659671522589
+  Bound result 10687
+  Bound result 74202
+  Bound result 16741
+  Bound result 13441
+  Bound result 822402937353863455939
+  Bound result 444634998938092904961
+  Bound result 40012
+  Bound result 8953
+  Bound result 84797
+  Bound result 17174
+  Bound result 74501
+  Bound result 68568
+  Bound result 36
+  Bound result 405174064479434481878
+  Bound result 86397
+  Bound result 1323
+  Bound result 889918441350141979100
+  Bound result 13525
+  Bound result 21319
+  Bound result 74055
+  Bound result 84670
+  Bound result 31451
+  Bound result 5221
+  Bound result 9693
+  Bound result 255032836849041330125
+  Bound result 1
+  Bound result 31197
+  Bound result 18341
+  Bound result 40859
+  Bound result 69171
+  Bound result 26374
+  Bound result 1260
+  Bound result 19983
+  Bound result 83715
+  Bound result 90334735953155498555
+  Bound result 63644
+  Bound result 4816
+  Bound result 15567
+  Bound result 81559
+  Bound result 2
+  Bound result 990000000000000014571
+  Bound result 3851
+  Bound result 43178
+  Bound result 3862
+  Bound result 12158
+  Bound result 76484
+  Bound result 5092
+  Bound result 61052
+  Bound result 941187673824160262247
+  Bound result 10858
+
+[PASS] invariant_noDoubleDistribution() (runs: 256, calls: 128000, reverts: 18279)
+
+Ôò¡---------------+---------------+-------+---------+----------Ôò«
+| Contract      | Selector      | Calls | Reverts | Discards |
++============================================================+
+| BattleHandler | cancelBattle  | 18348 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | claimWinnings | 18398 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | createBattle  | 18151 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | initialize    | 18279 | 18279   | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | joinBattle    | 18247 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | resolveBattle | 18123 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | warpTime      | 18454 | 0       | 0        |
+Ôò░---------------+---------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 990000000001764818220
+  Bound result 13809
+  Bound result 6909
+  Bound result 55433
+  Bound result 867440184265648223817
+  Bound result 24375
+  Bound result 655203990752798511711
+  Bound result 990000000000000020700
+  Bound result 11535
+  Bound result 4095
+  Bound result 532
+  Bound result 47077
+  Bound result 12043
+  Bound result 24436
+  Bound result 30007
+  Bound result 448974695557694915454
+  Bound result 81198
+  Bound result 51111
+  Bound result 10669
+  Bound result 44370
+  Bound result 9553
+  Bound result 990000000000000000985
+  Bound result 24006
+  Bound result 990000000000000006654
+  Bound result 86397
+  Bound result 27926
+  Bound result 84662
+  Bound result 62045
+  Bound result 61753
+  Bound result 76582
+  Bound result 11351
+  Bound result 52198
+  Bound result 990000000000000005744
+  Bound result 990000000000000009678
+  Bound result 59896
+  Bound result 1
+  Bound result 70077
+  Bound result 31692
+  Bound result 1435
+  Bound result 5057
+  Bound result 83789
+  Bound result 48736
+  Bound result 29003
+  Bound result 616
+  Bound result 2798
+  Bound result 16156
+  Bound result 7965
+  Bound result 19018
+  Bound result 42966
+  Bound result 86398
+  Bound result 5919
+  Bound result 78482
+  Bound result 70734
+  Bound result 3891
+  Bound result 516776327081637655079
+  Bound result 3644
+  Bound result 59222
+  Bound result 77029
+  Bound result 54764
+  Bound result 0
+  Bound result 54032
+  Bound result 1512
+  Bound result 36519
+  Bound result 5071
+  Bound result 1795
+  Bound result 61261
+  Bound result 1908
+  Bound result 971892150459948646268
+  Bound result 49955
+  Bound result 14277
+  Bound result 86397
+  Bound result 41275
+  Bound result 1
+  Bound result 13808
+  Bound result 85251
+  Bound result 2593
+  Bound result 70751
+  Bound result 3393
+  Bound result 63122
+  Bound result 227220096531252855550
+  Bound result 875
+  Bound result 8330
+  Bound result 11533
+  Bound result 2567
+
+[PASS] invariant_prizeCorrectness() (runs: 256, calls: 128000, reverts: 18215)
+
+Ôò¡---------------+---------------+-------+---------+----------Ôò«
+| Contract      | Selector      | Calls | Reverts | Discards |
++============================================================+
+| BattleHandler | cancelBattle  | 18352 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | claimWinnings | 18331 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | createBattle  | 18387 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | initialize    | 18215 | 18215   | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | joinBattle    | 18155 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | resolveBattle | 18276 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | warpTime      | 18284 | 0       | 0        |
+Ôò░---------------+---------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 13611
+  Bound result 10000000000000000002
+  Bound result 49081
+  Bound result 2
+  Bound result 990000000000000023667
+  Bound result 75383
+  Bound result 846560074275582027356
+  Bound result 10101
+  Bound result 7166
+  Bound result 10419
+  Bound result 133123559077932860548
+  Bound result 33010
+  Bound result 704
+  Bound result 45155
+  Bound result 985435040684549271305
+  Bound result 990000000000000008229
+  Bound result 86397
+  Bound result 990000000000000005321
+  Bound result 990000000000000003834
+  Bound result 26436
+  Bound result 86399
+  Bound result 39939
+  Bound result 17373
+  Bound result 66147
+  Bound result 26864
+  Bound result 621105176482874752313
+  Bound result 11309
+  Bound result 31509
+  Bound result 7431
+  Bound result 66239
+  Bound result 272939495969799000092
+  Bound result 31862
+  Bound result 0
+  Bound result 32789
+  Bound result 17392
+  Bound result 2
+  Bound result 49173
+  Bound result 1
+  Bound result 990000000000000008358
+  Bound result 927930800138321202581
+  Bound result 86279
+  Bound result 55636
+  Bound result 8580
+  Bound result 56484
+  Bound result 13807
+  Bound result 9961
+  Bound result 1008
+  Bound result 990000000000000016205
+  Bound result 9864
+  Bound result 66102
+  Bound result 32220
+  Bound result 11171
+  Bound result 74987
+  Bound result 2349
+  Bound result 242034264081781073958
+  Bound result 22496
+  Bound result 1126
+  Bound result 80541
+  Bound result 136412594725734395021
+  Bound result 58231
+  Bound result 13666
+  Bound result 16074
+  Bound result 37204
+  Bound result 70947
+  Bound result 13003
+  Bound result 18062
+  Bound result 25394
+  Bound result 16225
+  Bound result 21850
+  Bound result 8376
+  Bound result 32790
+  Bound result 21715
+  Bound result 81690
+  Bound result 41449
+  Bound result 7992
+  Bound result 111793012148775111930
+  Bound result 66858
+  Bound result 8
+  Bound result 2125
+  Bound result 11808
+  Bound result 15844
+  Bound result 86
+  Bound result 958
+  Bound result 77208
+  Bound result 11897
+  Bound result 68432
+  Bound result 88188267172445481909
+  Bound result 63229
+  Bound result 10826
+
+[PASS] invariant_terminalStateConsistency() (runs: 256, calls: 128000, reverts: 18230)
+
+Ôò¡---------------+---------------+-------+---------+----------Ôò«
+| Contract      | Selector      | Calls | Reverts | Discards |
++============================================================+
+| BattleHandler | cancelBattle  | 18062 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | claimWinnings | 18405 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | createBattle  | 18459 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | initialize    | 18230 | 18230   | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | joinBattle    | 18365 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | resolveBattle | 18274 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | warpTime      | 18205 | 0       | 0        |
+Ôò░---------------+---------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 557243848092603066787
+  Bound result 936179481357642403763
+  Bound result 4319
+  Bound result 999999999999999999998
+  Bound result 74594
+  Bound result 2404
+  Bound result 15762
+  Bound result 46974
+  Bound result 81579
+  Bound result 2993
+  Bound result 990000000000000004703
+  Bound result 0
+  Bound result 990000000000000000102
+  Bound result 6904
+  Bound result 31099
+  Bound result 57806
+  Bound result 1969
+  Bound result 7889
+  Bound result 26630
+  Bound result 8165
+  Bound result 68249856596231901461
+  Bound result 18949
+  Bound result 9044
+  Bound result 7688
+  Bound result 64551
+  Bound result 69342
+  Bound result 16835
+  Bound result 20300
+  Bound result 21606
+  Bound result 6233
+  Bound result 6657
+  Bound result 12412
+  Bound result 990000000000000000079
+  Bound result 86400
+  Bound result 43178
+  Bound result 914
+  Bound result 64700
+  Bound result 3046
+  Bound result 83686
+  Bound result 37605
+  Bound result 58177
+  Bound result 51084
+  Bound result 67471
+  Bound result 990000000000000022307
+  Bound result 35397
+  Bound result 325616482426628764497
+  Bound result 80963
+  Bound result 53502
+  Bound result 3432
+  Bound result 1810
+  Bound result 41717
+  Bound result 198
+  Bound result 24162
+  Bound result 990000000000000003584
+  Bound result 990000000016640747288
+  Bound result 79438
+  Bound result 724671233609709755484
+  Bound result 6877
+  Bound result 4080
+  Bound result 2551
+  Bound result 5787
+  Bound result 70440
+  Bound result 12944
+  Bound result 256
+  Bound result 620
+  Bound result 365745588520934468530
+  Bound result 47060
+  Bound result 55599
+  Bound result 990000000000000000235
+  Bound result 44564
+  Bound result 836
+  Bound result 679724977325378180946
+  Bound result 990000000000000006315
+  Bound result 967
+  Bound result 30966
+  Bound result 11292
+  Bound result 34433
+  Bound result 1248
+  Bound result 4003
+  Bound result 26
+  Bound result 32574
+  Bound result 1054
+
+[PASS] invariant_walletLockConsistency() (runs: 256, calls: 128000, reverts: 18362)
+
+Ôò¡---------------+---------------+-------+---------+----------Ôò«
+| Contract      | Selector      | Calls | Reverts | Discards |
++============================================================+
+| BattleHandler | cancelBattle  | 18351 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | claimWinnings | 18473 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | createBattle  | 17999 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | initialize    | 18362 | 18362   | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | joinBattle    | 18214 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | resolveBattle | 18201 | 0       | 0        |
+|---------------+---------------+-------+---------+----------|
+| BattleHandler | warpTime      | 18400 | 0       | 0        |
+Ôò░---------------+---------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 498300532722640283239
+  Bound result 15759
+  Bound result 558132214808065663969
+  Bound result 1
+  Bound result 990000000000000001309
+  Bound result 82742
+  Bound result 29968
+  Bound result 990000000000000009694
+  Bound result 19390
+  Bound result 59680
+  Bound result 18728
+  Bound result 86400
+  Bound result 990000000000000006917
+  Bound result 58055
+  Bound result 46846
+  Bound result 40870
+  Bound result 67357
+  Bound result 15175
+  Bound result 0
+  Bound result 41499
+  Bound result 2443
+  Bound result 62071
+  Bound result 74381
+  Bound result 76815
+  Bound result 8657
+  Bound result 203
+  Bound result 66662
+  Bound result 8084
+  Bound result 17414
+  Bound result 990000000000000013969
+  Bound result 2
+  Bound result 13515
+  Bound result 10000000000000000000
+  Bound result 57737
+  Bound result 37
+  Bound result 64289
+  Bound result 59522
+  Bound result 5595
+  Bound result 487
+  Bound result 7419
+  Bound result 62128
+  Bound result 929
+  Bound result 19770
+  Bound result 999999999999999999999
+  Bound result 50733
+  Bound result 18824
+  Bound result 5646
+  Bound result 449041588300612915344
+  Bound result 19194
+  Bound result 703767919676520264825
+  Bound result 46132
+  Bound result 28379
+  Bound result 17470
+  Bound result 990000000000000004455
+  Bound result 799865751120654900145
+  Bound result 10000000000000000000
+  Bound result 24045
+  Bound result 22549
+  Bound result 229913312177158691089
+  Bound result 7415
+  Bound result 48189
+  Bound result 7228
+  Bound result 25928
+  Bound result 20850
+  Bound result 11456
+  Bound result 78855
+  Bound result 9715
+  Bound result 389
+  Bound result 2123
+  Bound result 81152
+  Bound result 62208
+  Bound result 354880176632146140793
+  Bound result 32892
+  Bound result 22674
+  Bound result 3305
+  Bound result 72057
+  Bound result 115
+  Bound result 56736
+  Bound result 5353
+  Bound result 3305
+  Bound result 5242
+  Bound result 59962
+  Bound result 73920
+  Bound result 2620
+  Bound result 3236
+  Bound result 35115
+
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 151.96s (635.20s CPU time)
+
+Ran 1 test suite in 151.99s (151.96s CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)

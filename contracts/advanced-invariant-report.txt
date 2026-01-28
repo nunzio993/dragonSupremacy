@@ -1,0 +1,960 @@
+﻿Compiling 1 files with Solc 0.8.24
+Solc 0.8.24 finished in 85.53s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/RMRKCreature.sol:119:9:
+    |
+119 |         string memory tokenURI
+    |         ^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/RMRKCreature.sol:302:5:
+    |
+302 |     function tokenURI(uint256 tokenId) public view override returns (string memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/RMRKCreature.sol:235:13:
+    |
+235 |             uint256 result = (uint256(baseStat) * (1000 + (ageDays * 300) / 1825)) / 1000;
+    |             ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/RMRKCreature.sol:258:9:
+    |
+258 |         uint256 result = (uint256(baseStat) * levelMult * ageMult) / 1000000;
+    |         ^^^^^^^^^^^^^^
+
+
+Ran 10 tests for test/AdvancedInvariantTests.t.sol:AdvancedInvariantTests
+[PASS] invariant_creatureLockConsistency() (runs: 256, calls: 128000, reverts: 10763)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10678 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10614 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10867 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10552 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10770 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10619 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10668 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10547 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10763 | 10763   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10601 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10624 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10697 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 157647
+  Bound result 8451
+  Bound result 142961
+  Bound result 7191
+  Bound result 126144
+  Bound result 91908
+  Bound result 940089830817733536594
+  Bound result 23682
+  Bound result 448562411438220945232
+  Bound result 50
+  Bound result 164978
+  Bound result 23841
+  Bound result 217230455272278195491
+  Bound result 22845
+  Bound result 4384
+  Bound result 94692
+  Bound result 26658
+  Bound result 133018
+  Bound result 3
+  Bound result 999999999999999999997
+  Bound result 6185
+  Bound result 19493
+  Bound result 0
+  Bound result 990000000000000012225
+  Bound result 6796
+  Bound result 2
+  Bound result 156713
+  Bound result 990000000000000003185
+  Bound result 165081
+  Bound result 990000000000000000332
+  Bound result 1376
+  Bound result 119738
+  Bound result 6635
+  Bound result 8915
+  Bound result 999999999999999999999
+  Bound result 42927
+  Bound result 57864
+  Bound result 1317
+  Bound result 7432
+  Bound result 79790
+  Bound result 31654
+  Bound result 54713
+  Bound result 126934
+  Bound result 12506
+  Bound result 371136193212154802256
+  Bound result 99650
+  Bound result 990000000000000001214
+  Bound result 990000139809288215430
+  Bound result 1587
+  Bound result 16239
+  Bound result 47058
+  Bound result 990000069722646861553
+  Bound result 5982
+  Bound result 70202
+  Bound result 11237
+  Bound result 79183
+  Bound result 0
+  Bound result 1
+  Bound result 3
+  Bound result 10498
+  Bound result 994960794471353896701
+  Bound result 190654664783939509593
+  Bound result 73678
+  Bound result 76374
+
+[PASS] invariant_fundConservation() (runs: 256, calls: 128000, reverts: 10791)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10608 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10701 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10542 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10789 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10696 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10569 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10681 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10716 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10791 | 10791   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10741 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10524 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10642 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 990000000000000003289
+  Bound result 12092
+  Bound result 990000000000000007381
+  Bound result 161866
+  Bound result 880779342866674088660
+  Bound result 15948
+  Bound result 169403
+  Bound result 73521
+  Bound result 4546
+  Bound result 391080158697878530866
+  Bound result 12801
+  Bound result 990000000001178231613
+  Bound result 1
+  Bound result 9244
+  Bound result 106295
+  Bound result 63715
+  Bound result 751414113705909672293
+  Bound result 165630
+  Bound result 483266565710896571885
+  Bound result 2
+  Bound result 814785252259687975054
+  Bound result 833083242315072350383
+  Bound result 903041461704906156826
+  Bound result 91597
+  Bound result 990000000000000022461
+  Bound result 640079168533487193169
+  Bound result 26292
+  Bound result 11345
+  Bound result 12749
+  Bound result 22531
+  Bound result 23068651110565494228
+  Bound result 6914
+  Bound result 3
+  Bound result 990000000000000020707
+  Bound result 170644
+  Bound result 10787
+  Bound result 158233
+  Bound result 54027
+  Bound result 11507
+  Bound result 143451
+  Bound result 80784
+  Bound result 3235
+  Bound result 999999999999999999998
+  Bound result 10448
+  Bound result 75629
+  Bound result 25101
+  Bound result 3874
+  Bound result 15272
+  Bound result 700041940414566959579
+  Bound result 6807
+  Bound result 315556553965827180296
+  Bound result 286991654233874270713
+  Bound result 93082
+  Bound result 9157
+  Bound result 11519
+  Bound result 287
+  Bound result 5810
+  Bound result 5839
+  Bound result 15639
+  Bound result 15723
+  Bound result 999999999999999999998
+
+[PASS] invariant_noDoubleDistribution() (runs: 256, calls: 128000, reverts: 10743)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10576 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10726 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10638 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10692 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10743 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10562 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10614 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10677 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10743 | 10743   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10599 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10677 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10753 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 74679
+  Bound result 162266
+  Bound result 458085741255179835170
+  Bound result 990000000000210221968
+  Bound result 990000000000000010882
+  Bound result 96920
+  Bound result 170739
+  Bound result 990000000000000017340
+  Bound result 990000000000000016617
+  Bound result 108707
+  Bound result 3
+  Bound result 580726459515362095513
+  Bound result 72959
+  Bound result 3894
+  Bound result 68533
+  Bound result 12591
+  Bound result 990000000000000180820
+  Bound result 11236
+  Bound result 109996
+  Bound result 5329
+  Bound result 7
+  Bound result 15038
+  Bound result 150346
+  Bound result 10503
+  Bound result 172800
+  Bound result 12708
+  Bound result 22250
+  Bound result 990000000000000001984
+  Bound result 70124
+  Bound result 172798
+  Bound result 103927
+  Bound result 106361
+  Bound result 1881
+  Bound result 877302201925091784451
+  Bound result 22738
+  Bound result 15145
+  Bound result 4286
+  Bound result 94088
+  Bound result 3228
+  Bound result 990000000000000001368
+  Bound result 171124268076689220868
+  Bound result 161179
+  Bound result 628731214252671520872
+  Bound result 172799
+  Bound result 1071
+  Bound result 136459
+  Bound result 6781
+  Bound result 5802
+  Bound result 2937
+  Bound result 10770
+  Bound result 14777
+  Bound result 12608
+  Bound result 990000045766664678766
+
+[PASS] invariant_noSignatureReplay() (runs: 256, calls: 128000, reverts: 10654)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10567 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10664 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10738 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10512 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10624 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10782 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10656 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10667 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10654 | 10654   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10708 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10600 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10828 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 11862
+  Bound result 10000000000000000003
+  Bound result 190468138861406051014
+  Bound result 88883
+  Bound result 105408
+  Bound result 990216196939427690288
+  Bound result 79071
+  Bound result 79593
+  Bound result 990000000000000024481
+  Bound result 89299
+  Bound result 207
+  Bound result 20427
+  Bound result 104054
+  Bound result 26102
+  Bound result 459527437548769945914
+  Bound result 668797018599070796305
+  Bound result 81024
+  Bound result 3664
+  Bound result 990000000000000020944
+  Bound result 786641295662782230345
+  Bound result 691320398972571549209
+  Bound result 21636
+  Bound result 5847
+  Bound result 75
+  Bound result 990000000000000015363
+  Bound result 0
+  Bound result 990000000000000013708
+  Bound result 618830098858040837878
+  Bound result 4232
+  Bound result 1875
+  Bound result 18000
+  Bound result 990000005301456715671
+  Bound result 6757
+  Bound result 140146
+  Bound result 714
+  Bound result 145413
+  Bound result 990000000000000003335
+  Bound result 3
+  Bound result 102164
+  Bound result 150223
+  Bound result 12833
+  Bound result 145681
+  Bound result 85555
+  Bound result 100953
+  Bound result 990000000000000022925
+  Bound result 137502
+  Bound result 2
+  Bound result 4728
+  Bound result 127465
+  Bound result 753934452279752223481
+  Bound result 1026
+  Bound result 4596
+  Bound result 74384
+  Bound result 990000000000000663634
+  Bound result 990000000002794781755
+  Bound result 1995
+  Bound result 239925022042514593351
+  Bound result 96859
+  Bound result 143960
+  Bound result 6039
+  Bound result 145809
+  Bound result 101428
+  Bound result 121043
+  Bound result 16208
+  Bound result 172797
+  Bound result 10832
+  Bound result 32146
+  Bound result 115675
+  Bound result 59851
+  Bound result 149396
+
+[PASS] invariant_prizeCorrectness() (runs: 256, calls: 128000, reverts: 10590)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10599 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10840 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10486 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10632 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10760 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10769 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10749 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10670 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10590 | 10590   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10465 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10684 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10756 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 15675
+  Bound result 990000000000000004842
+  Bound result 152720
+  Bound result 391939602389933491456
+  Bound result 112572
+  Bound result 157851
+  Bound result 140117891240434980083
+  Bound result 990000000000000000771
+  Bound result 92743
+  Bound result 56964
+  Bound result 80319
+  Bound result 55854
+  Bound result 202613479330681779626
+  Bound result 160006537335360877102
+  Bound result 42067
+  Bound result 364317390998660429389
+  Bound result 162350
+  Bound result 5649
+  Bound result 17416
+  Bound result 124799
+  Bound result 31408
+  Bound result 110303
+  Bound result 172799
+  Bound result 10000000000000000000
+  Bound result 11850
+  Bound result 38622
+  Bound result 77311
+  Bound result 990000000000000010555
+  Bound result 59063
+  Bound result 6679
+  Bound result 3417
+  Bound result 125041
+  Bound result 157678
+  Bound result 7354
+  Bound result 12214
+  Bound result 857820978811788092454
+  Bound result 2291
+  Bound result 21872
+  Bound result 3988
+  Bound result 36955
+  Bound result 990000000000000001931
+  Bound result 539131730090037324357
+  Bound result 420391887363546425358
+  Bound result 74888
+  Bound result 172797
+  Bound result 153161
+  Bound result 140805
+  Bound result 902089040058797126447
+  Bound result 2
+  Bound result 990000000000000001283
+  Bound result 1012
+  Bound result 402275925658085777126
+  Bound result 15572
+  Bound result 7414
+  Bound result 29523
+  Bound result 149767
+  Bound result 441
+  Bound result 939109562472034035199
+  Bound result 102226
+  Bound result 8997
+  Bound result 81597
+  Bound result 3707
+  Bound result 157985
+  Bound result 990000035354970218079
+  Bound result 37958
+  Bound result 970010986619965141242
+  Bound result 468854158419299048832
+  Bound result 8821
+  Bound result 168967
+
+[PASS] invariant_stakeBoundaries() (runs: 256, calls: 128000, reverts: 10682)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10581 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10767 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10803 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10695 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10631 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10400 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10726 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10654 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10682 | 10682   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10697 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10727 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10637 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 990000000000361691455
+  Bound result 5948
+  Bound result 10407
+  Bound result 990000000000000002983
+  Bound result 49916
+  Bound result 378
+  Bound result 165920
+  Bound result 7847
+  Bound result 990510496582833287181
+  Bound result 990000000000050601071
+  Bound result 84740
+  Bound result 990000726108296060917
+  Bound result 990000000000000014518
+  Bound result 23298
+  Bound result 46606
+  Bound result 7
+  Bound result 990000000000000000165
+  Bound result 3113
+  Bound result 81657
+  Bound result 990000000000000018427
+  Bound result 152052
+  Bound result 157440
+  Bound result 990000001025249507004
+  Bound result 260497182397556875709
+  Bound result 10000000000000000001
+  Bound result 112492
+  Bound result 28364
+  Bound result 757580403015159606936
+  Bound result 171968
+  Bound result 65843
+  Bound result 381067623954544278871
+  Bound result 54858
+  Bound result 43437
+  Bound result 84754
+  Bound result 65203
+  Bound result 990000000000000001939
+  Bound result 170588
+  Bound result 147582
+  Bound result 95875
+  Bound result 993456645500710997801
+  Bound result 137464603407861106355
+  Bound result 463
+  Bound result 36796
+  Bound result 1011
+  Bound result 96939
+  Bound result 101933
+  Bound result 18496
+  Bound result 132979
+  Bound result 47731
+  Bound result 135594260541268798891
+  Bound result 57217
+  Bound result 13108
+  Bound result 73008
+  Bound result 990000000000000000654
+  Bound result 781
+  Bound result 993826197822263762059
+  Bound result 5958
+  Bound result 114990
+  Bound result 8054
+  Bound result 6011
+
+[PASS] invariant_terminalStateConsistency() (runs: 256, calls: 128000, reverts: 10559)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10824 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10470 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10808 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10718 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10757 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10595 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10638 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10682 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10559 | 10559   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10737 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10498 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10714 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 742599477616913149873
+  Bound result 17434
+  Bound result 990000000000000011759
+  Bound result 20544
+  Bound result 884964043754006250925
+  Bound result 163201
+  Bound result 10000000000000000001
+  Bound result 10000000000000000002
+  Bound result 80931
+  Bound result 990000000000000012156
+  Bound result 999999999999999999997
+  Bound result 226284548775122704523
+  Bound result 284159961451034510295
+  Bound result 43858
+  Bound result 164461
+  Bound result 54072
+  Bound result 48769
+  Bound result 12196729048869525253
+  Bound result 1
+  Bound result 10000000000000000000
+  Bound result 155038
+  Bound result 158810
+  Bound result 990000000000013148351
+  Bound result 7179
+  Bound result 53299
+  Bound result 24311
+  Bound result 146085
+  Bound result 158444
+  Bound result 145557
+  Bound result 147750
+  Bound result 5378
+  Bound result 141142
+  Bound result 37768
+  Bound result 990000000000000008506
+  Bound result 163800
+  Bound result 990000000000000003115
+  Bound result 3648
+  Bound result 172799
+  Bound result 172798
+  Bound result 146172714013400239944
+  Bound result 110854
+  Bound result 990000000000000005972
+  Bound result 41015
+  Bound result 66018
+  Bound result 426141367694290851196
+  Bound result 11660
+  Bound result 990000000000000004107
+  Bound result 614301739437965037709
+  Bound result 103597
+  Bound result 411946766691337025521
+  Bound result 96317
+  Bound result 120689
+  Bound result 42181
+  Bound result 145753
+  Bound result 172799
+
+[PASS] invariant_treasuryFeeCorrectness() (runs: 256, calls: 128000, reverts: 10500)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10943 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10602 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10827 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10700 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10612 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10572 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10717 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10747 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10500 | 10500   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10630 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10548 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10602 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 990000000000000006146
+  Bound result 289
+  Bound result 215
+  Bound result 10000000000000000000
+  Bound result 990000000000000011406
+  Bound result 65716
+  Bound result 669476091239053916223
+  Bound result 104294
+  Bound result 990000000000000018250
+  Bound result 43872
+  Bound result 13274013625242601444
+  Bound result 54628
+  Bound result 15800
+  Bound result 562406583164955457571
+  Bound result 39502
+  Bound result 39383
+  Bound result 383620850256757841271
+  Bound result 110095
+  Bound result 80196
+  Bound result 104366
+  Bound result 990000000000000011277
+  Bound result 0
+  Bound result 8956
+  Bound result 263516954416751928429
+  Bound result 472540339911129334548
+  Bound result 112572
+  Bound result 1486
+  Bound result 70731
+  Bound result 88029
+  Bound result 5480
+  Bound result 990000000000000013649
+  Bound result 745
+  Bound result 172798
+  Bound result 67176
+  Bound result 72028
+  Bound result 16086
+  Bound result 990000000000000010911
+  Bound result 172798
+  Bound result 826160568562562797334
+  Bound result 990000003837830646227
+  Bound result 990000000000000021628
+  Bound result 29045
+  Bound result 23823
+  Bound result 938744056889747713629
+  Bound result 3
+  Bound result 14
+  Bound result 138469
+  Bound result 0
+  Bound result 5929
+  Bound result 145556
+  Bound result 115363
+  Bound result 116309
+  Bound result 79790
+  Bound result 41145
+  Bound result 16116
+  Bound result 53196
+  Bound result 1282
+  Bound result 22
+  Bound result 27962
+
+[PASS] invariant_validStateTransitions() (runs: 256, calls: 128000, reverts: 10665)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10881 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10848 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10550 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10635 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10475 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10680 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10709 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10588 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10665 | 10665   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10690 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10519 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10760 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 10441
+  Bound result 415989832979414808571
+  Bound result 990000000000000003219
+  Bound result 990000000000000001011
+  Bound result 5212
+  Bound result 82097
+  Bound result 990000000000327415230
+  Bound result 796995341841289991354
+  Bound result 990000000000000002874
+  Bound result 87194
+  Bound result 107095
+  Bound result 15533
+  Bound result 990000000000000002177
+  Bound result 65273
+  Bound result 110914
+  Bound result 84984
+  Bound result 513671192923628074331
+  Bound result 22865
+  Bound result 48994
+  Bound result 27679
+  Bound result 990000000000719206530
+  Bound result 990000000000000000005
+  Bound result 25263
+  Bound result 990000000000000007380
+  Bound result 8024
+  Bound result 990000000000000000652
+  Bound result 990000000000105646650
+  Bound result 126172
+  Bound result 12174
+  Bound result 3
+  Bound result 4608
+  Bound result 118610
+  Bound result 18784
+  Bound result 2803
+  Bound result 86905
+  Bound result 10725
+  Bound result 47453
+  Bound result 147016
+  Bound result 139043
+  Bound result 133929
+  Bound result 3487
+  Bound result 2533
+  Bound result 103033
+  Bound result 147384
+  Bound result 2264
+  Bound result 107183
+  Bound result 5892
+  Bound result 482900118321523025569
+  Bound result 3433
+  Bound result 9215
+  Bound result 15696
+  Bound result 136730
+  Bound result 72283
+
+[PASS] invariant_walletLockConsistency() (runs: 256, calls: 128000, reverts: 10740)
+
+Ôò¡-----------------------+-------------------------------+-------+---------+----------Ôò«
+| Contract              | Selector                      | Calls | Reverts | Discards |
++====================================================================================+
+| AdvancedBattleHandler | attackDoubleClaim             | 10631 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackJoinExpiredBattle       | 10692 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackReplaySignature         | 10621 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | attackUnauthorizedClaim       | 10837 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | cancelBattle                  | 10874 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | claimWinnings                 | 10709 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattle                  | 10608 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | createBattleWithBoundaryStake | 10539 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | initialize                    | 10740 | 10740   | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | joinBattle                    | 10557 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | resolveBattle                 | 10519 | 0       | 0        |
+|-----------------------+-------------------------------+-------+---------+----------|
+| AdvancedBattleHandler | warpTime                      | 10673 | 0       | 0        |
+Ôò░-----------------------+-------------------------------+-------+---------+----------Ôò»
+
+Logs:
+  Bound result 132558
+  Bound result 71004
+  Bound result 990000000000000004671
+  Bound result 999999999999999999998
+  Bound result 392044185461358678296
+  Bound result 43650
+  Bound result 85739
+  Bound result 279419320015737452439
+  Bound result 10000000000000000002
+  Bound result 990000000000000387440
+  Bound result 139054
+  Bound result 2033
+  Bound result 807688774735898728786
+  Bound result 138153
+  Bound result 159958981228309250832
+  Bound result 21611
+  Bound result 990000000000000020544
+  Bound result 990000000000071061305
+  Bound result 633454198144420215840
+  Bound result 999999999999999999999
+  Bound result 389771914023998983140
+  Bound result 6368
+  Bound result 13694
+  Bound result 103880395895959156035
+  Bound result 35842
+  Bound result 344840168378898789321
+  Bound result 53639
+  Bound result 126214
+  Bound result 97828
+  Bound result 97161370212797929107
+  Bound result 15438
+  Bound result 990000000004100902085
+  Bound result 2
+  Bound result 62698
+  Bound result 86681
+  Bound result 990000000000000020939
+  Bound result 759336236605031875653
+  Bound result 100755
+  Bound result 167340
+  Bound result 81312
+  Bound result 48339
+  Bound result 148229
+  Bound result 3
+  Bound result 95176
+  Bound result 172800
+  Bound result 990000000000000003905
+  Bound result 990000691634616513736
+  Bound result 434410519625274954022
+  Bound result 958492165607938177619
+  Bound result 16185
+  Bound result 990000000000000001884
+  Bound result 11939
+  Bound result 10406
+  Bound result 117430
+  Bound result 10000000000000000002
+  Bound result 15504
+  Bound result 2407
+  Bound result 15087
+  Bound result 47411
+  Bound result 88
+  Bound result 43799
+  Bound result 93236
+  Bound result 2
+  Bound result 172799
+  Bound result 7772
+  Bound result 10291
+
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 331.99s (1588.81s CPU time)
+
+Ran 1 test suite in 332.01s (331.99s CPU time): 10 tests passed, 0 failed, 0 skipped (10 total tests)

@@ -1,0 +1,17 @@
+# Foundry artifacts
+out/
+cache/
+
+# Environment variables
+.env
+.env.local
+
+# Dependencies
+lib/
+
+# Node
+node_modules/
+
+# IDE
+.idea/
+.vscode/

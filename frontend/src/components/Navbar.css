@@ -1,0 +1,177 @@
+/* Navbar Styles - Dragon Supremacy */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(20, 20, 40, 0.95));
+    border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+}
+
+/* Brand */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-icon {
+    font-size: 1.75rem;
+    filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.5));
+}
+
+.brand-text {
+    font-weight: 800;
+    font-size: 1.15rem;
+    background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+/* Navigation Links */
+.navbar-links {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255, 107, 53, 0.15);
+    color: #fff;
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.25), rgba(247, 147, 30, 0.2));
+    color: #fff;
+    border: 1px solid rgba(255, 107, 53, 0.4);
+}
+
+/* Stats - Same style as wallet badge */
+.navbar-stats {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.stat-item {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.stat-item.dgne {
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    color: #ffd700;
+}
+
+.stat-item.rmrk {
+    background: rgba(218, 112, 214, 0.2);
+    border: 1px solid rgba(218, 112, 214, 0.4);
+    color: #da70d6;
+}
+
+/* Wallet Badge */
+.wallet-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.wallet-badge.connected {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.4);
+    color: #81c784;
+}
+
+.wallet-badge.connected:hover {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.4);
+    color: #ef5350;
+}
+
+.wallet-badge.disconnected {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(247, 147, 30, 0.2));
+    border: 1px solid rgba(255, 107, 53, 0.5);
+    color: #fff;
+}
+
+.wallet-badge.disconnected:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.5), rgba(247, 147, 30, 0.3));
+}
+
+.wallet-address {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-links {
+        gap: 0.25rem;
+    }
+
+    .nav-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-text {
+        display: none;
+    }
+
+    .navbar-stats {
+        gap: 0.5rem;
+    }
+
+    .stat-item {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .wallet-badge {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,58 @@
+{
+  "_format": "hh3-artifact-1",
+  "contractName": "IRMRKCreature",
+  "sourceName": "src/DragonStaking.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "coreData",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "genSeed",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "personality",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "elementType",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "temperament",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint48",
+          "name": "bornAt",
+          "type": "uint48"
+        },
+        {
+          "internalType": "uint8",
+          "name": "talent",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "immutableReferences": {},
+  "inputSourceName": "project/src/DragonStaking.sol",
+  "buildInfoId": "solc-0_8_24-51e682cd951db4ab161c5dde04dbd3ae1866b31c"
+}

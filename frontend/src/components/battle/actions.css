@@ -1,0 +1,115 @@
+/**
+ * Action Panel & Move Button Styles
+ */
+
+.action-panel {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    padding: 0.75rem;
+}
+
+.action-panel-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.action-content {
+    padding: 0.5rem;
+}
+
+/* Moves Grid */
+.moves-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 120px);
+    gap: 0.4rem;
+}
+
+.move-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.4rem 0.6rem;
+    background: linear-gradient(145deg, rgba(40, 40, 60, 0.9), rgba(20, 20, 35, 0.95));
+    border: 2px solid var(--move-element-color, #666);
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.move-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--move-element-color, #666), transparent);
+}
+
+.move-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--move-element-color, #666), transparent 60%);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.move-btn:hover:not(:disabled) {
+    background: linear-gradient(145deg, rgba(50, 50, 80, 0.95), rgba(30, 30, 50, 0.98));
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.move-btn:active:not(:disabled) {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.move-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    filter: grayscale(50%);
+}
+
+.move-btn-cooldown {
+    background: linear-gradient(145deg, rgba(50, 50, 50, 0.8), rgba(30, 30, 30, 0.9));
+    border-color: #444;
+}
+
+.move-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.move-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: #bbb;
+}
+
+.move-element {
+    text-transform: uppercase;
+    color: var(--move-element-color, #888);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.move-cooldown-badge {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    background: rgba(255, 0, 0, 0.8);
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 8px;
+    font-weight: 700;
+}

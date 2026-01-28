@@ -1,0 +1,56 @@
+﻿Compiling 21 files with Solc 0.8.24
+Solc 0.8.24 finished in 94.37s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/RMRKCreature.sol:119:9:
+    |
+119 |         string memory tokenURI
+    |         ^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/RMRKCreature.sol:302:5:
+    |
+302 |     function tokenURI(uint256 tokenId) public view override returns (string memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/RMRKCreature.sol:235:13:
+    |
+235 |             uint256 result = (uint256(baseStat) * (1000 + (ageDays * 300) / 1825)) / 1000;
+    |             ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/RMRKCreature.sol:258:9:
+    |
+258 |         uint256 result = (uint256(baseStat) * levelMult * ageMult) / 1000000;
+    |         ^^^^^^^^^^^^^^
+
+
+Ran 20 tests for test/FuzzTests.t.sol:FuzzTests
+[PASS] testFuzz_BattleGateV2_cancelBattle_onlyHost(address) (runs: 256, ╬╝: 272171, ~: 272171)
+[PASS] testFuzz_BattleGateV2_cannotJoinExpired(uint256) (runs: 256, ╬╝: 308282, ~: 308404)
+[PASS] testFuzz_BattleGateV2_createBattle(uint256) (runs: 256, ╬╝: 273582, ~: 273579)
+[PASS] testFuzz_BattleGateV2_createBattle_invalidStake(uint256) (runs: 256, ╬╝: 52033, ~: 51666)
+[PASS] testFuzz_BattleGateV2_hostTimeout(uint256) (runs: 256, ╬╝: 241913, ~: 241983)
+[PASS] testFuzz_BattleGateV2_joinBattle(uint256) (runs: 256, ╬╝: 405180, ~: 405186)
+[PASS] testFuzz_DragonStaking_pendingRewards(uint256) (runs: 256, ╬╝: 221368, ~: 221421)
+[PASS] testFuzz_DragonStaking_stakeUnstake(uint256) (runs: 256, ╬╝: 223186, ~: 223200)
+[PASS] testFuzz_HPManager_healCost(uint256) (runs: 256, ╬╝: 68157, ~: 68560)
+[PASS] testFuzz_HPManager_overflowProtection(uint256) (runs: 256, ╬╝: 65176, ~: 65083)
+[PASS] testFuzz_HPManager_setHP(uint256,uint256) (runs: 256, ╬╝: 62128, ~: 62824)
+[PASS] testFuzz_HPManager_setHP_reverts_over100(uint256) (runs: 256, ╬╝: 14617, ~: 14614)
+[PASS] testFuzz_HPManager_timeRecovery(uint256,uint256) (runs: 256, ╬╝: 66654, ~: 67451)
+[PASS] test_EdgeCase_alreadyInBattle() (gas: 291288)
+[PASS] test_EdgeCase_claimNotWinner() (gas: 19286)
+[FAIL: Error != expected error: NotOwner() != AlreadyStaked()] test_EdgeCase_doubleStake() (gas: 219785)
+[PASS] test_EdgeCase_healAtMaxHP() (gas: 47626)
+[PASS] test_EdgeCase_joinOwnBattle() (gas: 290623)
+[PASS] test_EdgeCase_unstakeNotOwner() (gas: 213425)
+[PASS] test_EdgeCase_zeroAddress() (gas: 512033)
+Suite result: FAILED. 19 passed; 1 failed; 0 skipped; finished in 279.88ms (1.70s CPU time)
+
+Ran 1 test suite in 298.16ms (279.88ms CPU time): 19 tests passed, 1 failed, 0 skipped (20 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/FuzzTests.t.sol:FuzzTests
+[FAIL: Error != expected error: NotOwner() != AlreadyStaked()] test_EdgeCase_doubleStake() (gas: 219785)
+
+Encountered a total of 1 failing tests, 19 tests succeeded

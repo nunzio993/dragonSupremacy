@@ -1,0 +1,29 @@
+{
+    "name": "@nft-autobattler/game-engine",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "build": "tsc",
+        "clean": "rimraf dist",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+        "test:watch": "npm run test -- --watch"
+    },
+    "dependencies": {
+        "@nft-autobattler/shared-types": "1.0.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.11",
+        "jest": "^29.7.0",
+        "rimraf": "^5.0.5",
+        "ts-jest": "^29.1.1",
+        "typescript": "^5.3.3"
+    }
+}

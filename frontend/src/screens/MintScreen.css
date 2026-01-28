@@ -1,0 +1,345 @@
+.mint-screen {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 40px 20px;
+}
+
+.mint-container {
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.mint-container h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #ffd700, #f39c12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Cost Info Banner */
+.cost-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 12px;
+}
+
+.cost-info .cost-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.cost-info .cost-label {
+    font-size: 0.8rem;
+    color: #a0aec0;
+}
+
+.cost-info .cost-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.cost-info .cost-value.mint {
+    color: #ffd700;
+}
+
+.cost-info .cost-value.skip {
+    color: #f093fb;
+}
+
+.cost-info .cost-value.ok {
+    color: #48bb78;
+}
+
+.cost-info .cost-value.low {
+    color: #f56565;
+}
+
+.connect-prompt {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.minted-banner {
+    background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.element-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.element-badge .element-name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.balance-info {
+    text-align: center;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.balance-info strong {
+    color: #f1c40f;
+}
+
+.error-banner {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+}
+
+/* Preview Section */
+.preview-section h2 {
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.mystery-hint {
+    text-align: center;
+    color: #a0aec0;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.preview-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 2px solid var(--element-color, #3498db);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.preview-card.mystery {
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.preview-element {
+    font-size: 3rem;
+}
+
+.preview-talent {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.preview-talent strong {
+    color: #f1c40f;
+    font-size: 1.5rem;
+}
+
+/* Mystery Value */
+.mystery-value {
+    color: #666 !important;
+    font-style: italic;
+}
+
+.preview-traits {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.preview-traits.mystery .trait {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.trait {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.trait-label {
+    display: block;
+    color: #888;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.trait-value {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Stats */
+.preview-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-bar.hidden {
+    opacity: 0.5;
+}
+
+.stat-bar.visible {
+    opacity: 1;
+}
+
+.stat-bar.visible .stat-name {
+    color: var(--element-color, #3498db);
+}
+
+.stat-name {
+    width: 40px;
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.stat-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--element-color, #3498db), #fff);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.stat-bar-mystery {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.7rem;
+    color: #444;
+}
+
+.stat-value {
+    width: 30px;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+/* Mint Actions */
+.mint-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.skip-btn {
+    flex: 1;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.skip-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+}
+
+.skip-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.mint-btn {
+    flex: 2;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+    border: none;
+    border-radius: 8px;
+    color: #1a1a2e;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mint-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+}
+
+.mint-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.mint-note {
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 16px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .cost-info {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .preview-traits {
+        flex-direction: column;
+    }
+
+    .mint-actions {
+        flex-direction: column;
+    }
+
+    .mint-btn,
+    .skip-btn {
+        flex: none;
+    }
+}

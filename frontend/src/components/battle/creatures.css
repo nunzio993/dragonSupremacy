@@ -1,0 +1,149 @@
+/**
+ * Creature Panel & Sprite Styles
+ */
+
+.creature-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    min-width: auto;
+    position: relative;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.creature-panel.is-bench {
+    opacity: 0.7;
+    transform: scale(0.9);
+}
+
+.creature-panel.is-fainted {
+    opacity: 0.6;
+    filter: grayscale(80%);
+}
+
+/* Sprite Container */
+.creature-sprite-container {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: transparent;
+}
+
+.creature-sprite-container.fainted {
+    filter: saturate(0.3);
+}
+
+/* Sprite Image */
+.creature-sprite-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(3);
+    transition: filter 0.2s;
+}
+
+.creature-sprite-img.attacking {
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 100, 0, 0.8));
+}
+
+.creature-sprite-img.dead {
+    filter: brightness(0.6) saturate(0.5);
+}
+
+/* Info Below Sprite */
+.creature-info-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.creature-name-compact {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+}
+
+.creature-name-compact.ko {
+    color: #888;
+    text-decoration: line-through;
+}
+
+/* Hit Animation */
+.creature-panel.is-hit {
+    animation: hit-shake 0.4s ease-out;
+}
+
+.hit-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    animation: flash-pop 0.4s ease-out forwards;
+    z-index: 10;
+}
+
+@keyframes hit-shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(-8px) scale(0.98);
+    }
+
+    30% {
+        transform: translateX(8px) scale(0.95);
+    }
+
+    50% {
+        transform: translateX(-6px);
+    }
+
+    70% {
+        transform: translateX(6px);
+    }
+
+    90% {
+        transform: translateX(-2px);
+    }
+}
+
+@keyframes flash-pop {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+
+    30% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Small variant */
+.creature-panel-sm .creature-sprite-container {
+    width: 100px;
+    height: 80px;
+}
+
+.creature-panel-sm .creature-name-compact {
+    font-size: 0.75rem;
+}

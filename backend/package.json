@@ -1,0 +1,36 @@
+{
+    "name": "@nft-autobattler/backend",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "./dist/server.js",
+    "scripts": {
+        "dev": "tsx watch --env-file=.env src/server.ts",
+        "build": "tsc",
+        "start": "node dist/server.js",
+        "db:migrate": "tsx src/db/migrate.ts"
+    },
+    "dependencies": {
+        "@nft-autobattler/game-engine": "1.0.0",
+        "@nft-autobattler/rmrk-module": "1.0.0",
+        "@nft-autobattler/shared-types": "1.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.3",
+        "ethers": "^6.16.0",
+        "express": "^4.18.2",
+        "express-rate-limit": "^8.2.1",
+        "jsonwebtoken": "^9.0.2",
+        "pg": "^8.11.3",
+        "socket.io": "^4.8.3",
+        "uuid": "^9.0.1"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
+        "@types/jsonwebtoken": "^9.0.5",
+        "@types/node": "^20.10.6",
+        "@types/pg": "^8.10.9",
+        "@types/uuid": "^9.0.7",
+        "tsx": "^4.7.0",
+        "typescript": "^5.3.3"
+    }
+}

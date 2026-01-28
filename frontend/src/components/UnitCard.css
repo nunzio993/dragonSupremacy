@@ -1,0 +1,106 @@
+.unit-card {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.unit-card:hover {
+    transform: translateY(-2px);
+}
+
+.rarity-border-common {
+    border-bottom: 3px solid var(--color-rarity-common);
+}
+
+.rarity-border-rare {
+    border-bottom: 3px solid var(--color-rarity-rare);
+}
+
+.rarity-border-epic {
+    border-bottom: 3px solid var(--color-rarity-epic);
+}
+
+.rarity-border-legendary {
+    border-bottom: 3px solid var(--color-rarity-legendary);
+}
+
+.unit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.role-icon {
+    font-size: 1rem;
+}
+
+.unit-avatar {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--space-sm);
+    background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-hover));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent-primary);
+    border: 2px solid var(--color-bg-hover);
+}
+
+.unit-avatar-letter {
+    text-transform: uppercase;
+}
+
+.unit-name {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.unit-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: var(--space-xs);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+/* Compact variant */
+.unit-card.compact {
+    padding: var(--space-sm);
+}
+
+.unit-card.compact .unit-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+}
+
+.unit-card.compact .unit-name {
+    font-size: var(--font-size-xs);
+}
