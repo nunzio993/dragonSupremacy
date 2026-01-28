@@ -145,6 +145,25 @@ export function MintScreen() {
         args: address ? [address] : undefined,
     });
 
+    // Locked balance from AirdropVault
+    const isVaultDeployed = CONTRACTS.AIRDROP_VAULT !== '0x0000000000000000000000000000000000000000';
+    const { data: lockedBalance } = useReadContract({
+        address: CONTRACTS.AIRDROP_VAULT as Address,
+        abi: [{
+            inputs: [{ name: 'user', type: 'address' }],
+            name: 'getLockedBalance',
+            outputs: [{ name: 'balance', type: 'uint256' }],
+            stateMutability: 'view',
+            type: 'function',
+        }] as const,
+        functionName: 'getLockedBalance',
+        args: address ? [address] : undefined,
+        query: { enabled: isConnected && isVaultDeployed && !!address },
+    });
+
+    // Total balance = wallet + locked
+    const totalBalance = (dgneBalance ?? 0n) + (lockedBalance ?? 0n);
+
     // Allowance
     const { data: allowance, refetch: refetchAllowance } = useReadContract({
         address: CONTRACTS.DRAGON_TOKEN as Address,
@@ -308,8 +327,9 @@ export function MintScreen() {
         }
     }, [preview, address, publicClient, writeContractAsync, refetchBalance, refetchAllowance, refetchSkipCount, hasApproval, effectiveNonce]);
 
-    const canAffordMint = dgneBalance !== undefined && dgneBalance >= MINT_COST;
-    const canAffordSkip = dgneBalance !== undefined && dgneBalance >= SKIP_COST;
+    // Use total balance (wallet + locked) for affordability check
+    const canAffordMint = totalBalance >= MINT_COST;
+    const canAffordSkip = totalBalance >= SKIP_COST;
 
     if (!isConnected) {
         return (
@@ -325,7 +345,7 @@ export function MintScreen() {
     return (
         <div className="mint-screen">
             <div className="mint-container">
-                <h1>🐉 Mystery Dragon Mint</h1>
+                <h1><span className="header-icon">🐉</span> <span className="header-text">Mystery Dragon Mint</span></h1>
 
                 <div className="cost-info">
                     <div className="cost-item">

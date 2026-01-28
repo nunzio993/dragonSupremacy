@@ -8,6 +8,11 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./GameConfig.sol";
 
+// ============ Custom Errors (Gas Optimization) ============
+error InvalidAddress();
+error InsufficientDGNE();
+error InsufficientRMRK();
+
 /**
  * @title MintGate
  * @author NFT Autobattler Team
@@ -42,8 +47,8 @@ contract MintGate is Ownable, Pausable, ReentrancyGuard {
     // ============ Constructor ============
     
     constructor(address _gameConfig, address _rmrkCreature) Ownable(msg.sender) {
-        require(_gameConfig != address(0), "Invalid GameConfig");
-        require(_rmrkCreature != address(0), "Invalid RMRKCreature");
+        if (_gameConfig == address(0)) revert InvalidAddress();
+        if (_rmrkCreature == address(0)) revert InvalidAddress();
         
         gameConfig = GameConfig(_gameConfig);
         rmrkCreature = IRMRKCreature(_rmrkCreature);
@@ -77,8 +82,8 @@ contract MintGate is Ownable, Pausable, ReentrancyGuard {
         IERC20 rmrkToken = IERC20(gameConfig.rmrkToken());
         
         // Verify user has enough tokens
-        require(dgneToken.balanceOf(msg.sender) >= dgneCost, "Insufficient DGNE");
-        require(rmrkToken.balanceOf(msg.sender) >= rmrkCost, "Insufficient RMRK");
+        if (dgneToken.balanceOf(msg.sender) < dgneCost) revert InsufficientDGNE();
+        if (rmrkToken.balanceOf(msg.sender) < rmrkCost) revert InsufficientRMRK();
         
         // Burn tokens by transferring to this contract (can also use burnFrom if available)
         // Using safeTransferFrom for security
@@ -128,13 +133,13 @@ contract MintGate is Ownable, Pausable, ReentrancyGuard {
     // ============ Admin Functions ============
     
     function setGameConfig(address _gameConfig) external onlyOwner {
-        require(_gameConfig != address(0), "Invalid address");
+        if (_gameConfig == address(0)) revert InvalidAddress();
         gameConfig = GameConfig(_gameConfig);
         emit GameConfigUpdated(_gameConfig);
     }
     
     function setRMRKCreature(address _rmrkCreature) external onlyOwner {
-        require(_rmrkCreature != address(0), "Invalid address");
+        if (_rmrkCreature == address(0)) revert InvalidAddress();
         rmrkCreature = IRMRKCreature(_rmrkCreature);
         emit RMRKCreatureUpdated(_rmrkCreature);
     }

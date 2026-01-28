@@ -1,0 +1,666 @@
+/* ============================================
+   Tokenomics / Game Economy - Dragon Supremacy Styles
+   ============================================ */
+
+.tokenomics-screen {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 2rem 1rem 4rem;
+}
+
+.tokenomics-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+.tokenomics-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+}
+
+.tokenomics-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.tokenomics-header .header-icon {
+    font-size: 2.5rem;
+}
+
+.tokenomics-header .header-text {
+    background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tokenomics-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Sections */
+.tokenomics-section {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tokenomics-section h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+}
+
+.section-intro {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.subsection-title {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 1.5rem 0 1rem;
+}
+
+/* Usage Grid */
+.usage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.usage-card {
+    background: rgba(255, 107, 53, 0.05);
+    border: 1px solid rgba(255, 107, 53, 0.15);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.usage-card:hover {
+    background: rgba(255, 107, 53, 0.08);
+    transform: translateY(-2px);
+}
+
+.usage-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.usage-card h3 {
+    font-size: 1rem;
+    color: #ff6b35;
+    margin-bottom: 0.5rem;
+}
+
+.usage-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+/* Warning/Info Boxes */
+.warning-box {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 193, 7, 0.08);
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.warning-box.neutral {
+    background: rgba(158, 158, 158, 0.08);
+    border-color: rgba(158, 158, 158, 0.25);
+}
+
+.warning-box.danger {
+    background: rgba(244, 67, 54, 0.08);
+    border-color: rgba(244, 67, 54, 0.25);
+}
+
+.warning-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.warning-content {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.warning-content strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.warning-content ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.warning-content li {
+    margin-bottom: 0.25rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.warning-box p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Feature List */
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.feature-bullet {
+    color: #ff6b35;
+    font-weight: bold;
+}
+
+.feature-item strong {
+    color: #fff;
+}
+
+/* Highlight Box */
+.highlight-box {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+}
+
+.highlight-box.secondary {
+    background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(247, 147, 30, 0.05));
+    border-color: rgba(255, 204, 0, 0.3);
+}
+
+.highlight-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ff6b35;
+    line-height: 1;
+}
+
+.highlight-box.secondary .highlight-number {
+    color: #ffcc00;
+}
+
+.highlight-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+}
+
+/* Info Cards */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.info-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.info-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Token Status */
+.token-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-badge.locked {
+    background: rgba(244, 67, 54, 0.15);
+    color: #ef5350;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.status-badge.active {
+    background: rgba(76, 175, 80, 0.15);
+    color: #81c784;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* Flow Diagram */
+.flow-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border-left: 3px solid #ff6b35;
+}
+
+.flow-amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ff6b35;
+    min-width: 120px;
+}
+
+.flow-arrow {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.5rem;
+}
+
+.flow-destination {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.flow-destination strong {
+    color: #fff;
+}
+
+.flow-destination span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.note-text {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 107, 53, 0.08);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+}
+
+/* Mechanics Grid */
+.mechanics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.mechanic-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.mechanic-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.mechanic-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.mechanic-card h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.mechanic-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+/* Staking Stats */
+.staking-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.staking-stat {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: 12px;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #f7931e;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.25rem;
+}
+
+/* Factor List */
+.factor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.factor-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.factor-icon {
+    font-size: 1.25rem;
+}
+
+/* Formula Box */
+.formula-box {
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #ffcc00;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Transparency Grid */
+.transparency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.transparency-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.transparency-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.transparency-icon {
+    font-size: 1.25rem;
+}
+
+/* Treasury Grid */
+.treasury-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.treasury-card {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
+    border: 1px solid rgba(255, 107, 53, 0.25);
+    border-radius: 16px;
+}
+
+.treasury-card.reserve {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 193, 7, 0.05));
+    border-color: rgba(255, 152, 0, 0.25);
+}
+
+.treasury-amount {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ff6b35;
+}
+
+.treasury-card.reserve .treasury-amount {
+    color: #ffb74d;
+}
+
+.treasury-label {
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0.5rem 0;
+}
+
+.treasury-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* Reserve Uses */
+.reserve-uses {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.reserve-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 152, 0, 0.08);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* Allocation Table */
+.allocation-table {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.allocation-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 0.5fr;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.allocation-row:last-child {
+    border-bottom: none;
+}
+
+.allocation-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.allocation-amount {
+    font-weight: 700;
+    color: #ff6b35;
+    font-size: 1rem;
+}
+
+.allocation-label {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.allocation-percent {
+    text-align: right;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Disclaimer Section */
+.disclaimer-section {
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.disclaimer-box {
+    background: rgba(255, 107, 53, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.disclaimer-box p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.6;
+}
+
+.disclaimer-box p:last-child {
+    margin: 0;
+}
+
+.disclaimer-box strong {
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tokenomics-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .tokenomics-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .tokenomics-section h2 {
+        font-size: 1.25rem;
+    }
+
+    .highlight-number {
+        font-size: 2.25rem;
+    }
+
+    .usage-grid,
+    .mechanics-grid,
+    .transparency-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-step {
+        flex-wrap: wrap;
+    }
+
+    .flow-amount {
+        min-width: auto;
+    }
+
+    .allocation-row {
+        grid-template-columns: 1fr 1.5fr 0.5fr;
+        padding: 0.75rem 1rem;
+    }
+
+    .allocation-amount {
+        font-size: 0.9rem;
+    }
+}
+
+/* Footer Notice */
+.tokenomics-footer {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+.footer-notice {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.footer-notice strong {
+    color: rgba(255, 255, 255, 0.5);
+}

@@ -35,22 +35,60 @@
     margin-bottom: 1rem;
 }
 
-.coming-soon ul {
-    text-align: left;
-    max-width: 400px;
-    margin: 1rem auto;
-    color: #aaa;
+/* Global Stats */
+.global-stats {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.coming-soon li {
-    margin: 0.5rem 0;
+.global-stats h3 {
+    color: #60a5fa;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-box.highlight {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
+    border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+.stat-box .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.stat-box .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
 }
 
 /* Staking Summary */
 .staking-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background: linear-gradient(135deg, #8e44ad22 0%, #3498db22 100%);
     border: 1px solid #8e44ad44;
     border-radius: 16px;
@@ -58,10 +96,22 @@
     margin-bottom: 2rem;
 }
 
+.staking-summary h3 {
+    color: #a78bfa;
+    margin-bottom: 1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
 .summary-stat {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    text-align: center;
 }
 
 .stat-label {
@@ -81,6 +131,8 @@
 }
 
 .claim-all-btn {
+    display: block;
+    width: 100%;
     background: linear-gradient(135deg, #27ae60, #2ecc71);
     border: none;
     border-radius: 12px;
@@ -102,11 +154,245 @@
     cursor: not-allowed;
 }
 
+/* Info Sections */
+.info-section {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Emission Cap */
+.emission-cap {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.emission-cap h3 {
+    color: #fbbf24;
+}
+
+.cap-highlight {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.cap-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fbbf24;
+}
+
+.cap-label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+}
+
+.cap-details {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.formula-box {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.formula-box code {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: #ffd700;
+}
+
+/* Distribution */
+.distribution {
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.1));
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.distribution h3 {
+    color: #34d399;
+}
+
+.distribution-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.distribution-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.dist-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.distribution-item strong {
+    display: block;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.distribution-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Warning Box */
+.warning-box {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.warning-box h3 {
+    color: #f87171;
+}
+
+.warning-box p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.warning-box ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.warning-box li {
+    margin: 0.5rem 0;
+}
+
+/* Claim Info */
+.claim-info {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.claim-info h3 {
+    color: #a78bfa;
+}
+
+.claim-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.claim-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.claim-icon {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+/* Anti-Abuse */
+.anti-abuse {
+    background: linear-gradient(135deg, rgba(100, 116, 139, 0.1), rgba(71, 85, 105, 0.1));
+    border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.anti-abuse h3 {
+    color: #94a3b8;
+}
+
+.abuse-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.abuse-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.abuse-icon {
+    font-size: 1.25rem;
+}
+
+/* Staking Rules */
+.staking-rules {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 193, 7, 0.05));
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.staking-rules h3 {
+    color: #ffd700;
+}
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.rule-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.rule-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.rule-item strong {
+    display: block;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.rule-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
 /* Staked List */
 .staked-list {
     background: rgba(255, 255, 255, 0.03);
     border-radius: 16px;
     padding: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .staked-list h2 {
@@ -142,11 +428,6 @@
     color: #fff;
 }
 
-.staked-rewards {
-    font-size: 0.9rem;
-    color: #f39c12;
-}
-
 .unstake-btn {
     background: #e74c3c;
     border: none;
@@ -175,100 +456,24 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    .staking-summary {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
     .staking-screen {
         padding: 1rem;
     }
 
-    .info-grid {
-        grid-template-columns: 1fr !important;
+    .stats-grid,
+    .distribution-grid,
+    .claim-grid,
+    .abuse-grid,
+    .rules-grid {
+        grid-template-columns: 1fr;
     }
-}
 
-/* Staking Info Box */
-.staking-info {
-    background: rgba(255, 215, 0, 0.05);
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-}
+    .summary-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
 
-.staking-info h3 {
-    color: #ffd700;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-.info-item {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-}
-
-.info-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
-
-.info-item strong {
-    display: block;
-    color: #fff;
-    margin-bottom: 0.25rem;
-}
-
-.info-item p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* Staking Formula Box */
-.staking-formula {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.staking-formula h3 {
-    color: #a78bfa;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.formula-box {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-}
-
-.formula-box code {
-    font-family: 'Courier New', monospace;
-    font-size: 1.1rem;
-    color: #ffd700;
-}
-
-.formula-example {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-}
-
-.formula-example strong {
-    color: #4ade80;
+    .cap-value {
+        font-size: 2rem;
+    }
 }

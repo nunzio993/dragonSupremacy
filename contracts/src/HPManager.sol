@@ -4,6 +4,15 @@ pragma solidity ^0.8.21;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+// ============ Custom Errors (Gas Optimization) ============
+error NotAuthorizedHP();
+error HPExceeds100();
+error DGNETokenNotSet();
+error TreasuryNotSet();
+error AlreadyFullHP();
+error DGNETransferFailed();
+error RecoveryRateTooHigh();
+
 /**
  * @title HPManager
  * @notice Manages creature HP, time-based recovery, and instant heal with DGNE payment
@@ -48,7 +57,7 @@ contract HPManager is Ownable {
     // ============ Modifiers ============
     
     modifier onlyHPUpdater() {
-        require(hpUpdaters[msg.sender] || msg.sender == owner(), "Not authorized to update HP");
+        if (!hpUpdaters[msg.sender] && msg.sender != owner()) revert NotAuthorizedHP();
         _;
     }
     
@@ -96,7 +105,7 @@ contract HPManager is Ownable {
      * @param hp New HP percentage (0-100)
      */
     function setHP(uint256 tokenId, uint256 hp) external onlyHPUpdater {
-        require(hp <= 100, "HP cannot exceed 100");
+        if (hp > 100) revert HPExceeds100();
         
         lastHP[tokenId] = hp;
         lastBattleTime[tokenId] = block.timestamp;
@@ -110,18 +119,18 @@ contract HPManager is Ownable {
      * @dev Requires DGNE approval from user
      */
     function instantHeal(uint256 tokenId) external {
-        require(address(dgneToken) != address(0), "DGNE token not set");
-        require(treasury != address(0), "Treasury not set");
+        if (address(dgneToken) == address(0)) revert DGNETokenNotSet();
+        if (treasury == address(0)) revert TreasuryNotSet();
         
         uint256 currentHP = getHP(tokenId);
-        require(currentHP < 100, "Already at full HP");
+        if (currentHP >= 100) revert AlreadyFullHP();
         
         // Calculate cost
         uint256 hpToHeal = 100 - currentHP;
         uint256 cost = (hpToHeal * healCostPer10Percent) / 10;
         
         // Transfer DGNE from user to treasury
-        require(dgneToken.transferFrom(msg.sender, treasury, cost), "DGNE transfer failed");
+        if (!dgneToken.transferFrom(msg.sender, treasury, cost)) revert DGNETransferFailed();
         
         // Set HP to 100
         lastHP[tokenId] = 100;
@@ -132,29 +141,50 @@ contract HPManager is Ownable {
     
     // ============ Admin Functions ============
     
+    /**
+     * @notice Set or revoke HP updater authorization
+     * @param updater Address to authorize/deauthorize
+     * @param authorized True to authorize, false to revoke
+     */
     function setHPUpdater(address updater, bool authorized) external onlyOwner {
         hpUpdaters[updater] = authorized;
         emit HPUpdaterSet(updater, authorized);
     }
     
+    /**
+     * @notice Update the DGNE token contract address
+     * @param _token New DGNE token contract address
+     */
     function setDgneToken(address _token) external onlyOwner {
         address oldToken = address(dgneToken);
         dgneToken = IERC20(_token);
         emit DgneTokenChanged(oldToken, _token);
     }
     
+    /**
+     * @notice Update the treasury address for heal payments
+     * @param _treasury New treasury address
+     */
     function setTreasury(address _treasury) external onlyOwner {
         address oldTreasury = treasury;
         treasury = _treasury;
         emit TreasuryChanged(oldTreasury, _treasury);
     }
     
+    /**
+     * @notice Set passive HP recovery rate
+     * @param _ratePerHour Percentage of HP recovered per hour (max 100)
+     */
     function setHpRecoveryRate(uint256 _ratePerHour) external onlyOwner {
-        require(_ratePerHour <= 100, "Rate too high");
+        if (_ratePerHour > 100) revert RecoveryRateTooHigh();
         hpRecoveryRatePerHour = _ratePerHour;
         emit ConfigUpdated("hpRecoveryRatePerHour", _ratePerHour);
     }
     
+    /**
+     * @notice Set instant heal cost per 10% HP
+     * @param _costPer10Percent DGNE cost in wei per 10% HP healed
+     */
     function setHealCost(uint256 _costPer10Percent) external onlyOwner {
         healCostPer10Percent = _costPer10Percent;
         emit ConfigUpdated("healCostPer10Percent", _costPer10Percent);

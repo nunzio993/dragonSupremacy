@@ -191,80 +191,7 @@ function MyCreaturesScreen() {
                                     </div>
                                 </div>
 
-                                {/* Stats Bar */}
-                                <div className="creature-stats-bar">
-                                    {/* HP Bar */}
-                                    {(() => {
-                                        const hpPercent = creature.maxHp > 0
-                                            ? (creature.currentHp / creature.maxHp) * 100
-                                            : 100;
-                                        const hpClass = hpPercent > 50 ? 'hp-high' : hpPercent > 25 ? 'hp-medium' : 'hp-low';
-                                        return (
-                                            <div className="stat-item hp-stat" data-tooltip="Current HP - recovers 5% per hour or use Heal button">
-                                                <span className="stat-label">❤️ HP</span>
-                                                <div className="stat-bar-container hp-bar-container">
-                                                    <div
-                                                        className={`stat-bar-fill hp-fill ${hpClass}`}
-                                                        style={{ width: `${hpPercent}%` }}
-                                                    ></div>
-                                                </div>
-                                                <span className={`stat-value ${hpClass}`}>
-                                                    {creature.currentHp}/{creature.maxHp}
-                                                </span>
-                                                {hpPercent < 100 && (
-                                                    <button
-                                                        className={`heal-btn ${isHealing && healingCreatureId === creature.tokenId.toString() ? 'healing' : ''}`}
-                                                        onClick={async (e) => {
-                                                            e.stopPropagation();
-                                                            const tokenId = creature.tokenId.toString();
-                                                            const hpToHeal = creature.maxHp - creature.currentHp;
-                                                            const costPer10Percent = 1; // 1 DGNE per 10% HP
-                                                            const estimatedCost = Math.ceil((hpToHeal / creature.maxHp) * 10 * costPer10Percent);
-
-                                                            if (confirm(`Heal creature #${tokenId} for ~${estimatedCost} DGNE?`)) {
-                                                                setHealingCreatureId(tokenId);
-                                                                const healCost = BigInt(estimatedCost) * BigInt(10 ** 18);
-                                                                const success = await heal(tokenId, healCost);
-                                                                if (success) {
-                                                                    setTimeout(() => refetch(), 2000);
-                                                                }
-                                                                setHealingCreatureId(null);
-                                                            }
-                                                        }}
-                                                        title="Pay DGNE to instantly heal"
-                                                        disabled={isHealing}
-                                                    >
-                                                        {isHealing && healingCreatureId === creature.tokenId.toString() ? '⏳' : '💊'}
-                                                    </button>
-                                                )}
-                                            </div>
-                                        );
-                                    })()}
-                                    <div className="stat-item power-rating" data-tooltip="Overall combat power - sum of all stats. Weaker dragons attack first!">
-                                        <span className="stat-label">⚔️ Power</span>
-                                        <span className="stat-value power-value">
-                                            {creature.stats
-                                                ? Object.values(creature.stats).reduce((sum, val) => sum + val, 0)
-                                                : 0}
-                                        </span>
-                                    </div>
-                                    <div className="stat-item">
-                                        <span className="stat-label">Talent</span>
-                                        <div className="stat-bar-container">
-                                            <div
-                                                className="stat-bar-fill"
-                                                style={{ width: `${creature.talent}%` }}
-                                            ></div>
-                                        </div>
-                                        <span className="stat-value">{creature.talent}</span>
-                                    </div>
-                                    <div className="stat-item">
-                                        <span className="stat-label">XP</span>
-                                        <span className="stat-value">{creature.xp.toString()}</span>
-                                    </div>
-                                </div>
-
-                                {/* Traits */}
+                                {/* Traits - Top */}
                                 <div className="creature-traits">
                                     <span className="trait personality">{creature.personality}</span>
                                     <span className="trait temperament">
@@ -272,58 +199,91 @@ function MyCreaturesScreen() {
                                     </span>
                                 </div>
 
-                                {/* Stake Button */}
-                                <div style={{ marginTop: '10px', display: 'flex', gap: '8px', justifyContent: 'center' }}>
-                                    <button
-                                        className="stake-btn"
-                                        style={{
-                                            padding: '8px 16px',
-                                            background: 'linear-gradient(135deg, #ffd700, #ff8c00)',
-                                            border: 'none',
-                                            borderRadius: '6px',
-                                            color: '#000',
-                                            fontWeight: '600',
-                                            cursor: 'pointer',
-                                            fontSize: '12px'
-                                        }}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            setPendingStakeCreature(creature);
-                                            setStakeModalOpen(true);
-                                        }}
-                                        disabled={(isStakePending || isStakeConfirming) && stakingCreatureId === creature.tokenId.toString()}
-                                    >
-                                        {(isStakePending || isStakeConfirming) && stakingCreatureId === creature.tokenId.toString()
-                                            ? '⏳ Staking...'
-                                            : '💰 Stake'}
-                                    </button>
+                                {/* Quick Stats - Vertical List */}
+                                <div className="creature-stats-list">
+                                    {/* HP with bar */}
+                                    {(() => {
+                                        const hpPercent = creature.maxHp > 0 ? (creature.currentHp / creature.maxHp) * 100 : 100;
+                                        const hpClass = hpPercent > 50 ? 'hp-high' : hpPercent > 25 ? 'hp-medium' : 'hp-low';
+                                        return (
+                                            <div className="creature-stat-row hp-row">
+                                                <span className="stat-icon">❤️</span>
+                                                <span className="stat-name">HP</span>
+                                                <div className="hp-bar-inline">
+                                                    <div className={`hp-bar-fill ${hpClass}`} style={{ width: `${hpPercent}%` }}></div>
+                                                </div>
+                                                <span className={`stat-number ${hpClass}`}>{creature.currentHp}/{creature.maxHp}</span>
+                                                {hpPercent < 100 && (
+                                                    <button
+                                                        className="heal-btn-inline"
+                                                        onClick={async (e) => {
+                                                            e.stopPropagation();
+                                                            const tokenId = creature.tokenId.toString();
+                                                            const hpToHeal = creature.maxHp - creature.currentHp;
+                                                            const estimatedCost = Math.ceil((hpToHeal / creature.maxHp) * 10);
+                                                            if (confirm(`Heal #${tokenId} for ~${estimatedCost} DGNE?`)) {
+                                                                setHealingCreatureId(tokenId);
+                                                                const success = await heal(tokenId, BigInt(estimatedCost) * BigInt(10 ** 18));
+                                                                if (success) setTimeout(() => refetch(), 2000);
+                                                                setHealingCreatureId(null);
+                                                            }
+                                                        }}
+                                                        disabled={isHealing}
+                                                    >💊</button>
+                                                )}
+                                            </div>
+                                        );
+                                    })()}
+
+                                    {/* Power */}
+                                    <div className="creature-stat-row">
+                                        <span className="stat-icon">⚔️</span>
+                                        <span className="stat-name">Power</span>
+                                        <span className="stat-number power-value">
+                                            {creature.stats ? Object.values(creature.stats).reduce((sum, val) => sum + val, 0) : 0}
+                                        </span>
+                                    </div>
+
+                                    {/* Talent */}
+                                    <div className="creature-stat-row">
+                                        <span className="stat-icon">🌟</span>
+                                        <span className="stat-name">Talent</span>
+                                        <span className="stat-number">{creature.talent}</span>
+                                    </div>
+
+                                    {/* XP */}
+                                    <div className="creature-stat-row">
+                                        <span className="stat-icon">📈</span>
+                                        <span className="stat-name">XP</span>
+                                        <span className="stat-number">{creature.xp.toString()}</span>
+                                    </div>
                                 </div>
+
+
 
                                 {/* Expanded Details (when selected) */}
                                 {
                                     isSelected && (
                                         <div className="creature-details">
-                                            {/* All 9 Stats Grid */}
-                                            <div className="stats-grid">
+                                            {/* All 9 Stats - Vertical List */}
+                                            <div className="creature-stats-list">
                                                 {[
-                                                    { key: 'VIT', label: 'Vitality', icon: '❤️', desc: 'Your dragon\'s life force. Higher vitality means more HP to withstand enemy attacks.' },
-                                                    { key: 'STR', label: 'Strength', icon: '💪', desc: 'Raw physical power. Increases damage dealt by physical attacks like bites and slashes.' },
-                                                    { key: 'AGI', label: 'Agility', icon: '🏃', desc: 'Nimbleness and magical affinity. Boosts special attack damage and base dodge chance.' },
-                                                    { key: 'SPD', label: 'Speed', icon: '⚡', desc: 'Movement and reaction speed. Affects dodge chance and certain combat mechanics.' },
-                                                    { key: 'END', label: 'Endurance', icon: '🛡️', desc: 'Defensive resilience. Reduces all incoming damage, letting your dragon survive longer.' },
-                                                    { key: 'REF', label: 'Reflex', icon: '🎯', desc: 'Quick reactions. Increases evasion chance and critical hit rate for devastating blows.' },
-                                                    { key: 'INT', label: 'Intelligence', icon: '🧠', desc: 'Ancient wisdom. Unique stat that never decays and grows forever with age. Boosts dodge.' },
-                                                    { key: 'PRC', label: 'Precision', icon: '🔍', desc: 'Keen accuracy. Higher precision means your attacks rarely miss their target.' },
-                                                    { key: 'RGN', label: 'Regen', icon: '✨', desc: 'Natural healing. Restores HP at the end of each turn, sustaining through long battles.' },
-                                                ].map(({ key, label, icon, desc }) => (
-                                                    <div key={key} className="stat-cell" data-tooltip={desc}>
+                                                    { key: 'VIT', label: 'Vitality', icon: '❤️' },
+                                                    { key: 'STR', label: 'Strength', icon: '💪' },
+                                                    { key: 'AGI', label: 'Agility', icon: '🏃' },
+                                                    { key: 'SPD', label: 'Speed', icon: '⚡' },
+                                                    { key: 'END', label: 'Endurance', icon: '🛡️' },
+                                                    { key: 'REF', label: 'Reflex', icon: '🎯' },
+                                                    { key: 'INT', label: 'Intelligence', icon: '🧠' },
+                                                    { key: 'PRC', label: 'Precision', icon: '🔍' },
+                                                    { key: 'RGN', label: 'Regen', icon: '✨' },
+                                                ].map(({ key, label, icon }) => (
+                                                    <div key={key} className="creature-stat-row">
                                                         <span className="stat-icon">{icon}</span>
-                                                        <div className="stat-info">
-                                                            <span className="stat-name">{label}</span>
-                                                            <span className="stat-number">
-                                                                {creature.stats?.[key as keyof typeof creature.stats] || 0}
-                                                            </span>
-                                                        </div>
+                                                        <span className="stat-name">{label}</span>
+                                                        <span className="stat-number">
+                                                            {creature.stats?.[key as keyof typeof creature.stats] || 0}
+                                                        </span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -459,6 +419,19 @@ function MyCreaturesScreen() {
                                                 <span className="detail-value mono">#{creature.tokenId.toString()}</span>
                                             </div>
                                             <div className="card-actions">
+                                                <button
+                                                    className="action-btn stake"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setPendingStakeCreature(creature);
+                                                        setStakeModalOpen(true);
+                                                    }}
+                                                    disabled={(isStakePending || isStakeConfirming) && stakingCreatureId === creature.tokenId.toString()}
+                                                >
+                                                    {(isStakePending || isStakeConfirming) && stakingCreatureId === creature.tokenId.toString()
+                                                        ? '⏳ Staking...'
+                                                        : '💰 Stake'}
+                                                </button>
                                                 <button
                                                     className="action-btn battle"
                                                     onClick={(e) => {

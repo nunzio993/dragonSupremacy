@@ -12,8 +12,18 @@
 .mint-container h1 {
     text-align: center;
     font-size: 2.5rem;
-    color: #fff;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.mint-container .header-icon {
+    font-size: 2.5rem;
+}
+
+.mint-container .header-text {
     background: linear-gradient(135deg, #ffd700, #f39c12);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

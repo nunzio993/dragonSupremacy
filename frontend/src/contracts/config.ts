@@ -18,6 +18,7 @@ export const CONTRACTS = {
     MINT_GATE_V2: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9' as `0x${string}`,  // Alias for MintScreen compatibility
     DRAGON_STAKING: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707' as `0x${string}`,
     HP_MANAGER: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853' as `0x${string}`,
+    AIRDROP_VAULT: '0xc6e7DF5E7b4f2A278906862b61205850344D4e7d' as `0x${string}`,
 } as const;
 
 // Hardhat local network config

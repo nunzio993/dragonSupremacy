@@ -14,6 +14,12 @@ interface ICreatureXP {
     function addXP(uint256 tokenId, uint256 amount) external;
 }
 
+// Interface for AirdropVault
+interface IAirdropVault {
+    function spendLockedBalance(address user, uint256 amount) external returns (uint256);
+    function getLockedBalance(address user) external view returns (uint256);
+}
+
 // ============ Custom Errors (Gas Optimization) ============
 error InvalidStakeAmount();
 error AlreadyInBattle();
@@ -89,6 +95,7 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
     address public trustedBackend;       // Backend signer address
     address public treasury;             // Platform fee recipient
     address public creatureContract;     // RMRKCreature for XP updates
+    IAirdropVault public airdropVault;   // AirdropVault for locked balance
     
     uint256 public minStake = 10 ether;  // Minimum stake (10 DGNE)
     uint256 public maxStake = 1000 ether; // Maximum stake (1000 DGNE)
@@ -150,10 +157,10 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         address _treasury,
         address _creatureContract
     ) Ownable(msg.sender) {
-        require(_stakeToken != address(0), "Invalid stake token");
-        require(_trustedBackend != address(0), "Invalid backend");
-        require(_treasury != address(0), "Invalid treasury");
-        require(_creatureContract != address(0), "Invalid creature contract");
+        if (_stakeToken == address(0)) revert InvalidStakeAmount(); // reusing existing error for address check
+        if (_trustedBackend == address(0)) revert InvalidSignature(); // reusing existing error  
+        if (_treasury == address(0)) revert FeeTransferFailed(); // reusing existing error
+        if (_creatureContract == address(0)) revert NotCreatureOwner(); // reusing existing error
         stakeToken = IERC20(_stakeToken);
         trustedBackend = _trustedBackend;
         treasury = _treasury;
@@ -183,8 +190,15 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         ++battleNonce;
         battleId = keccak256(abi.encodePacked(msg.sender, block.timestamp, battleNonce));
         
-        // Transfer stake to contract
-        if (!stakeToken.transferFrom(msg.sender, address(this), stakeAmount)) revert StakeTransferFailed();
+        // Transfer stake to contract - use locked balance first if available
+        uint256 fromLocked = 0;
+        if (address(airdropVault) != address(0)) {
+            fromLocked = airdropVault.spendLockedBalance(msg.sender, stakeAmount);
+        }
+        uint256 remaining = stakeAmount - fromLocked;
+        if (remaining > 0) {
+            if (!stakeToken.transferFrom(msg.sender, address(this), remaining)) revert StakeTransferFailed();
+        }
         
         // Create battle
         battles[battleId] = Battle({
@@ -229,8 +243,15 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         // Verify creature ownership
         if (IERC721(creatureContract).ownerOf(creatureId) != msg.sender) revert NotCreatureOwner();
         
-        // Transfer stake to contract
-        if (!stakeToken.transferFrom(msg.sender, address(this), battle.stakeAmount)) revert StakeTransferFailed();
+        // Transfer stake to contract - use locked balance first if available
+        uint256 fromLocked = 0;
+        if (address(airdropVault) != address(0)) {
+            fromLocked = airdropVault.spendLockedBalance(msg.sender, battle.stakeAmount);
+        }
+        uint256 remaining = battle.stakeAmount - fromLocked;
+        if (remaining > 0) {
+            if (!stakeToken.transferFrom(msg.sender, address(this), remaining)) revert StakeTransferFailed();
+        }
         
         // Update battle
         battle.guest = msg.sender;
@@ -469,6 +490,8 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         pendingBackendTime = 0;
     }
     
+    /// @notice Update the treasury address for platform fees
+    /// @param _treasury New treasury address (cannot be zero)
     function setTreasury(address _treasury) external onlyOwner {
         require(_treasury != address(0), "Invalid treasury");
         address oldTreasury = treasury;
@@ -476,6 +499,8 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         emit TreasuryChanged(oldTreasury, _treasury);
     }
     
+    /// @notice Update the creature contract address for XP updates
+    /// @param _creature New RMRKCreature contract address
     function setCreatureContract(address _creature) external onlyOwner {
         require(_creature != address(0), "Invalid creature");
         address oldCreature = creatureContract;
@@ -483,6 +508,9 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         emit CreatureContractChanged(oldCreature, _creature);
     }
     
+    /// @notice Update stake limits for battle entry
+    /// @param _min Minimum stake in wei (must be > 0)
+    /// @param _max Maximum stake in wei (must be > min)
     function setStakeLimits(uint256 _min, uint256 _max) external onlyOwner {
         require(_min > 0 && _min < _max, "Invalid limits");
         minStake = _min;
@@ -490,10 +518,12 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         emit StakeLimitsChanged(_min, _max);
     }
     
+    /// @notice Pause all battle operations for emergency
     function pause() external onlyOwner {
         _pause();
     }
     
+    /// @notice Resume battle operations
     function unpause() external onlyOwner {
         _unpause();
     }
@@ -506,17 +536,35 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
     event TreasuryChanged(address indexed oldTreasury, address indexed newTreasury);
     event CreatureContractChanged(address indexed oldContract, address indexed newContract);
     event StakeLimitsChanged(uint256 newMin, uint256 newMax);
+    event AirdropVaultChanged(address indexed oldVault, address indexed newVault);
+    
+    /// @notice Update the AirdropVault contract reference
+    /// @param _airdropVault New AirdropVault contract address (can be zero to disable)
+    function setAirdropVault(address _airdropVault) external onlyOwner {
+        address oldVault = address(airdropVault);
+        airdropVault = IAirdropVault(_airdropVault);
+        emit AirdropVaultChanged(oldVault, _airdropVault);
+    }
     
     // ============ View Functions ============
     
+    /// @notice Get full battle details by ID
+    /// @param battleId The battle identifier
+    /// @return Battle struct with all battle data
     function getBattle(bytes32 battleId) external view returns (Battle memory) {
         return battles[battleId];
     }
     
+    /// @notice Check if a wallet is currently in an active battle
+    /// @param wallet Address to check
+    /// @return True if wallet is in a battle
     function isInBattle(address wallet) external view returns (bool) {
         return walletInBattle[wallet] != bytes32(0);
     }
     
+    /// @notice Get the active battle ID for a wallet
+    /// @param wallet Address to check
+    /// @return Battle ID or bytes32(0) if not in battle
     function getPlayerBattle(address wallet) external view returns (bytes32) {
         return walletInBattle[wallet];
     }

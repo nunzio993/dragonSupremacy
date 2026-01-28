@@ -15,7 +15,7 @@ export interface CreatureNFT$Type {
   readonly deployedLinkReferences: {};
   readonly immutableReferences: {};
   readonly inputSourceName: "project/src/CreatureNFT.sol";
-  readonly buildInfoId: "solc-0_8_24-51e682cd951db4ab161c5dde04dbd3ae1866b31c";
+  readonly buildInfoId: "solc-0_8_24-131852bb837723ad01ff5b5445a456e497323693";
 };
 
 import "hardhat/types/artifacts";

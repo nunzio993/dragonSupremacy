@@ -4,6 +4,11 @@ pragma solidity ^0.8.21;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 
+// ============ Custom Errors (Gas Optimization) ============
+error InvalidTreasuryAddress();
+error MultiplierMustBePositive();
+error RegenPercentTooHigh();
+
 /**
  * @title GameConfig
  * @notice On-chain configuration for all game parameters. Only owner can modify.
@@ -48,6 +53,12 @@ contract GameConfig is Ownable, Pausable {
     
     // ============ Owner Functions ============
     
+    /**
+     * @notice Update battle entry costs and winner reward
+     * @param _dgne DGNE token cost per battle
+     * @param _rmrk RMRK token cost per battle (legacy)
+     * @param _reward DGNE reward for battle winner
+     */
     function setBattleCosts(uint256 _dgne, uint256 _rmrk, uint256 _reward) external onlyOwner {
         battleCostDGNE = _dgne;
         battleCostRMRK = _rmrk;
@@ -55,6 +66,12 @@ contract GameConfig is Ownable, Pausable {
         emit BattleCostsUpdated(_dgne, _rmrk, _reward);
     }
     
+    /**
+     * @notice Update creature minting costs
+     * @param _mintCost DGNE cost to mint a new creature
+     * @param _skipCost DGNE cost to skip preview and regenerate
+     * @param _rmrk RMRK cost to mint (legacy)
+     */
     function setMintCosts(uint256 _mintCost, uint256 _skipCost, uint256 _rmrk) external onlyOwner {
         mintCostDGNE = _mintCost;
         skipCostDGNE = _skipCost;
@@ -62,46 +79,70 @@ contract GameConfig is Ownable, Pausable {
         emit MintCostsUpdated(_mintCost, _rmrk);
     }
     
+    /**
+     * @notice Set treasury address for mint payments
+     * @param _treasury Address to receive mint fees
+     */
     function setMintTreasury(address _treasury) external onlyOwner {
-        require(_treasury != address(0), "Invalid treasury");
+        if (_treasury == address(0)) revert InvalidTreasuryAddress();
         mintTreasury = _treasury;
         emit ContractAddressUpdated("mintTreasury", _treasury);
     }
     
+    /**
+     * @notice Update staking reward parameters
+     * @param _baseRate Base DGNE per day for staking
+     * @param _multiplier Talent divisor (rate = base * (1 + talent/multiplier))
+     */
     function setStakingParams(uint256 _baseRate, uint256 _multiplier) external onlyOwner {
-        require(_multiplier > 0, "Multiplier must be > 0");
+        if (_multiplier == 0) revert MultiplierMustBePositive();
         stakingBaseRate = _baseRate;
         talentMultiplier = _multiplier;
         emit StakingParamsUpdated(_baseRate, _multiplier);
     }
     
+    /**
+     * @notice Update HP healing parameters
+     * @param _costPerHP DGNE cost per HP healed
+     * @param _regenPercent Passive HP regen percentage per hour (max 100)
+     */
     function setHealingParams(uint256 _costPerHP, uint256 _regenPercent) external onlyOwner {
-        require(_regenPercent <= 100, "Regen percent max 100");
+        if (_regenPercent > 100) revert RegenPercentTooHigh();
         healCostPerHP = _costPerHP;
         regenPercentPerHour = _regenPercent;
         emit HealingParamsUpdated(_costPerHP, _regenPercent);
     }
     
+    /// @notice Set the Dragon Token (DGNE) contract address
+    /// @param _addr DGNE token contract address
     function setDragonToken(address _addr) external onlyOwner {
         dragonToken = _addr;
         emit ContractAddressUpdated("dragonToken", _addr);
     }
     
+    /// @notice Set the RMRK token contract address (legacy)
+    /// @param _addr RMRK token contract address
     function setRmrkToken(address _addr) external onlyOwner {
         rmrkToken = _addr;
         emit ContractAddressUpdated("rmrkToken", _addr);
     }
     
+    /// @notice Set the creature NFT contract address
+    /// @param _addr RMRKCreature contract address
     function setCreatureContract(address _addr) external onlyOwner {
         creatureContract = _addr;
         emit ContractAddressUpdated("creatureContract", _addr);
     }
     
+    /// @notice Set the staking contract address
+    /// @param _addr DragonStaking contract address
     function setStakingContract(address _addr) external onlyOwner {
         stakingContract = _addr;
         emit ContractAddressUpdated("stakingContract", _addr);
     }
     
+    /// @notice Set the battle gate contract address
+    /// @param _addr BattleGateV2 contract address
     function setBattleGate(address _addr) external onlyOwner {
         battleGate = _addr;
         emit ContractAddressUpdated("battleGate", _addr);
@@ -109,10 +150,12 @@ contract GameConfig is Ownable, Pausable {
     
     // ============ Emergency ============
     
+    /// @notice Pause all game operations that read from this config
     function pause() external onlyOwner {
         _pause();
     }
     
+    /// @notice Resume game operations
     function unpause() external onlyOwner {
         _unpause();
     }

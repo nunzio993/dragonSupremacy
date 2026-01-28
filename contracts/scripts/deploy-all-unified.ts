@@ -56,7 +56,7 @@ async function main() {
     const mockRMRKArtifact = loadMockArtifact("MockRMRK");
     const mintGateV2Artifact = loadArtifact("MintGateV2");
     const dragonStakingArtifact = loadArtifact("DragonStaking");
-    const battleGateArtifact = loadArtifact("BattleGate");
+    const battleGateV2Artifact = loadArtifact("BattleGateV2");
     const hpManagerArtifact = loadArtifact("HPManager");
 
     console.log("========== Deploying All Contracts ==========\n");
@@ -88,11 +88,12 @@ async function main() {
         addresses.RMRKCreature
     ]);
 
-    // 7. BattleGate
-    const battleGate = await deploy("BattleGate", battleGateArtifact, [
-        addresses.GameConfig,
-        addresses.DragonToken,
-        addresses.MockRMRK
+    // 7. BattleGateV2 (escrow-based battle system)
+    const battleGate = await deploy("BattleGateV2", battleGateV2Artifact, [
+        addresses.DragonToken,      // stakeToken
+        deployer.address,           // trustedBackend
+        deployer.address,           // treasury
+        addresses.RMRKCreature      // creatureContract
     ]);
 
     // 8. HPManager (HP recovery system)
@@ -108,7 +109,7 @@ async function main() {
     await (await (gameConfig as any).setDragonToken(addresses.DragonToken, { nonce: nonce++ })).wait();
     await (await (gameConfig as any).setRmrkToken(addresses.MockRMRK, { nonce: nonce++ })).wait();
     await (await (gameConfig as any).setStakingContract(addresses.DragonStaking, { nonce: nonce++ })).wait();
-    await (await (gameConfig as any).setBattleGate(addresses.BattleGate, { nonce: nonce++ })).wait();
+    await (await (gameConfig as any).setBattleGate(addresses.BattleGateV2, { nonce: nonce++ })).wait();
     // Set mint treasury (required for MintGateV2!)
     await (await (gameConfig as any).setMintTreasury(deployer.address, { nonce: nonce++ })).wait();
     console.log("  ✓ MintTreasury set to deployer");

@@ -14,6 +14,7 @@ error AlreadyStaked();
 error InvalidTalent();
 error NotStakeOwner();
 error NothingToClaim();
+error InvalidConfig();
 
 /**
  * @title DragonStaking
@@ -182,13 +183,17 @@ contract DragonStaking is Ownable, Pausable, ReentrancyGuard {
     
     /**
      * @notice Get all staked token IDs for an owner
+     * @param owner The address to query
+     * @return Array of staked token IDs
      */
     function getStakedTokens(address owner) external view returns (uint256[] memory) {
         return stakedByOwner[owner];
     }
     
     /**
-     * @notice Get total pending rewards for an owner
+     * @notice Get total pending rewards for an owner across all staked creatures
+     * @param owner The address to query
+     * @return Total pending DGNE in wei
      */
     function totalPendingRewards(address owner) external view returns (uint256) {
         uint256[] storage tokenIds = stakedByOwner[owner];
@@ -205,17 +210,21 @@ contract DragonStaking is Ownable, Pausable, ReentrancyGuard {
     
     event GameConfigChanged(address indexed oldConfig, address indexed newConfig);
     
+    /// @notice Update the GameConfig contract reference
+    /// @param _gameConfig New GameConfig contract address
     function setGameConfig(address _gameConfig) external onlyOwner {
-        require(_gameConfig != address(0), "Invalid config");
+        if (_gameConfig == address(0)) revert InvalidConfig();
         address oldConfig = address(gameConfig);
         gameConfig = GameConfig(_gameConfig);
         emit GameConfigChanged(oldConfig, _gameConfig);
     }
     
+    /// @notice Pause staking operations for emergency
     function pause() external onlyOwner {
         _pause();
     }
     
+    /// @notice Resume staking operations
     function unpause() external onlyOwner {
         _unpause();
     }

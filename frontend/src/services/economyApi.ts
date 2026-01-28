@@ -14,6 +14,11 @@ const API_BASE = '/api/v1';
 export async function getEconomyState(): Promise<PlayerEconomyState> {
     const token = localStorage.getItem('autobattler_token');
 
+    // Don't make the call if there's no token
+    if (!token) {
+        throw new Error('No authentication token - please login first');
+    }
+
     const response = await fetch(`${API_BASE}/economy/state`, {
         method: 'GET',
         headers: {

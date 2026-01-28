@@ -19,6 +19,8 @@ import MyCreaturesScreen from './screens/MyCreaturesScreen';
 import GuideScreen from './screens/GuideScreen';
 import StakingScreen from './screens/StakingScreen';
 import AdminScreen from './screens/AdminScreen';
+import TokenomicsScreen from './screens/TokenomicsScreen';
+import AirdropScreen from './screens/AirdropScreen';
 import ConnectWalletScreen from './screens/ConnectWalletScreen';
 
 function App() {
@@ -52,6 +54,8 @@ function App() {
                         <Route path="/creatures" element={<MyCreaturesScreen />} />
                         <Route path="/guide" element={<GuideScreen />} />
                         <Route path="/staking" element={<StakingScreen />} />
+                        <Route path="/tokenomics" element={<TokenomicsScreen />} />
+                        <Route path="/airdrop" element={<AirdropScreen />} />
                         <Route path="/admin" element={<AdminScreen />} />
                         {/* Multiplayer PvP Routes */}
                         <Route path="/lobby" element={<LobbyScreen />} />

@@ -3,6 +3,10 @@ import { useAccount, useReadContract, useWriteContract, useWaitForTransactionRec
 import { CONTRACTS } from '../contracts/config';
 import './StakingScreen.css';
 
+// Constants for emission calculations
+const YEARLY_EMISSION = 2_000_000; // Fixed cap: 2M DGNE per year
+const DAILY_EMISSION = YEARLY_EMISSION / 365; // ~5,479 DGNE per day
+
 // Simplified ABI for staking
 const STAKING_ABI = [
     {
@@ -53,13 +57,21 @@ const STAKING_ABI = [
         stateMutability: 'view',
         inputs: [{ name: 'owner', type: 'address' }],
         outputs: [{ name: '', type: 'uint256' }]
+    },
+    {
+        name: 'totalStakedCount',
+        type: 'function',
+        stateMutability: 'view',
+        inputs: [],
+        outputs: [{ name: '', type: 'uint256' }]
+    },
+    {
+        name: 'totalTalentSum',
+        type: 'function',
+        stateMutability: 'view',
+        inputs: [],
+        outputs: [{ name: '', type: 'uint256' }]
     }
-] as const;
-
-// GameConfig ABI for reading staking params
-const GAME_CONFIG_ABI = [
-    { name: 'stakingBaseRate', type: 'function', stateMutability: 'view', inputs: [], outputs: [{ type: 'uint256' }] },
-    { name: 'talentMultiplier', type: 'function', stateMutability: 'view', inputs: [], outputs: [{ type: 'uint256' }] },
 ] as const;
 
 export function StakingScreen() {
@@ -86,20 +98,22 @@ export function StakingScreen() {
         query: { enabled: !!address }
     });
 
-    // Read staking params from GameConfig
-    const { data: stakingBaseRate } = useReadContract({
-        address: CONTRACTS.GAME_CONFIG,
-        abi: GAME_CONFIG_ABI,
-        functionName: 'stakingBaseRate',
-    });
-    const { data: talentMultiplier } = useReadContract({
-        address: CONTRACTS.GAME_CONFIG,
-        abi: GAME_CONFIG_ABI,
-        functionName: 'talentMultiplier',
+    // Get global staking stats
+    const { data: totalStakedCount } = useReadContract({
+        address: CONTRACTS.DRAGON_STAKING as `0x${string}`,
+        abi: STAKING_ABI,
+        functionName: 'totalStakedCount',
     });
 
-    const baseRateDisplay = stakingBaseRate ? (Number(stakingBaseRate) / 1e18).toFixed(0) : '...';
-    const multiplierDisplay = talentMultiplier?.toString() || '100';
+    const { data: totalTalentSum } = useReadContract({
+        address: CONTRACTS.DRAGON_STAKING as `0x${string}`,
+        abi: STAKING_ABI,
+        functionName: 'totalTalentSum',
+    });
+
+    // Calculate estimated DGNE per dragon per day (average)
+    const globalStaked = Number(totalStakedCount ?? 1n);
+    const avgDgnePerDragon = globalStaked > 0 ? DAILY_EMISSION / globalStaked : DAILY_EMISSION;
 
     // Refetch on success
     useEffect(() => {
@@ -132,6 +146,10 @@ export function StakingScreen() {
         return formatted.toFixed(4);
     };
 
+    const formatNumber = (num: number) => {
+        return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    };
+
     if (!isConnected) {
         return (
             <div className="staking-screen">
@@ -158,66 +176,201 @@ export function StakingScreen() {
                     </div>
                 ) : (
                     <>
-                        {/* Summary Card */}
-                        <div className="staking-summary">
-                            <div className="summary-stat">
-                                <span className="stat-label">Staked Dragons</span>
-                                <span className="stat-value">{stakedTokenIds?.length || 0}</span>
+                        {/* Global Statistics */}
+                        <div className="global-stats">
+                            <h3>📊 Global Staking Statistics</h3>
+                            <div className="stats-grid">
+                                <div className="stat-box">
+                                    <span className="stat-icon">🐉</span>
+                                    <span className="stat-value">{globalStaked}</span>
+                                    <span className="stat-label">Dragons Staked</span>
+                                </div>
+                                <div className="stat-box">
+                                    <span className="stat-icon">💰</span>
+                                    <span className="stat-value">{formatNumber(DAILY_EMISSION)}</span>
+                                    <span className="stat-label">DGNE/Day (Fixed)</span>
+                                </div>
+                                <div className="stat-box highlight">
+                                    <span className="stat-icon">📈</span>
+                                    <span className="stat-value">~{formatNumber(avgDgnePerDragon)}</span>
+                                    <span className="stat-label">Est. DGNE/Dragon/Day</span>
+                                </div>
                             </div>
-                            <div className="summary-stat">
-                                <span className="stat-label">Pending Rewards</span>
-                                <span className="stat-value highlight">{formatTokenAmount(totalPending)} DGNE</span>
+                        </div>
+
+                        {/* Your Summary Card */}
+                        <div className="staking-summary">
+                            <h3>Your Staking Summary</h3>
+                            <div className="summary-row">
+                                <div className="summary-stat">
+                                    <span className="stat-label">Your Staked Dragons</span>
+                                    <span className="stat-value">{stakedTokenIds?.length || 0}</span>
+                                </div>
+                                <div className="summary-stat">
+                                    <span className="stat-label">Pending Rewards</span>
+                                    <span className="stat-value highlight">{formatTokenAmount(totalPending)} DGNE</span>
+                                </div>
                             </div>
                             <button
                                 className="claim-all-btn"
                                 onClick={handleClaimAll}
                                 disabled={!totalPending || totalPending === 0n || isPending || isConfirming}
                             >
-                                {isPending || isConfirming ? 'Processing...' : 'Claim All'}
+                                {isPending || isConfirming ? 'Processing...' : 'Claim All Rewards'}
                             </button>
                         </div>
 
-                        {/* Staking Formula */}
-                        <div className="staking-formula">
-                            <h3>📊 Current Staking Rate</h3>
-                            <div className="formula-box">
-                                <code>Daily Rate = {baseRateDisplay} × (1 + Talent/{multiplierDisplay})</code>
+                        {/* Emission Cap Explanation */}
+                        <div className="info-section emission-cap">
+                            <h3>🔒 Global Emission Cap</h3>
+                            <div className="cap-highlight">
+                                <span className="cap-value">2,000,000</span>
+                                <span className="cap-label">DGNE per Year (Fixed Maximum)</span>
                             </div>
-                            <p className="formula-example">
-                                Example: Talent 50 → {baseRateDisplay} × 1.5 = <strong>{(Number(baseRateDisplay) * 1.5).toFixed(0)} DGNE/day</strong>
-                            </p>
+                            <div className="cap-details">
+                                <p>
+                                    The total DGNE that can be distributed through staking is <strong>capped at 2,000,000 DGNE per year</strong>.
+                                    This emission is divided equally across 365 days.
+                                </p>
+                                <div className="formula-box">
+                                    <code>Daily Emission = 2,000,000 ÷ 365 = <strong>~{formatNumber(DAILY_EMISSION)} DGNE</strong></code>
+                                </div>
+                            </div>
                         </div>
 
-                        {/* How it works */}
-                        <div className="staking-info">
-                            <h3>💡 How Staking Works</h3>
-                            <div className="info-grid">
-                                <div className="info-item">
-                                    <span className="info-icon">📈</span>
+                        {/* Distribution Explanation */}
+                        <div className="info-section distribution">
+                            <h3>⚖️ How Distribution Works</h3>
+                            <div className="distribution-grid">
+                                <div className="distribution-item">
+                                    <span className="dist-icon">1️⃣</span>
                                     <div>
-                                        <strong>Talent-based rewards</strong>
-                                        <p>Higher talent = more DGNE per day</p>
+                                        <strong>Fixed Daily Pool</strong>
+                                        <p>Each day, exactly ~{formatNumber(DAILY_EMISSION)} DGNE is available for distribution</p>
                                     </div>
                                 </div>
-                                <div className="info-item">
-                                    <span className="info-icon">🎁</span>
+                                <div className="distribution-item">
+                                    <span className="dist-icon">2️⃣</span>
                                     <div>
-                                        <strong>Claim anytime</strong>
-                                        <p>No need to unstake to get rewards</p>
+                                        <strong>Proportional Shares</strong>
+                                        <p>All staked dragons share this pool based on their Talent Multiplier</p>
                                     </div>
                                 </div>
-                                <div className="info-item">
-                                    <span className="info-icon">🔓</span>
+                                <div className="distribution-item">
+                                    <span className="dist-icon">3️⃣</span>
                                     <div>
-                                        <strong>No lock period</strong>
-                                        <p>Unstake anytime for battles</p>
+                                        <strong>Talent Advantage</strong>
+                                        <p>Higher talent = larger share of the daily pool (not more total emission)</p>
                                     </div>
                                 </div>
-                                <div className="info-item">
-                                    <span className="info-icon">⚡</span>
+                                <div className="distribution-item">
+                                    <span className="dist-icon">4️⃣</span>
                                     <div>
-                                        <strong>Use DGNE for</strong>
-                                        <p>Minting, healing, battles</p>
+                                        <strong>Dynamic Estimates</strong>
+                                        <p>More dragons staking = smaller share per dragon. Fewer = larger share.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Dynamic Rate Warning */}
+                        <div className="info-section warning-box">
+                            <h3>⚠️ Important: Estimates are Dynamic</h3>
+                            <p>
+                                The "DGNE per day" shown for a dragon is an <strong>estimate</strong> calculated using
+                                the current number of staked dragons.
+                            </p>
+                            <ul>
+                                <li>If more dragons enter staking → DGNE per dragon <strong>decreases</strong></li>
+                                <li>If dragons leave staking → DGNE per dragon <strong>increases</strong></li>
+                            </ul>
+                            <p>The value updates dynamically based on global participation.</p>
+                        </div>
+
+                        {/* Manual Claim Explanation */}
+                        <div className="info-section claim-info">
+                            <h3>🎁 Manual Claim System</h3>
+                            <div className="claim-grid">
+                                <div className="claim-item">
+                                    <span className="claim-icon">✓</span>
+                                    <span>DGNE is <strong>not</strong> auto-distributed</span>
+                                </div>
+                                <div className="claim-item">
+                                    <span className="claim-icon">✓</span>
+                                    <span>You must <strong>manually claim</strong> your rewards</span>
+                                </div>
+                                <div className="claim-item">
+                                    <span className="claim-icon">✓</span>
+                                    <span>Claiming transfers DGNE to your wallet balance</span>
+                                </div>
+                                <div className="claim-item">
+                                    <span className="claim-icon">✓</span>
+                                    <span>Claiming does <strong>not</strong> affect other players</span>
+                                </div>
+                                <div className="claim-item">
+                                    <span className="claim-icon">✓</span>
+                                    <span>Unclaimed DGNE remains pending (no expiration)</span>
+                                </div>
+                                <div className="claim-item">
+                                    <span className="claim-icon">✓</span>
+                                    <span>No penalties, no auto-claim</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Anti-Abuse Section */}
+                        <div className="info-section anti-abuse">
+                            <h3>🛡️ Anti-Abuse Design</h3>
+                            <div className="abuse-grid">
+                                <div className="abuse-item">
+                                    <span className="abuse-icon">🔒</span>
+                                    <span>Emission is <strong>capped</strong> — no infinite rewards</span>
+                                </div>
+                                <div className="abuse-item">
+                                    <span className="abuse-icon">🚫</span>
+                                    <span><strong>No compounding</strong> — rewards do not earn rewards</span>
+                                </div>
+                                <div className="abuse-item">
+                                    <span className="abuse-icon">⏱️</span>
+                                    <span><strong>No acceleration</strong> — time is the only factor</span>
+                                </div>
+                                <div className="abuse-item">
+                                    <span className="abuse-icon">📊</span>
+                                    <span>Staking <strong>redistributes</strong> DGNE over time, it does not create value</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Staking Rules */}
+                        <div className="info-section staking-rules">
+                            <h3>📜 Staking Rules</h3>
+                            <div className="rules-grid">
+                                <div className="rule-item">
+                                    <span className="rule-icon">🔓</span>
+                                    <div>
+                                        <strong>Staking is Optional</strong>
+                                        <p>You choose which dragons to stake</p>
+                                    </div>
+                                </div>
+                                <div className="rule-item">
+                                    <span className="rule-icon">⚔️</span>
+                                    <div>
+                                        <strong>Staked Dragons Cannot Battle</strong>
+                                        <p>Unstake first to use in combat</p>
+                                    </div>
+                                </div>
+                                <div className="rule-item">
+                                    <span className="rule-icon">🎯</span>
+                                    <div>
+                                        <strong>Talent Matters</strong>
+                                        <p>Higher talent = larger share of daily pool</p>
+                                    </div>
+                                </div>
+                                <div className="rule-item">
+                                    <span className="rule-icon">🔄</span>
+                                    <div>
+                                        <strong>No Lock Period</strong>
+                                        <p>Unstake anytime without penalty</p>
                                     </div>
                                 </div>
                             </div>

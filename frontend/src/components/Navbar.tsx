@@ -5,11 +5,23 @@
  */
 
 import { NavLink } from 'react-router-dom';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, useReadContract } from 'wagmi';
 import { injected } from 'wagmi/connectors';
 import { useBattleEntry } from '../hooks/useBattleGate';
 import { formatEther } from 'viem';
+import { CONTRACTS } from '../contracts/config';
 import './Navbar.css';
+
+// AirdropVault ABI for locked balance
+const AIRDROP_VAULT_ABI = [
+    {
+        inputs: [{ name: 'user', type: 'address' }],
+        name: 'getLockedBalance',
+        outputs: [{ name: 'balance', type: 'uint256' }],
+        stateMutability: 'view',
+        type: 'function',
+    },
+] as const;
 
 function Navbar() {
     const { address, isConnected } = useAccount();
@@ -18,6 +30,19 @@ function Navbar() {
 
     // Get token balances from BattleGate hook
     const { dgneBalance } = useBattleEntry();
+
+    // Get locked balance from AirdropVault
+    const isVaultDeployed = CONTRACTS.AIRDROP_VAULT !== '0x0000000000000000000000000000000000000000';
+    const { data: lockedBalance } = useReadContract({
+        address: CONTRACTS.AIRDROP_VAULT,
+        abi: AIRDROP_VAULT_ABI,
+        functionName: 'getLockedBalance',
+        args: address ? [address] : undefined,
+        query: { enabled: isConnected && isVaultDeployed && !!address },
+    });
+
+    // Total balance = wallet DGNE + locked DGNE
+    const totalBalance = dgneBalance + (lockedBalance ?? 0n);
 
     // Format balance for display - full integer numbers
     const formatBalance = (balance: bigint) => {
@@ -50,6 +75,12 @@ function Navbar() {
                 <NavLink to="/staking" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                     💎 Staking
                 </NavLink>
+                <NavLink to="/tokenomics" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                    📊 Tokenomics
+                </NavLink>
+                <NavLink to="/airdrop" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                    🪂 Airdrop
+                </NavLink>
                 <NavLink to="/guide" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                     📖 Guide
                 </NavLink>
@@ -58,8 +89,8 @@ function Navbar() {
             <div className="navbar-stats">
                 {isConnected ? (
                     <>
-                        <div className="stat-item dgne" title="DGNE Balance">
-                            {formatBalance(dgneBalance)} DGNE
+                        <div className="stat-item dgne" title={`Wallet: ${formatBalance(dgneBalance)} + Locked: ${formatBalance(lockedBalance ?? 0n)}`}>
+                            {formatBalance(totalBalance)} DGNE
                         </div>
                         <button
                             className="wallet-badge connected"

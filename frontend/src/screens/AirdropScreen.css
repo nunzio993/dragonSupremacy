@@ -1,0 +1,848 @@
+/* ============================================
+   Airdrop / Initial Access - Dragon Supremacy Styles
+   ============================================ */
+
+.airdrop-screen {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 2rem 1rem 4rem;
+}
+
+.airdrop-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+.airdrop-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+}
+
+.airdrop-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.airdrop-header .header-icon {
+    font-size: 2.5rem;
+}
+
+.airdrop-header .header-text {
+    background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.airdrop-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Sections */
+.airdrop-section {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.airdrop-section h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+}
+
+.section-intro {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.subsection-title {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 1.5rem 0 1rem;
+}
+
+/* Purpose Grid */
+.purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.purpose-card {
+    background: rgba(255, 107, 53, 0.05);
+    border: 1px solid rgba(255, 107, 53, 0.15);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.purpose-card:hover {
+    background: rgba(255, 107, 53, 0.08);
+    transform: translateY(-2px);
+}
+
+.purpose-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.purpose-card h3 {
+    font-size: 1rem;
+    color: #ff6b35;
+    margin-bottom: 0.5rem;
+}
+
+.purpose-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+/* Clarification Box */
+.clarification-box {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid rgba(255, 107, 53, 0.5);
+    border-radius: 0 12px 12px 0;
+    margin-top: 1rem;
+}
+
+.clarification-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.clarification-content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* Highlight Box */
+.highlight-box {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+}
+
+.highlight-box.primary {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
+    border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.highlight-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ff6b35;
+    line-height: 1;
+}
+
+.highlight-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+}
+
+/* Token Status */
+.token-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-badge.locked {
+    background: rgba(244, 67, 54, 0.15);
+    color: #ef5350;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.status-badge.active {
+    background: rgba(76, 175, 80, 0.15);
+    color: #81c784;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* Calibration List */
+.calibration-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.calibration-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.calibration-icon {
+    font-size: 1.25rem;
+}
+
+/* Flow Diagram */
+.flow-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border-left: 3px solid #ff6b35;
+}
+
+.flow-step.remaining {
+    border-left-color: #ffcc00;
+}
+
+.flow-amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ff6b35;
+    min-width: 120px;
+}
+
+.flow-step.remaining .flow-amount {
+    color: #ffcc00;
+}
+
+.flow-arrow {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.5rem;
+}
+
+.flow-destination {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.flow-destination strong {
+    color: #fff;
+}
+
+.flow-destination span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.flow-detail {
+    font-size: 0.8rem;
+    color: rgba(255, 107, 53, 0.7);
+}
+
+/* Note Box */
+.note-box {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.25);
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.note-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.note-box p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.note-box strong {
+    color: #ff6b35;
+}
+
+/* Recursive Grid */
+.recursive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.recursive-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.recursive-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.recursive-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.recursive-card h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.recursive-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+/* Capacity Box */
+.capacity-box {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
+    border: 1px solid rgba(255, 107, 53, 0.25);
+    border-radius: 16px;
+}
+
+.capacity-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #f7931e;
+    line-height: 1;
+}
+
+.capacity-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0.5rem 0 1rem;
+}
+
+.capacity-box p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* Boost Mechanics */
+.boost-mechanics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.boost-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.boost-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.boost-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.boost-card h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.boost-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+.boost-card strong {
+    color: #ffcc00;
+}
+
+/* Pool Empty List */
+.pool-empty-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pool-empty-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.check-icon {
+    color: #81c784;
+    font-weight: bold;
+}
+
+/* Protection Grid */
+.protection-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.protection-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.protection-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.protection-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.protection-content strong {
+    display: block;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.protection-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Anti-Abuse Summary */
+.anti-abuse-summary {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.25);
+    border-radius: 12px;
+}
+
+.summary-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.anti-abuse-summary p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* NOT Section */
+.not-section {
+    border: 1px solid rgba(244, 67, 54, 0.2);
+}
+
+.not-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.not-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(244, 67, 54, 0.08);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+.not-icon {
+    color: #ef5350;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* IS Box */
+.is-box {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: 12px;
+}
+
+.is-icon {
+    color: #81c784;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.is-box p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.is-box strong {
+    color: #81c784;
+}
+
+/* Transparency Grid */
+.airdrop-section .transparency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.75rem;
+}
+
+.airdrop-section .transparency-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.airdrop-section .transparency-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.airdrop-section .transparency-icon {
+    font-size: 1.25rem;
+}
+
+/* Disclaimer Section */
+.disclaimer-section {
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.disclaimer-box {
+    background: rgba(255, 107, 53, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.disclaimer-box p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.6;
+}
+
+.disclaimer-box p:last-child {
+    margin: 0;
+}
+
+.disclaimer-box strong {
+    color: #fff;
+}
+
+/* Footer Notice */
+.airdrop-footer {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+.footer-notice {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.footer-notice strong {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .airdrop-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .airdrop-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .airdrop-section h2 {
+        font-size: 1.25rem;
+    }
+
+    .highlight-number {
+        font-size: 2.25rem;
+    }
+
+    .capacity-number {
+        font-size: 2rem;
+    }
+
+    .purpose-grid,
+    .recursive-grid,
+    .boost-mechanics,
+    .not-grid,
+    .airdrop-section .transparency-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-step {
+        flex-wrap: wrap;
+    }
+
+    .flow-amount {
+        min-width: auto;
+    }
+
+    .token-status {
+        flex-direction: column;
+    }
+
+    .status-badge {
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   Claim Section Styles
+   ============================================ */
+
+.claim-section {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(247, 147, 30, 0.03));
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.claim-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.claim-box.not-deployed,
+.claim-box.not-connected {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.claim-box.already-claimed {
+    background: rgba(76, 175, 80, 0.08);
+    border: 1px solid rgba(76, 175, 80, 0.25);
+}
+
+.claim-box.eligible {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 204, 0, 0.05));
+    border: 1px solid rgba(255, 107, 53, 0.35);
+}
+
+.claim-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.claim-box h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 0.5rem;
+}
+
+.claim-box p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.claim-box p strong {
+    color: #ff6b35;
+}
+
+.claim-button {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: #fff;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+}
+
+.claim-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.5);
+}
+
+.claim-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.claim-error {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(244, 67, 54, 0.15);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    border-radius: 8px;
+    color: #ef5350;
+    font-size: 0.9rem;
+    max-width: 400px;
+    word-break: break-word;
+}
+
+.claim-success {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(76, 175, 80, 0.15);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: 8px;
+    color: #81c784;
+    font-size: 0.9rem;
+}
+
+.locked-balance-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.balance-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.25rem;
+}
+
+.balance-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #81c784;
+}
+
+/* Pool Stats */
+.pool-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ff6b35;
+}
+
+@media (max-width: 768px) {
+    .claim-box {
+        padding: 1.5rem;
+    }
+
+    .claim-icon {
+        font-size: 2.5rem;
+    }
+
+    .claim-box h3 {
+        font-size: 1.25rem;
+    }
+
+    .claim-button {
+        width: 100%;
+        padding: 1rem 1.5rem;
+    }
+
+    .pool-stats {
+        grid-template-columns: 1fr;
+    }
+}

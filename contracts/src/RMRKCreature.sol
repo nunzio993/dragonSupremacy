@@ -5,6 +5,14 @@ import {RMRKNestableMultiAssetPreMint} from "../lib/evm/contracts/implementation
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
+// ============ Custom Errors (Gas Optimization) ============
+error NotAuthorizedMinter();
+error InvalidCreatureTalent();
+error InvalidMoveCount();
+error NotAuthorizedXP();
+error TokenDoesNotExist();
+error RoyaltyTooHigh();
+
 /**
  * @title RMRKCreature
  * @notice RMRK-based creature NFT with full on-chain stats and dynamic metadata
@@ -108,7 +116,7 @@ contract RMRKCreature is RMRKNestableMultiAssetPreMint {
     // ============ Modifiers ============
     
     modifier onlyMinter() {
-        require(authorizedMinters[msg.sender] || msg.sender == owner(), "Not authorized to mint");
+        if (!authorizedMinters[msg.sender] && msg.sender != owner()) revert NotAuthorizedMinter();
         _;
     }
     
@@ -147,8 +155,8 @@ contract RMRKCreature is RMRKNestableMultiAssetPreMint {
         uint8[4] calldata mastery, // Move mastery 0-30 (actual = 85 + value)
         uint64 aptitudes        // Packed: 8 x 8 bits
     ) external onlyMinter returns (uint256 tokenId) {
-        require(talent >= 1 && talent <= 100, "Talent must be 1-100");
-        require(moveCount >= 2 && moveCount <= 4, "Must have 2-4 moves");
+        if (talent < 1 || talent > 100) revert InvalidCreatureTalent();
+        if (moveCount < 2 || moveCount > 4) revert InvalidMoveCount();
         
         // NOTE: Token payment moved to MintGate contract for size optimization
         
@@ -195,8 +203,8 @@ contract RMRKCreature is RMRKNestableMultiAssetPreMint {
     }
     
     function addXP(uint256 tokenId, uint256 amount) external {
-        require(xpUpdaters[msg.sender] || msg.sender == owner(), "Not authorized");
-        require(_exists(tokenId), "Token does not exist");
+        if (!xpUpdaters[msg.sender] && msg.sender != owner()) revert NotAuthorizedXP();
+        if (!_exists(tokenId)) revert TokenDoesNotExist();
         xp[tokenId] += uint32(amount);
         emit XPAdded(tokenId, amount, xp[tokenId]);
     }
@@ -204,7 +212,7 @@ contract RMRKCreature is RMRKNestableMultiAssetPreMint {
     // ============ View Functions ============
     
     function getLevel(uint256 tokenId) public view returns (uint256) {
-        require(_exists(tokenId), "Token does not exist");
+        if (!_exists(tokenId)) revert TokenDoesNotExist();
         uint256 _xp = xp[tokenId];
         if (_xp == 0) return 1;
         
@@ -218,7 +226,7 @@ contract RMRKCreature is RMRKNestableMultiAssetPreMint {
     }
     
     function getAgeDays(uint256 tokenId) public view returns (uint256) {
-        require(_exists(tokenId), "Token does not exist");
+        if (!_exists(tokenId)) revert TokenDoesNotExist();
         return (block.timestamp - coreData[tokenId].bornAt) / SECONDS_PER_CREATURE_DAY;
     }
     
@@ -382,7 +390,7 @@ contract RMRKCreature is RMRKNestableMultiAssetPreMint {
     }
     
     function setRoyaltyBps(uint256 _bps) external onlyOwner {
-        require(_bps <= 1000, "Royalty too high (max 10%)");
+        if (_bps > 1000) revert RoyaltyTooHigh();
         royaltyBps = _bps;
     }
 }

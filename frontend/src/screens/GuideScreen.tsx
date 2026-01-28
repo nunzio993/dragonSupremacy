@@ -6,7 +6,7 @@ function GuideScreen() {
             <div className="guide-container">
                 {/* Header */}
                 <header className="guide-header">
-                    <h1>📖 Dragon Guide</h1>
+                    <h1><span className="header-icon">📖</span> <span className="header-text">Dragon Guide</span></h1>
                     <p className="guide-subtitle">
                         Master the secrets of elemental combat and raise the ultimate champion
                     </p>

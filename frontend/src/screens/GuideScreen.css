@@ -4,7 +4,7 @@
 
 .guide-screen {
     min-height: 100vh;
-    background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     padding: 2rem 1rem 4rem;
 }
 
@@ -23,11 +23,22 @@
 .guide-header h1 {
     font-size: 3rem;
     font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.guide-header .header-icon {
+    font-size: 3rem;
+}
+
+.guide-header .header-text {
     background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcc00);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 0.5rem;
 }
 
 .guide-subtitle {
