@@ -73,6 +73,8 @@ contract AirdropVault is Ownable, Pausable, ReentrancyGuard {
     
     event Claimed(address indexed user, uint256 amount);
     event LockedBalanceSpent(address indexed user, uint256 amount, uint256 recycled, uint256 toWinBoost);
+    event LockedBalanceRestored(address indexed user, uint256 amount);
+    event LockedBalanceFinalized(uint256 amount, uint256 recycled, uint256 toWinBoost);
     event AuthorizedSpenderSet(address indexed spender, bool authorized);
     event WinBoostWalletUpdated(address indexed oldWallet, address indexed newWallet);
     event PoolFunded(address indexed funder, uint256 amount);
@@ -127,11 +129,12 @@ contract AirdropVault is Ownable, Pausable, ReentrancyGuard {
     }
     
     /**
-     * @notice Spend locked balance on behalf of user (called by MintGate, BattleGate, etc.)
+     * @notice Spend locked balance on behalf of user (called by BattleGate for pending battles)
      * @param user Address whose locked balance to spend
      * @param amount Amount to spend
      * @return spent Actual amount spent from locked balance
-     * @dev Recycling: 68.6% returns to pool, 31.4% goes to WinBoost wallet
+     * @dev Does NOT transfer to WinBoost yet - that happens in finalizeLockedSpend
+     *      This allows for full refunds if battle is cancelled
      */
     function spendLockedBalance(
         address user, 
@@ -146,9 +149,26 @@ contract AirdropVault is Ownable, Pausable, ReentrancyGuard {
         spent = amount > userBalance ? userBalance : amount;
         lockedBalance[user] -= spent;
         
+        // Just track it - don't split yet (allows full refund on cancel)
+        // The tokens stay in the vault until battle completion
+        
+        emit LockedBalanceSpent(user, spent, 0, 0);
+    }
+    
+    /**
+     * @notice Finalize locked balance spend after battle completion
+     * @param amount Amount to finalize (split between recycle and WinBoost)
+     * @dev Called by BattleGate when battle completes (winner determined)
+     *      NOW we do the 68.6%/31.4% split
+     */
+    function finalizeLockedSpend(
+        uint256 amount
+    ) external nonReentrant onlyAuthorizedSpender {
+        if (amount == 0) return;
+        
         // Calculate recycling split
-        uint256 toRecycle = (spent * RECYCLE_NUMERATOR) / RATIO_DENOMINATOR;
-        uint256 toWinBoost = spent - toRecycle; // Remainder goes to WinBoost
+        uint256 toRecycle = (amount * RECYCLE_NUMERATOR) / RATIO_DENOMINATOR;
+        uint256 toWinBoost = amount - toRecycle;
         
         // WinBoost portion: transfer real DGNE to WinBoost wallet
         if (toWinBoost > 0) {
@@ -156,10 +176,29 @@ contract AirdropVault is Ownable, Pausable, ReentrancyGuard {
             totalToWinBoost += toWinBoost;
         }
         
-        // Recycle portion stays in contract (available for future claims)
+        // Recycle portion stays in contract
         totalRecycled += toRecycle;
         
-        emit LockedBalanceSpent(user, spent, toRecycle, toWinBoost);
+        emit LockedBalanceFinalized(amount, toRecycle, toWinBoost);
+    }
+    
+    /**
+     * @notice Restore locked balance for battle cancellations/refunds (100% refund)
+     * @param user Address to restore balance to
+     * @param amount Full amount to restore
+     * @dev Only authorized spenders can call this (BattleGate)
+     */
+    function restoreLockedBalance(
+        address user, 
+        uint256 amount
+    ) external nonReentrant onlyAuthorizedSpender {
+        if (amount == 0) revert InvalidAmount();
+        if (user == address(0)) revert InvalidAddress();
+        
+        // Restore the FULL locked balance (100% refund)
+        lockedBalance[user] += amount;
+        
+        emit LockedBalanceRestored(user, amount);
     }
     
     /**

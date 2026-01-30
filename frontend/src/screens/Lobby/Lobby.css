@@ -167,6 +167,34 @@
 .room-stake {
     color: #68d391;
     font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.room-winnings {
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+.boost-badge {
+    color: #ffd700;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
 }
 
 .join-btn {

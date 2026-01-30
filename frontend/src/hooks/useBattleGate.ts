@@ -116,7 +116,7 @@ export function useCanEnterBattle() {
 }
 
 /**
- * Get token balances
+ * Get token balances (including locked balance from AirdropVault)
  */
 export function useTokenBalances() {
     const { address } = useAccount();
@@ -135,8 +135,29 @@ export function useTokenBalances() {
         args: address ? [address] : undefined,
     });
 
+    // Also get locked balance from AirdropVault (can be spent for battles)
+    const { data: lockedDgne } = useReadContract({
+        address: CONTRACTS.AIRDROP_VAULT as Address,
+        abi: [
+            {
+                name: 'getLockedBalance',
+                type: 'function',
+                inputs: [{ name: 'user', type: 'address' }],
+                outputs: [{ name: 'balance', type: 'uint256' }],
+                stateMutability: 'view'
+            }
+        ] as const,
+        functionName: 'getLockedBalance',
+        args: address ? [address] : undefined,
+    });
+
+    // Effective DGNE = wallet balance + locked balance (both usable for battles)
+    const effectiveDgneBalance = (dgneBalance ?? 0n) + (lockedDgne ?? 0n);
+
     return {
-        dgneBalance: dgneBalance ?? 0n,
+        dgneBalance: effectiveDgneBalance,  // Combined balance for battle eligibility
+        walletDgneBalance: dgneBalance ?? 0n,  // Just wallet balance
+        lockedDgneBalance: lockedDgne ?? 0n,  // Just locked balance
         rmrkBalance: rmrkBalance ?? 0n
     };
 }

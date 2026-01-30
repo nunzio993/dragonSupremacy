@@ -5,20 +5,20 @@
 export const STAT_NAMES = ['STR', 'AGI', 'SPD', 'REF', 'END', 'VIT'] as const;
 export const CONTRACTS = {
     RMRKCreature: {
-        address: '0x5FbDB2315678afecb367f032d93F642f64180aa3' as `0x${string}`,
+        address: '0x4631BCAbD6dF18D94796344963cB60d44a4136b6' as `0x${string}`,
         chainId: 31337,
     },
     // Token and economy contracts - Updated from deployed-addresses.json
-    BATTLE_GATE: '0x0165878A594ca255338adfa4d48449f69242Eb8F' as `0x${string}`,  // Old BattleGate
-    BATTLE_GATE_V2: '0x0165878A594ca255338adfa4d48449f69242Eb8F' as `0x${string}`,  // Same as above now
-    DRAGON_TOKEN: '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0' as `0x${string}`,
-    MOCK_RMRK: '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9' as `0x${string}`,
-    GAME_CONFIG: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512' as `0x${string}`,
-    MINT_GATE: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9' as `0x${string}`,
-    MINT_GATE_V2: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9' as `0x${string}`,  // Alias for MintScreen compatibility
-    DRAGON_STAKING: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707' as `0x${string}`,
-    HP_MANAGER: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853' as `0x${string}`,
-    AIRDROP_VAULT: '0xc6e7DF5E7b4f2A278906862b61205850344D4e7d' as `0x${string}`,
+    BATTLE_GATE: '0x720472c8ce72c2A2D711333e064ABD3E6BbEAdd3' as `0x${string}`,  // BattleGateV2
+    BATTLE_GATE_V2: '0x720472c8ce72c2A2D711333e064ABD3E6BbEAdd3' as `0x${string}`,
+    DRAGON_TOKEN: '0xA4899D35897033b927acFCf422bc745916139776' as `0x${string}`,
+    MOCK_RMRK: '0xf953b3A269d80e3eB0F2947630Da976B896A8C5b' as `0x${string}`,
+    GAME_CONFIG: '0x86A2EE8FAf9A840F7a2c64CA3d51209F9A02081D' as `0x${string}`,
+    MINT_GATE: '0xAA292E8611aDF267e563f334Ee42320aC96D0463' as `0x${string}`,
+    MINT_GATE_V2: '0xAA292E8611aDF267e563f334Ee42320aC96D0463' as `0x${string}`,
+    DRAGON_STAKING: '0x5c74c94173F05dA1720953407cbb920F3DF9f887' as `0x${string}`,
+    HP_MANAGER: '0xe8D2A1E88c91DCd5433208d4152Cc4F399a7e91d' as `0x${string}`,
+    AIRDROP_VAULT: '0xA7c59f010700930003b33aB25a7a0679C860f29c' as `0x${string}`,
 } as const;
 
 // Hardhat local network config

@@ -10,7 +10,7 @@ import { useWallet } from '../../contexts/WalletContext';
 import { ConnectWallet } from '../../components/wallet/ConnectWallet';
 import { CreatureSelector } from '../../components/CreatureSelector/CreatureSelector';
 import { CreatureInfo } from '../../hooks/useCreatureContract';
-import { useBattleGateV2, usePlayerActiveBattle, useStakeLimits } from '../../hooks/useBattleGateV2';
+import { useBattleGateV2, usePlayerActiveBattle, useStakeLimits, useWinBoost } from '../../hooks/useBattleGateV2';
 import { useTokenBalances } from '../../hooks/useBattleGate';
 import { initSocket, getSocket, RoomInfo } from '../../services/socket';
 import { formatEther, parseEther } from 'viem';
@@ -53,6 +53,9 @@ export function LobbyScreen() {
 
     // Token balances (for display)
     const { dgneBalance } = useTokenBalances();
+
+    // Win boost for displaying potential winnings
+    const { hasBoost, calculateWinnings } = useWinBoost();
 
     // Initialize socket when connected
     useEffect(() => {
@@ -424,6 +427,15 @@ export function LobbyScreen() {
                                         </div>
                                         <div className="room-stake">
                                             🏆 Stake: {formatToken(BigInt(room.stakeAmount || '0'))} DGNE
+                                            {(() => {
+                                                const stake = BigInt(room.stakeAmount || '0');
+                                                const { baseWinnings, boost } = calculateWinnings(stake);
+                                                return (
+                                                    <span className="room-winnings">
+                                                        → Win: {formatToken(baseWinnings)} {hasBoost && boost > 0n && <span className="boost-badge">(+{formatToken(boost)} boost)</span>}
+                                                    </span>
+                                                );
+                                            })()}
                                         </div>
                                     </div>
                                     <button

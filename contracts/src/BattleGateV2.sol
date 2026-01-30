@@ -17,6 +17,8 @@ interface ICreatureXP {
 // Interface for AirdropVault
 interface IAirdropVault {
     function spendLockedBalance(address user, uint256 amount) external returns (uint256);
+    function restoreLockedBalance(address user, uint256 amount) external;
+    function finalizeLockedSpend(uint256 amount) external;
     function getLockedBalance(address user) external view returns (uint256);
 }
 
@@ -108,9 +110,17 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
     mapping(uint256 => bytes32) public creatureInBattle;
     mapping(bytes32 => bool) public usedSignatures;
     
+    // Track locked stake portions for refunds
+    mapping(bytes32 => uint256) public hostLockedStake;
+    mapping(bytes32 => uint256) public guestLockedStake;
+    
     // Timelock state
     address public pendingBackend;
     uint256 public pendingBackendTime;
+    
+    // Win Boost configuration
+    uint256 public winBoostBPS = 0;         // Bonus percentage (500 = 5%)
+    address public winBoostWallet;          // Source of boost tokens
     
     // ============ Events ============
     
@@ -136,7 +146,8 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
     event WinningsClaimed(
         bytes32 indexed battleId,
         address indexed winner,
-        uint256 amount
+        uint256 baseAmount,
+        uint256 boostAmount
     );
     
     event BattleCancelled(
@@ -148,6 +159,9 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         bytes32 indexed battleId,
         string reason
     );
+    
+    event WinBoostUpdated(uint256 newBoostBPS);
+    event WinBoostWalletUpdated(address newWallet);
     
     // ============ Constructor ============
     
@@ -214,6 +228,9 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
             winner: address(0)
         });
         
+        // Track how much came from locked balance (for refunds)
+        hostLockedStake[battleId] = fromLocked;
+        
         // Lock wallet and creature
         walletInBattle[msg.sender] = battleId;
         creatureInBattle[creatureId] = battleId;
@@ -258,6 +275,9 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         battle.guestCreatureId = creatureId;
         battle.matchedAt = block.timestamp;
         battle.state = BattleState.MATCHED;
+        
+        // Track how much came from locked balance (for refunds)
+        guestLockedStake[battleId] = fromLocked;
         
         // Lock wallet and creature
         walletInBattle[msg.sender] = battleId;
@@ -338,21 +358,44 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         uint256 platformFee = (totalPot * PLATFORM_FEE_BPS) / BPS_DENOMINATOR;
         uint256 winnerPrize = totalPot - platformFee;
         
+        // Calculate boost
+        uint256 boost = (winnerPrize * winBoostBPS) / BPS_DENOMINATOR;
+        
         // Update state BEFORE transfers (CEI pattern)
         battle.state = BattleState.CLAIMED;
         
         // Unlock the winner (loser was already unlocked in resolveBattle)
         _unlockWinner(battle);
         
-        // Transfer prize
+        // NOW finalize locked balance splits (WinBoost gets its 31% only after battle completion)
+        if (address(airdropVault) != address(0)) {
+            uint256 totalLocked = hostLockedStake[battleId] + guestLockedStake[battleId];
+            if (totalLocked > 0) {
+                airdropVault.finalizeLockedSpend(totalLocked);
+            }
+        }
+        
+        // Transfer base prize
         if (!stakeToken.transfer(msg.sender, winnerPrize)) revert PrizeTransferFailed();
+        
+        // Transfer boost from WinBoost wallet (if configured and has allowance)
+        if (boost > 0 && winBoostWallet != address(0)) {
+            // Try to transfer boost - if fails (no allowance), continue without boost
+            try IERC20(stakeToken).transferFrom(winBoostWallet, msg.sender, boost) returns (bool success) {
+                if (!success) boost = 0;
+            } catch {
+                boost = 0;
+            }
+        } else {
+            boost = 0;
+        }
         
         // Transfer platform fee
         if (platformFee > 0 && treasury != address(0)) {
             if (!stakeToken.transfer(treasury, platformFee)) revert FeeTransferFailed();
         }
         
-        emit WinningsClaimed(battleId, msg.sender, winnerPrize);
+        emit WinningsClaimed(battleId, msg.sender, winnerPrize, boost);
     }
     
     // ============ Cancellation ============
@@ -375,16 +418,30 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         walletInBattle[battle.host] = bytes32(0);
         creatureInBattle[battle.hostCreatureId] = bytes32(0);
         
-        // Calculate cancel fee (1% anti-griefing)
-        uint256 cancelFee = (battle.stakeAmount * CANCEL_FEE_BPS) / BPS_DENOMINATOR;
-        uint256 refundAmount = battle.stakeAmount - cancelFee;
+        // Get locked vs wallet portions
+        uint256 lockedPortion = hostLockedStake[battleId];
+        uint256 walletPortion = battle.stakeAmount - lockedPortion;
         
-        // Refund host minus fee
-        if (!stakeToken.transfer(battle.host, refundAmount)) revert RefundFailed();
+        // Restore FULL locked portion (100% refund - WinBoost was never sent)
+        if (lockedPortion > 0 && address(airdropVault) != address(0)) {
+            airdropVault.restoreLockedBalance(battle.host, lockedPortion);
+        }
         
-        // Send fee to treasury
-        if (cancelFee > 0 && treasury != address(0)) {
-            if (!stakeToken.transfer(treasury, cancelFee)) revert FeeTransferFailed();
+        // Handle wallet portion (apply cancel fee, transfer)
+        if (walletPortion > 0) {
+            // Calculate cancel fee (1% anti-griefing)
+            uint256 cancelFee = (walletPortion * CANCEL_FEE_BPS) / BPS_DENOMINATOR;
+            uint256 walletRefund = walletPortion - cancelFee;
+            
+            // Refund wallet portion minus fee
+            if (walletRefund > 0) {
+                if (!stakeToken.transfer(battle.host, walletRefund)) revert RefundFailed();
+            }
+            
+            // Send fee to treasury
+            if (cancelFee > 0 && treasury != address(0)) {
+                if (!stakeToken.transfer(treasury, cancelFee)) revert FeeTransferFailed();
+            }
         }
         
         emit BattleCancelled(battleId, msg.sender);
@@ -408,8 +465,19 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         walletInBattle[battle.host] = bytes32(0);
         creatureInBattle[battle.hostCreatureId] = bytes32(0);
         
-        // Refund
-        if (!stakeToken.transfer(battle.host, battle.stakeAmount)) revert RefundFailed();
+        // Get locked vs wallet portions
+        uint256 lockedPortion = hostLockedStake[battleId];
+        uint256 walletPortion = battle.stakeAmount - lockedPortion;
+        
+        // Restore FULL locked portion (100% refund)
+        if (lockedPortion > 0 && address(airdropVault) != address(0)) {
+            airdropVault.restoreLockedBalance(battle.host, lockedPortion);
+        }
+        
+        // Refund wallet portion (full amount, no fee on timeout)
+        if (walletPortion > 0) {
+            if (!stakeToken.transfer(battle.host, walletPortion)) revert RefundFailed();
+        }
         
         emit BattleExpired(battleId, "Host timeout - no guest");
     }
@@ -426,13 +494,18 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
         
         if (battle.state != BattleState.CREATED && battle.state != BattleState.MATCHED) revert CannotRefund();
         
-        // Calculate total refund needed BEFORE any state changes
-        uint256 hostRefund = battle.stakeAmount;
-        uint256 guestRefund = battle.guest != address(0) ? battle.stakeAmount : 0;
+        // Cache addresses before state changes
         address hostAddr = battle.host;
         address guestAddr = battle.guest;
         uint256 hostCreature = battle.hostCreatureId;
         uint256 guestCreature = battle.guestCreatureId;
+        uint256 stakeAmount = battle.stakeAmount;
+        
+        // Get locked portions
+        uint256 hostLocked = hostLockedStake[battleId];
+        uint256 hostWallet = stakeAmount - hostLocked;
+        uint256 guestLocked = guestLockedStake[battleId];
+        uint256 guestWallet = stakeAmount - guestLocked;
         
         // Update state FIRST (CEI pattern)
         battle.state = BattleState.EXPIRED;
@@ -445,12 +518,27 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
             creatureInBattle[guestCreature] = bytes32(0);
         }
         
-        // Transfer to host (if fails, revert entire tx)
-        if (!stakeToken.transfer(hostAddr, hostRefund)) revert RefundFailed();
+        // Restore FULL host locked balance (100% refund)
+        if (hostLocked > 0 && address(airdropVault) != address(0)) {
+            airdropVault.restoreLockedBalance(hostAddr, hostLocked);
+        }
         
-        // Transfer to guest if applicable
-        if (guestRefund > 0) {
-            if (!stakeToken.transfer(guestAddr, guestRefund)) revert RefundFailed();
+        // Transfer host wallet portion
+        if (hostWallet > 0) {
+            if (!stakeToken.transfer(hostAddr, hostWallet)) revert RefundFailed();
+        }
+        
+        // Handle guest if battle was matched
+        if (guestAddr != address(0)) {
+            // Restore FULL guest locked balance (100% refund)
+            if (guestLocked > 0 && address(airdropVault) != address(0)) {
+                airdropVault.restoreLockedBalance(guestAddr, guestLocked);
+            }
+            
+            // Transfer guest wallet portion
+            if (guestWallet > 0) {
+                if (!stakeToken.transfer(guestAddr, guestWallet)) revert RefundFailed();
+            }
         }
         
         emit BattleExpired(battleId, "Emergency refund by admin");
@@ -526,6 +614,35 @@ contract BattleGateV2 is Ownable, Pausable, ReentrancyGuard {
     /// @notice Resume battle operations
     function unpause() external onlyOwner {
         _unpause();
+    }
+    
+    /// @notice Set win boost percentage (admin only)
+    /// @param _winBoostBPS Boost in basis points (500 = 5%, max 5000 = 50%)
+    function setWinBoost(uint256 _winBoostBPS) external onlyOwner {
+        require(_winBoostBPS <= 5000, "Max 50% boost");
+        winBoostBPS = _winBoostBPS;
+        emit WinBoostUpdated(_winBoostBPS);
+    }
+    
+    /// @notice Set win boost wallet (source of bonus tokens)
+    /// @param _wallet Address holding boost tokens
+    function setWinBoostWallet(address _wallet) external onlyOwner {
+        require(_wallet != address(0), "Invalid wallet");
+        winBoostWallet = _wallet;
+        emit WinBoostWalletUpdated(_wallet);
+    }
+    
+    // ============ View Functions ============
+    
+    /// @notice Calculate expected winnings for a given stake (for frontend display)
+    /// @param stakeAmount The stake amount
+    /// @return baseAmount Normal prize (pot minus platform fee)
+    /// @return boostAmount Bonus amount from win boost percentage
+    function calculateWinnings(uint256 stakeAmount) external view returns (uint256 baseAmount, uint256 boostAmount) {
+        uint256 totalPot = stakeAmount * 2;
+        uint256 platformFee = (totalPot * PLATFORM_FEE_BPS) / BPS_DENOMINATOR;
+        baseAmount = totalPot - platformFee;
+        boostAmount = (baseAmount * winBoostBPS) / BPS_DENOMINATOR;
     }
     
     // Timelock events

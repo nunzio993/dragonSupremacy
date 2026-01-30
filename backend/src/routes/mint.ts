@@ -16,7 +16,7 @@ const signer = new ethers.Wallet(SIGNER_PRIVATE_KEY);
 console.log('[Mint] Signer address:', signer.address);
 
 // MintGateV2 address - must match deployed contract
-const MINT_GATE_ADDRESS = process.env.MINT_GATE_ADDRESS || '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9';
+const MINT_GATE_ADDRESS = process.env.MINT_GATE_ADDRESS || '0xAA292E8611aDF267e563f334Ee42320aC96D0463';
 const CHAIN_ID = parseInt(process.env.CHAIN_ID || '31337');
 
 // EIP-712 Domain

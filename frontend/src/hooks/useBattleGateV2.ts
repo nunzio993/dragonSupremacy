@@ -123,6 +123,14 @@ const BATTLE_GATE_V2_ABI = [
             { name: 'creatureId', type: 'uint256', indexed: false },
             { name: 'stakeAmount', type: 'uint256', indexed: false }
         ]
+    },
+    // Win boost percentage
+    {
+        name: 'winBoostBPS',
+        type: 'function',
+        inputs: [],
+        outputs: [{ name: '', type: 'uint256' }],
+        stateMutability: 'view'
     }
 ] as const;
 
@@ -169,6 +177,83 @@ export function useStakeLimits() {
     return {
         minStake: minStake ?? parseEther('10'),
         maxStake: maxStake ?? parseEther('1000')
+    };
+}
+
+/**
+ * Get win boost percentage and calculate winnings
+ * Checks if WinBoost wallet has sufficient funds
+ */
+export function useWinBoost() {
+    const { data: winBoostBPS } = useReadContract({
+        address: CONTRACTS.BATTLE_GATE_V2 as Address,
+        abi: BATTLE_GATE_V2_ABI,
+        functionName: 'winBoostBPS',
+    });
+
+    // Read winBoostWallet address
+    const { data: winBoostWallet } = useReadContract({
+        address: CONTRACTS.BATTLE_GATE_V2 as Address,
+        abi: [...BATTLE_GATE_V2_ABI, {
+            name: 'winBoostWallet',
+            type: 'function',
+            inputs: [],
+            outputs: [{ name: '', type: 'address' }],
+            stateMutability: 'view'
+        }] as const,
+        functionName: 'winBoostWallet',
+    });
+
+    // Read WinBoost wallet's DGNE balance
+    const { data: boostWalletBalance } = useReadContract({
+        address: CONTRACTS.DRAGON_TOKEN as Address,
+        abi: [{
+            name: 'balanceOf',
+            type: 'function',
+            inputs: [{ name: 'account', type: 'address' }],
+            outputs: [{ name: '', type: 'uint256' }],
+            stateMutability: 'view'
+        }] as const,
+        functionName: 'balanceOf',
+        args: winBoostWallet ? [winBoostWallet as Address] : undefined,
+    });
+
+    // Read WinBoost wallet's allowance for BattleGate
+    const { data: boostWalletAllowance } = useReadContract({
+        address: CONTRACTS.DRAGON_TOKEN as Address,
+        abi: ERC20_ABI,
+        functionName: 'allowance',
+        args: winBoostWallet ? [winBoostWallet as Address, CONTRACTS.BATTLE_GATE_V2 as Address] : undefined,
+    });
+
+    const boostBPS = winBoostBPS ?? 0n;
+    const availableFunds = boostWalletBalance && boostWalletAllowance
+        ? (boostWalletBalance < boostWalletAllowance ? boostWalletBalance : boostWalletAllowance)
+        : 0n;
+
+    const PLATFORM_FEE_BPS = 500n; // 5%
+    const BPS_DENOMINATOR = 10000n;
+
+    // Calculate winnings for a given stake amount, capped by available funds
+    const calculateWinnings = (stakeAmount: bigint) => {
+        const totalPot = stakeAmount * 2n;
+        const platformFee = (totalPot * PLATFORM_FEE_BPS) / BPS_DENOMINATOR;
+        const baseWinnings = totalPot - platformFee;
+        let boost = (baseWinnings * boostBPS) / BPS_DENOMINATOR;
+
+        // Cap boost by available funds in WinBoost wallet
+        if (boost > availableFunds) {
+            boost = availableFunds;
+        }
+
+        return { baseWinnings, boost, total: baseWinnings + boost };
+    };
+
+    return {
+        winBoostBPS: boostBPS,
+        hasBoost: boostBPS > 0n,
+        availableFunds,
+        calculateWinnings
     };
 }
 
